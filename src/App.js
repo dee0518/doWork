@@ -1,7 +1,13 @@
+import { Routes, Route } from 'react-router-dom';
+import { Header, Schedule } from './Path'
+
 function App() {
   return (
-    <div className="App">
-      
+    <div className="Wrapper">
+      <Header/>
+      <Routes>
+        <Route path="/" element={<Schedule/>}/>
+      </Routes>
     </div>
   );
 }
