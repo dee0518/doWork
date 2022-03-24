@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { MAIN } from '../../navigation/Constant'
 
 function Menu(){
@@ -6,9 +6,9 @@ function Menu(){
         <nav>
             <ul>
                 <li>
-                    <Link to ={MAIN}>
-                        schedule
-                    </Link>
+                    <NavLink to={MAIN} className={({ isActive }) => 'schedule'+ (isActive ? ' activated' : '')}>
+                        <span>Schedule</span>
+                    </NavLink>
                 </li>
             </ul>
         </nav>
