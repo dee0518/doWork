@@ -1,0 +1,2 @@
+// route
+export const MAIN = '/'
