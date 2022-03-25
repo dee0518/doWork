@@ -1,7 +1,9 @@
-function Schedule(){
+import ScheduleView from "./presenter/ScheduleView"
+
+function ScheduleData(){
     return (
-        <div></div>
+        <ScheduleView/>
     )
 }
 
-export default Schedule
+export default ScheduleData

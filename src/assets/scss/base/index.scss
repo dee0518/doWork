@@ -9,10 +9,18 @@ a {
     text-align: none;
 }
 
-body {
+html {
     font-size: 0.625em;
+    line-height: 1;
+    font-family: 'Poppins', sans-serif;
 }
 
 img {
     border: none;
+}
+
+.blind {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
 }

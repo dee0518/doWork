@@ -1,0 +1,115 @@
+.calendar {
+    .calendar-header-group {
+        div {
+            font-weight: 500;
+            color: $color-text2;
+        }
+
+        button {
+            width: 40px;
+            height: 40px;
+            text-indent: -9999px;
+            background: $color-white;
+        }
+    }
+
+    .days-group {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        div {
+            font-weight: 500;
+        }
+    }
+
+    .dates-group {
+        display: grid;
+        grid-template-columns: repeat(7,1fr);
+
+        a {
+            display: block;
+            text-decoration: none;
+            color: $color-text2;
+            text-align: center;
+            font-weight: 500;
+        }
+    }
+}
+
+.calendar.small {
+    .calendar-header-group {
+        display: grid;
+        grid-template-columns: 1fr 40px 40px;
+        grid-template-rows: 1fr;
+        grid-gap: 10px;
+        margin-bottom: 25px;
+
+        div {
+            grid-column: 1;
+            grid-row: 1;
+            font-size: 2.4rem;
+            line-height: 40px;
+        }
+
+        button {
+            border: 1px solid $color-border2;
+            border-radius: 6px;
+            background: url(../../../images/arrow_left.svg) no-repeat center;
+        }
+
+        .prev-btn {
+            grid-row: 1;
+            grid-column: 2;
+        }
+
+        .next-btn {
+            grid-row: 1;
+            grid-column: 3;
+            text-indent: 9999px;
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+        }
+    }
+
+    .days-dates-group {
+        padding: 20px 15px;
+        border-radius: 10px;
+        background-color: $color-bg-gray;
+
+        .days-group {
+            div {
+                padding: 10px 0 30px;
+                color: $color-text8;
+                font-size: 1.2rem;
+                line-height: 1.423;
+            }
+        }
+
+        .dates-group {
+            a {
+                height: 40px;
+                margin-bottom: 5px;
+                font-size: 1.4rem;
+                line-height: 40px;
+            }
+
+            .other {
+                color: $color-text6;
+            }
+
+            .today {
+                border-radius: 50%;
+                background-color: $color-pink;
+                color: $color-white;
+            }
+
+            a:hover, .selected {
+                color: $color-white;
+                border-radius: 50%;
+                background-color: $color-pink;
+                opacity: 0.5;
+            }
+        }
+    }
+}
