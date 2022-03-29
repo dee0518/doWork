@@ -1,0 +1,24 @@
+.sub-menu-title-group {
+    margin-bottom: 55px;
+
+    span.title {
+        color: $color-text2;
+    }
+
+    .title {
+        width: 130px;
+        height: 100%;
+        margin-right: 20px;
+        border: none;
+        background: #fff;
+        font-size: 2.8rem;
+        font-weight: bold;
+        line-height: 1.5;
+        color: $color-text6;
+    }
+
+    .title.on {
+        color: $color-yellow;
+        border-bottom: 2px solid $color-yellow;
+    }
+}
