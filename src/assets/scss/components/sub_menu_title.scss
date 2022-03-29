@@ -5,16 +5,21 @@
         color: $color-text2;
     }
 
-    .title {
+    button.title {
         width: 130px;
         height: 100%;
-        margin-right: 20px;
+        margin-right: 25px;
+        text-decoration: none;
+    }
+
+    .title {  
         border: none;
         background: #fff;
         font-size: 2.8rem;
         font-weight: bold;
         line-height: 1.5;
         color: $color-text6;
+        text-transform: capitalize;
     }
 
     .title.on {

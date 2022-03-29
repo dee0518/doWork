@@ -6,7 +6,8 @@ function Menu(){
         <nav>
             <ul>
                 <li>
-                    <NavLink to={MAIN} className={({ isActive }) => 'schedule'+ (isActive ? ' activated' : '')}>
+                    <NavLink to={'main'}
+                        className={({ isActive }) => 'schedule'+ (isActive ? ' activated' : '')}>
                         <span>Schedule</span>
                     </NavLink>
                 </li>

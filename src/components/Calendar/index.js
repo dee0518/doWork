@@ -1,18 +1,17 @@
-import React, { useCallback, useEffect, useState } from "react"
-import { useParams } from "react-router"
+import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
 function Calendar(props){
-    const { type } = props
-
+    const { type, params } = props
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
     const today = new Date()
-    const [year, setYear] = useState(today.getFullYear())
-    const [month, setMonth] = useState(today.getMonth())
-    const [selectedDate, setSelectedDate] = useState(today)
+    const [selectedDate, setSelectedDate] = useState()
     const [curDates, setCurDates] = useState([])
 
-    const addDates = useCallback(() => {       
+    const addDates = () => {  
+        let year = selectedDate.getFullYear()
+        let month = selectedDate.getMonth()
+
         let prevLastDate = new Date(year, month, 0)
         let prevLastDay = prevLastDate.getDay()
         let currentLastDate = new Date(year, month + 1, 0)
@@ -34,37 +33,63 @@ function Calendar(props){
         }
 
         setCurDates([...showedDates])
-    },[year, month])
+    }
+
+    const onClickArrowBtn = (e) => {
+        let type = e.target.textContent
+        let year = selectedDate.getFullYear()
+        let month = selectedDate.getMonth()
+
+        if(type === 'prev'){
+            setSelectedDate(new Date(year, month - 1, 1))
+        } else {
+            setSelectedDate(new Date(year, month + 1, 1))
+        }
+    }
 
     useEffect(() => {
-        addDates()
-    },[addDates])
+        if(selectedDate !== undefined) addDates()
+    },[selectedDate])
+
+    useEffect(() => {
+        if(Object.keys(params).length === 0){
+            setSelectedDate(today)
+        } else {
+            setSelectedDate(new Date(params.year, params.month - 1, params.date))
+        }
+    },[params])
 
     return (
         <div className={"calendar " + type}>
-            <CalendarHeader year={year} selectedDate={selectedDate}/>
-            <div className="days-dates-group">
-                <CalendarDay type={type} days={days}/>
-                <CalendarDates
-                    year={year} 
-                    month={month} 
-                    today={today} 
-                    selectedDate={selectedDate} 
-                    curDates={curDates} 
-                />
-            </div>
+            {
+                selectedDate !== undefined && <>
+                    <CalendarHeader
+                        selectedDate={selectedDate}
+                        onClickArrowBtn={onClickArrowBtn}
+                    />
+                    <div className="days-dates-group">
+                        <CalendarDay type={type} days={days}/>
+                        <CalendarDates
+                            today={today} 
+                            params={params}
+                            selectedDate={selectedDate} 
+                            curDates={curDates} 
+                        />
+                    </div>
+                </>
+            }
         </div>
     )
 }
 
 function CalendarHeader(props){
-    const { year, selectedDate } = props
+    const { selectedDate } = props
 
     return (
         <div className="calendar-header-group">
-            <button className="prev-btn">prev</button>
-            <div>{`${selectedDate.toLocaleString('en-US',{ month: 'long' })}, ${year}`}</div>
-            <button className="next-btn">next</button>
+            <button className="prev-btn" onClick={(e) => props.onClickArrowBtn(e)}>prev</button>
+            <div>{`${selectedDate.toLocaleString('en-US',{ month: 'long' })}, ${selectedDate.getFullYear()}`}</div>
+            <button className="next-btn" onClick={(e) => props.onClickArrowBtn(e)}>next</button>
         </div>
     )
 }
@@ -83,35 +108,67 @@ function CalendarDay(props){
 }
 
 function CalendarDates(props){
-    const { year, month, today, selectedDate, curDates } = props
+    const { today, params, selectedDate, curDates } = props
 
     return (
         <div className="dates-group">
             {
                 curDates.map((cur,i) => {
                     let dateClass = ''
+                    let urlSub = ''
+                    let urlType = ''
+                    let year = selectedDate.getFullYear()
+                    let month = selectedDate.getMonth()
+                    let url = ''
+
+                    if(cur === today.getDate() &&
+                        year === today.getFullYear() &&
+                        month === today.getMonth()
+                    ){
+                        dateClass = 'today '
+                    }
 
                     if((i < 6 && cur > 20) || (i > 30 && cur < 10)){
-                        dateClass = 'other'
+                        dateClass += 'other'
                     } else {
-                        dateClass = 'cur'
+                        dateClass += 'cur'
                     }
 
-                    if(cur === today.getDate() && 
-                    year === today.getFullYear() && 
-                    month === today.getMonth()){
-                        dateClass += ' today'
-                    }
-
-                    if(cur === selectedDate.getDate() && 
-                    year === selectedDate.getFullYear() && 
-                    month === selectedDate.getMonth()){
-                        if(!dateClass.match('today')){
-                            dateClass += ' selected'
+                    if(i < 6 && cur > 20) {
+                        if(month === 0){
+                            year--
+                            month = 11
+                        } else {
+                            month--
+                        }
+                    } else if(i > 30 && cur < 10){
+                        if(month === 11){
+                            year++
+                            month = 0
+                        } else {
+                            month++
                         }
                     }
+
+                    if(cur === selectedDate.getDate()){
+                        if(!dateClass.match('today')){
+                            if(!((cur < 7 && i > 25) || (cur > 24 && i < 7))){ 
+                                dateClass += ' selected'
+                            }   
+                        }
+                    }
+
+                    if(Object.keys(params).length === 0){
+                        urlSub = 'calendar'
+                        urlType = 'month'
+                    } else {
+                        urlSub = params.sub
+                        urlType = params.type
+                    }
+
+                    url = `${urlSub}/${urlType}/${year}/${month + 1}/${cur}`
                     
-                    return <CalendarDate key={'date' + i} dateClass={dateClass} date={cur}/>
+                    return <CalendarDate key={'date' + i} dateClass={dateClass} url={url} date={cur}/>
                 })
             }
         </div>
@@ -119,10 +176,10 @@ function CalendarDates(props){
 }
 
 function CalendarDate(props){
-    const { dateClass, date } = props
-
+    const { dateClass, url, date } = props
+    
     return (
-        <Link className={dateClass} to={'/date'}>{date}</Link>
+        <Link className={dateClass} to={url}>{date}</Link>
     )
 }
 

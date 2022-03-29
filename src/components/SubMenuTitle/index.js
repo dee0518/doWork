@@ -7,16 +7,16 @@ function SubMenuTitle (props){
 
     return (
         <div className="sub-menu-title-group">
-            { type === 'text' && <span className="title">{titles[0]}</span> }
+            { type === 'text' && titles[0] }
             {
                 type === 'button' && 
                 titles.map((title, i) => {
                     let activeClass = ''
-                    
-                    if(curTitle === title){
+                    if(title === curTitle || (curTitle === undefined && i === 0)){
                         activeClass = ' on'
                     }
-                    return <button className={"title" + activeClass} key={'st' + i} onClick={(e) => onClick(e)}>{title}</button>
+
+                    return <button className={'title' + activeClass} key={'st' + i} onClick={(e) => onClick(e)}>{title}</button>
                 })
             }
         </div>
