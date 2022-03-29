@@ -1,10 +1,40 @@
+import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { SubMenuBox, SubMenuTitle, Calendar } from '../../../Path'
+import Status from './Status'
+
+const data = [{
+    id: 1,
+    label: 'all',
+    checked: true,
+    color: 'purple'
+},{
+    id: 2,
+    label: 'to do',
+    checked: true,
+    color: 'pink'
+},{
+    id: 3,
+    label: 'private',
+    checked: true,
+    color: 'yellow'
+},{
+    id: 4,
+    label: 'meeting',
+    checked: true,
+    color: 'skyblue'
+},{
+    id: 5,
+    label: 'complete',
+    checked: true,
+    color: 'green'
+}]
 
 function ScheduleMenu(){
     const navigator = useNavigate()
     const params = useParams()
     const titles = ['calendar','schedule']
+    const [checkList,setCheckList] = useState(data)
 
     const onClickSubTitle = (title) => {
         let url = createUrl(title)
@@ -24,10 +54,23 @@ function ScheduleMenu(){
         return url
     }
 
+    const onChange = (e) => {
+        let id = e.target.id.split('_')[1]
+
+        setCheckList(checkList.map((check) => {
+            if(check.id === Number(id)){
+                return {...check, checked: !check.checked}
+            }
+
+            return check
+        }))
+    }
+
     return (
         <SubMenuBox>
             <SubMenuTitle type={'button'} titles={titles} curTitle={params.sub} onClickSubTitle={onClickSubTitle}/>
             <Calendar type={'small'} params={params}/>
+            <Status checkList={checkList} name={'status'} onChange={onChange}/>
         </SubMenuBox>
     )
 }

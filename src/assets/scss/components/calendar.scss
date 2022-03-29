@@ -55,7 +55,7 @@
         button {
             border: 1px solid $color-border2;
             border-radius: 6px;
-            background: url(../../../images/arrow_left.svg) no-repeat center;
+            background: url(../../images/arrow_left.svg) no-repeat center;
         }
 
         .prev-btn {
@@ -109,6 +109,7 @@
                 border-radius: 50%;
                 background-color: $color-pink;
                 opacity: 0.5;
+                box-shadow: 0 4px 10px 0 rgba(206,206,206,.8);
             }
         }
     }
