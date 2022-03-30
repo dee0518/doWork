@@ -55,15 +55,27 @@ function ScheduleMenu(){
     }
 
     const onChange = (e) => {
-        let id = e.target.id.split('_')[1]
+        let id = Number(e.target.id.split('_')[1])
+
+        let allChk = checkList[0].checked
+        let curChk = checkList[id - 1].checked
+        let restChk = checkList.filter((v,i) => i !== 0 && i != id - 1 && v.checked === true).length
 
         setCheckList(checkList.map((check) => {
-            if(Number(id) === 1){
+            if(id === 1){
                 return {...check, checked: !checkList[0].checked}
-            } else if(check.id === Number(id)){
+            } else if(check.id === id){
                 return {...check, checked: !check.checked}
             }
 
+            if(check.id === 1){
+                if(curChk){
+                    return {...check, checked: false}
+                } else if(restChk === 3) {
+                    return {...check, checked: true}
+                }
+            }
+            
             return check
         }))
     }
