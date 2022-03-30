@@ -57,7 +57,6 @@ function ScheduleMenu(){
     const onChange = (e) => {
         let id = Number(e.target.id.split('_')[1])
 
-        let allChk = checkList[0].checked
         let curChk = checkList[id - 1].checked
         let restChk = checkList.filter((v,i) => i !== 0 && i != id - 1 && v.checked === true).length
 
