@@ -4,7 +4,7 @@ import { MAIN, MAINSUB } from './navigation/Constant'
 
 function App() {
   return (
-    <div className="Wrapper">
+    <div className="wrapper">
       <Header/>
       <Routes>
         <Route path={MAIN} element={<Schedule/>}>

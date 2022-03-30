@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import { Button, Wrapper } from '../../Path'
 
 function Calendar(props){
     const { type, params } = props
@@ -60,14 +61,14 @@ function Calendar(props){
     },[params])
 
     return (
-        <div className={"calendar " + type}>
+        <Wrapper className={"calendar " + type}>
             {
                 selectedDate !== undefined && <>
                     <CalendarHeader
                         selectedDate={selectedDate}
                         onClickArrowBtn={onClickArrowBtn}
                     />
-                    <div className="days-dates-group">
+                    <Wrapper className="days-dates-group">
                         <CalendarDay type={type} days={days}/>
                         <CalendarDates
                             today={today} 
@@ -75,10 +76,10 @@ function Calendar(props){
                             selectedDate={selectedDate} 
                             curDates={curDates} 
                         />
-                    </div>
+                    </Wrapper>
                 </>
             }
-        </div>
+        </Wrapper>
     )
 }
 
@@ -86,24 +87,24 @@ function CalendarHeader(props){
     const { selectedDate } = props
 
     return (
-        <div className="calendar-header-group">
-            <button className="prev-btn" onClick={(e) => props.onClickArrowBtn(e)}>prev</button>
+        <Wrapper className="calendar-header-group">
+            <Button className="prev-btn" onClick={props.onClickArrowBtn}>prev</Button>
             <div>{`${selectedDate.toLocaleString('en-US',{ month: 'long' })}, ${selectedDate.getFullYear()}`}</div>
-            <button className="next-btn" onClick={(e) => props.onClickArrowBtn(e)}>next</button>
-        </div>
+            <Button className="next-btn" onClick={props.onClickArrowBtn}>next</Button>
+        </Wrapper>
     )
 }
 
 function CalendarDay(props){
     const { type, days } = props
     return (
-        <div className="days-group">
+        <Wrapper className="days-group">
             {
                 days.map((day, i) => {
                     return <div key={'day' + i}>{type.includes('small')? day.substr(0,3): day}</div>
                 })
             }
-        </div>   
+        </Wrapper>   
     )
 }
 
@@ -111,7 +112,7 @@ function CalendarDates(props){
     const { today, params, selectedDate, curDates } = props
 
     return (
-        <div className="dates-group">
+        <Wrapper className="dates-group">
             {
                 curDates.map((cur,i) => {
                     let dateClass = ''
@@ -171,7 +172,7 @@ function CalendarDates(props){
                     return <CalendarDate key={'date' + i} dateClass={dateClass} url={url} date={cur}/>
                 })
             }
-        </div>
+        </Wrapper>
     )
 }
 

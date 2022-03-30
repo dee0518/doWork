@@ -1,0 +1,5 @@
+@mixin commonWrapper {
+    border: 1px solid $color-border5;
+    border-radius: 30px;
+    box-shadow: 0 4px 30px 0 rgba(224,224,224,.5);
+}

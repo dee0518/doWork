@@ -3,6 +3,7 @@
 
 // abstracts
 @import "./abstracts/variables_color";
+@import "./abstracts/mixin_common";
 
 // components
 @import "./components/header_area";
@@ -10,4 +11,6 @@
 @import "./components/sub_menu_title";
 @import "./components/checkbox";
 @import "./components/calendar";
+@import "./components/select_box";
+@import "./components/search_form";
 @import "./components/schedule/schedule";

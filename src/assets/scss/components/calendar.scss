@@ -34,6 +34,10 @@
             text-align: center;
             font-weight: 500;
         }
+
+        .other {
+            color: $color-text7;
+        }
     }
 }
 
@@ -94,10 +98,6 @@
                 line-height: 40px;
             }
 
-            .other {
-                color: $color-text6;
-            }
-
             .today {
                 border-radius: 50%;
                 background-color: $color-pink;
@@ -111,6 +111,63 @@
                 opacity: 0.5;
                 box-shadow: 0 4px 10px 0 rgba(206,206,206,.8);
             }
+        }
+    }
+}
+
+.calendar.grid {
+    @include commonWrapper;
+    min-width: 515px;
+
+    .calendar-header-group {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid $color-border4;
+        padding: 15px 0;
+
+        div {
+            margin: 0 10px;
+            font-size: 2.2rem;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        button {
+            border: none;
+            background: url(../../images/arrow_bottom.svg) no-repeat;
+            background-position: center;
+            transform: rotate(90deg);
+        }
+
+        .next-btn {
+            transform: rotate(270deg);
+            text-indent: 9999px;
+        }
+    }
+
+    .days-group {
+        border-bottom: 1px solid $color-border4;
+        padding: 15px 0;
+
+        div {
+            font-size: 1.5rem;
+            line-height: 1.5;
+        }
+    }
+
+    .dates-group {
+        a {
+            height: 180px;
+            padding: 15px;
+            border-bottom: 1px solid $color-border3;
+            font-size: 1.5rem;
+            line-height: 1.5;
+            text-align: left;
+        }
+
+        a:last-child, a:nth-last-child(2), a:nth-last-child(3), a:nth-last-child(4), a:nth-last-child(5), a:nth-last-child(6), a:nth-last-child(7) {
+            border-bottom: none;
         }
     }
 }

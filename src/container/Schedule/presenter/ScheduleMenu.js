@@ -58,7 +58,9 @@ function ScheduleMenu(){
         let id = e.target.id.split('_')[1]
 
         setCheckList(checkList.map((check) => {
-            if(check.id === Number(id)){
+            if(Number(id) === 1){
+                return {...check, checked: !checkList[0].checked}
+            } else if(check.id === Number(id)){
                 return {...check, checked: !check.checked}
             }
 

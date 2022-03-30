@@ -1,3 +1,5 @@
+import { Button, Wrapper } from '../../Path'
+
 function SubMenuTitle (props){
     const { type, titles, curTitle } = props
 
@@ -6,7 +8,7 @@ function SubMenuTitle (props){
     }
 
     return (
-        <div className="sub-menu-title-group">
+        <Wrapper className="sub-menu-title-group">
             { type === 'text' && titles[0] }
             {
                 type === 'button' && 
@@ -16,10 +18,10 @@ function SubMenuTitle (props){
                         activeClass = ' on'
                     }
 
-                    return <button className={'title' + activeClass} key={'st' + i} onClick={(e) => onClick(e)}>{title}</button>
+                    return <Button className={'title' + activeClass} key={'st' + i} onClick={onClick}>{title}</Button>
                 })
             }
-        </div>
+        </Wrapper>
     )
 }
 
