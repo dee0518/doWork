@@ -22,8 +22,20 @@
         padding: 25px 35px;
         overflow-y: scroll;
 
-        .search-form {
+        .top-group {
+            display: flex;
             margin-bottom: 50px;
+
+            .alarm-btn {
+                width: 45px;
+                height: 45px;
+                margin-left: 15px;
+                border: none;
+                border-radius: 8px;
+                background: $color-purple url(../../../images/ico_alarm.svg) no-repeat;
+                background-position: center;
+                text-indent: -9999px;
+            }
         }
 
         .select-add-group {
