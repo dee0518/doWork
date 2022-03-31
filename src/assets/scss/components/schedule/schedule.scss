@@ -17,6 +17,7 @@
     }
 
     .search-cal-group {
+        flex-shrink: 0;
         flex-basis: calc(100% - 450px);
         height: 100vh;
         padding: 25px 35px;
@@ -27,6 +28,7 @@
             margin-bottom: 50px;
 
             .alarm-btn {
+                flex-shrink: 0;
                 width: 45px;
                 height: 45px;
                 margin-left: 15px;
