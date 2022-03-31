@@ -3,6 +3,7 @@ export { default as images } from './assets/images/importImage'
 
 // components
 export { default as Wrapper } from './components/Wrapper'
+export { default as Modal } from './components/Modal'
 export { default as Header } from './components/Header'
 export { default as Menu } from './components/Menu'
 export { default as Button } from './components/Button'

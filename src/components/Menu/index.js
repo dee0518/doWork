@@ -4,6 +4,7 @@ import { MAIN } from '../../navigation/Constant'
 function Menu(){
     return (
         <nav>
+            <h2 className='blind'>Navigataion</h2>
             <ul>
                 <li>
                     <NavLink to={'main'}

@@ -1,0 +1,125 @@
+.schedule-view-wrapper {
+    .modal-bg {
+        width: 600px;
+        margin-left: -300px;
+        margin-top: -287px;
+        padding: 20px 30px 30px;
+        border-radius: 10px;
+
+        .modal-title {
+            margin-bottom: 30px;
+            font-size: 2rem;
+            font-weight: bold;
+            line-height: 1.5;
+        }
+
+        .input-form {
+            display: flex;
+            margin-bottom: 15px;
+
+            input[type=text] {
+                width: 100%;
+                height: 45px;
+                padding: 13px;
+                border: none;
+                border-radius: 7px;
+                background-color: $color-bg-gray;
+                font-size: 1.4rem;
+                line-height: 1.5;
+            }
+
+            .label-title {
+                flex-shrink: 0;
+                flex-basis: 60px;
+                margin-right: 10px;
+                font-size: 1.5rem;
+                line-height: 45px;
+            }
+
+            input[type=radio] {
+                display: none;
+            }
+
+            input[type=radio] + label {
+                display: block;
+                width: 150px;
+                height: 45px;
+                padding: 0 10px;
+                margin-right: 10px;
+                border-radius: 5px;
+                border: 1px solid $color-border2;
+                font-size: 1.2rem;
+                line-height: 45px;
+                text-transform: capitalize;
+                cursor: pointer;
+                transition: background 0.3s ease;
+            }
+
+            input[type=radio] + label:last-child {
+                margin-right: 0;
+            }
+
+            input:checked + label {
+                color: $color-white;
+                font-weight: bold;
+                transition: background 0.3s ease;
+            }
+
+            input:checked + .pink {
+                border-color: $color-pink;
+                background-color: $color-pink;
+            }
+
+            input:checked + .yellow {
+                border-color: $color-yellow;
+                background-color: $color-yellow;
+            }
+
+            input:checked + .skyblue {
+                border-color: $color-skyblue;
+                background-color: $color-skyblue;
+            }
+
+            input:checked + .green {
+                border-color: $color-green;
+                background-color: $color-green;
+            }
+
+            textarea {
+                width: 100%;
+                height: 135px;
+                padding: 13px;
+                border: none;
+                border-radius: 7px;
+                background-color: $color-bg-gray;
+                resize: none;
+                font-size: 1.4rem;
+                font-family: 'Poppins', sans-serif;
+                line-height: 1.5;
+            }
+        }
+
+        .close-btn {
+            position: absolute;
+            right: 30px;
+            top: 20px;
+            width: 30px;    
+            height: 30px;
+            border:none;
+            text-indent: -9999px;
+            background: url(../../../images/ico_close.svg) no-repeat;
+            background-position: center;
+        }
+
+        .save-btn {
+            width: 100%;
+            height: 45px;
+            margin-top: 30px;
+            border: none;
+            border-radius: 10px;
+            background-color: $color-purple;
+            color: $color-white;
+            font-size: 1.5rem;
+        }
+    }
+}

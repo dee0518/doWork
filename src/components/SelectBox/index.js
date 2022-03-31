@@ -7,7 +7,7 @@ function SelectBox(props){
         <Wrapper className="select-box-group">
             <select value={value} onChange={(e) => onChange(e)}>
                 {
-                    list.map((item, i) => <option key={'s' + i} value={item}>{item}</option>)
+                    list.map((item, i) => <option key={'s' + i} value={item.toLowerCase()}>{item}</option>)
                 }
             </select>
         </Wrapper>
