@@ -60,12 +60,27 @@ function Calendar(props){
         let type = e.target.textContent
         let year = selectedDate.getFullYear()
         let month = selectedDate.getMonth()
+        let date = selectedDate.getDate()
 
-        if(type === 'prev'){
-            setSelectedDate(new Date(year, month - 1, 1))
+        if(params.type === 'day'){
+            if(type === 'prev'){
+                setSelectedDate(new Date(year, month, date - 1))
+            } else {
+                setSelectedDate(new Date(year, month, date + 1))
+            }
+        } else if(params.type === 'week') {
+            if(type === 'prev'){
+                setSelectedDate(new Date(year, month, date - 7))
+            } else {
+                setSelectedDate(new Date(year, month, date + 7))
+            }
         } else {
-            setSelectedDate(new Date(year, month + 1, 1))
-        }
+            if(type === 'prev'){
+                setSelectedDate(new Date(year, month - 1, 1))
+            } else {
+                setSelectedDate(new Date(year, month + 1, 1))
+            }
+        } 
     }
 
     useEffect(() => {
