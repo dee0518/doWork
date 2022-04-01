@@ -3,11 +3,12 @@ import { Link } from "react-router-dom"
 import { Button, Wrapper } from '../../Path'
 
 function Calendar(props){
-    const { type, params } = props
+    const { styleType, params, scheduleList } = props
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
     const today = new Date()
     const [selectedDate, setSelectedDate] = useState()
     const [curDates, setCurDates] = useState([])
+    const [weekDates, setWeekDates] = useState([])
 
     const addDates = () => {  
         let year = selectedDate.getFullYear()
@@ -34,6 +35,25 @@ function Calendar(props){
         }
 
         setCurDates([...showedDates])
+
+        let selectedDay = selectedDate.getDay()
+        let date = selectedDate.getDate()
+
+        let firstOfWeekDate = new Date(year, month, date - selectedDay).getDate()
+        let lastOfWeekDate = new Date(year, month, date + 6 - selectedDay).getDate()
+        
+        let showedWeekDates = []
+
+        for(let i = firstOfWeekDate; i < firstOfWeekDate + 7 - lastOfWeekDate; i++){
+            showedWeekDates.push(i)
+        }
+
+        let idx = showedWeekDates.length
+        for(let i = 0; i < 7 - idx; i++){
+            showedWeekDates.splice(idx, 0 , lastOfWeekDate--)
+        }
+
+        setWeekDates([...showedWeekDates])
     }
 
     const onClickArrowBtn = (e) => {
@@ -61,21 +81,42 @@ function Calendar(props){
     },[params])
 
     return (
-        <Wrapper className={"calendar " + type}>
+        <Wrapper className={"calendar " + styleType}>
             {
                 selectedDate !== undefined && <>
                     <CalendarHeader
+                        styleType={styleType} 
+                        type={params.type}
+                        weekDates={weekDates}
                         selectedDate={selectedDate}
                         onClickArrowBtn={onClickArrowBtn}
                     />
                     <Wrapper className="days-dates-group">
-                        <CalendarDay type={type} days={days}/>
-                        <CalendarDates
-                            today={today} 
-                            params={params}
-                            selectedDate={selectedDate} 
-                            curDates={curDates} 
+                        <CalendarDay 
+                            styleType={styleType} 
+                            type={params.type}
+                            weekDates={weekDates}
+                            selectedDate={selectedDate}
+                            days={days}
                         />
+                        {
+                                ( styleType === 'small' || (params.type === undefined || params.type === 'month')) && (
+                                    <CalendarDates
+                                        today={today} 
+                                        params={params}
+                                        selectedDate={selectedDate} 
+                                        curDates={curDates} 
+                                    />
+                                )
+                        }
+                        {
+                                ( styleType === 'grid' && (params.type === 'week' || params.type === 'day')) && (
+                                    <TimeTable
+                                        type={params.type} 
+                                        scheduleList={scheduleList}
+                                    />
+                                )
+                        }
                     </Wrapper>
                 </>
             }
@@ -84,25 +125,46 @@ function Calendar(props){
 }
 
 function CalendarHeader(props){
-    const { selectedDate } = props
+    const { styleType, type, selectedDate, weekDates } = props
 
     return (
         <Wrapper className="calendar-header-group">
             <Button className="prev-btn" onClick={props.onClickArrowBtn}>prev</Button>
-            <div>{`${selectedDate.toLocaleString('en-US',{ month: 'long' })}, ${selectedDate.getFullYear()}`}</div>
+            <div>
+                { (styleType === 'small' || (type === 'month' || type === undefined )) && `${selectedDate.toLocaleString('en-US',{ month: 'long' })}, ${selectedDate.getFullYear()}`}
+                { (styleType !== 'small' && type === 'week') && `${selectedDate.toLocaleString('en-US',{ month: 'long' })} ${weekDates[0]} - ${weekDates[6]}, ${selectedDate.getFullYear()}`}
+                { (styleType !== 'small' && type === 'day') && `${selectedDate.toLocaleString('en-US',{ month: 'long' })} ${selectedDate.getDate()}, ${selectedDate.getFullYear()}`}
+            </div>
             <Button className="next-btn" onClick={props.onClickArrowBtn}>next</Button>
         </Wrapper>
     )
 }
 
 function CalendarDay(props){
-    const { type, days } = props
+    const { styleType, type, days, selectedDate, weekDates } = props
     return (
         <Wrapper className="days-group">
             {
-                days.map((day, i) => {
-                    return <div key={'day' + i}>{type.includes('small')? day.substr(0,3): day}</div>
+                ((styleType === 'grid' && type !== 'day') || styleType === 'small') && days.map((day, i) => {
+                    return (
+                        <div key={'day' + i}>
+                            {
+                                (styleType === 'grid' && type === 'week') && (
+                                    <span>{weekDates[i]}</span>
+                                )
+                            }
+                            {styleType.includes('small')? day.substr(0,3): day}
+                        </div>
+                    )
                 })
+            }
+            {
+                styleType === 'grid' && type === 'day' && (
+                    <div>
+                        <span>{selectedDate.getDate()}</span>
+                        <span>{days[selectedDate.getDay()]}</span> 
+                    </div>
+                )
             }
         </Wrapper>   
     )
@@ -181,6 +243,59 @@ function CalendarDate(props){
     
     return (
         <Link className={dateClass} to={url}>{date}</Link>
+    )
+}
+
+function TimeTable(props){
+    const { type, scheduleList } = props
+    const times = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
+    const repeat = [1,2,3,4,5,6,7]
+
+    return (
+        <Wrapper className="time-table-group">
+            <Wrapper className="time-group">
+                {
+                    times.map((time,i) => {
+                        return <div key={"tt" + i}>{time < 10? `0${time}:00`: `${time}:00`}</div>
+                    })
+                }
+            </Wrapper>
+            <Wrapper className="time-schedule-group">
+                {
+                    type === 'day'? (
+                        <TimeSchedule times={times} scheduleList={scheduleList}/>
+                    ) : (
+                        repeat.map((i) => {
+                            return <TimeSchedule key={'ts' + i} times={times} scheduleList={scheduleList}/>
+                        })
+                    )
+                }
+            </Wrapper>
+        </Wrapper>
+    )
+}
+
+function TimeSchedule(props){
+    const { times, scheduleList } = props
+
+    return (
+        <Wrapper className="time-schedule-wrapper">
+            <Wrapper className="time-bg-group">
+                {
+                    times.map((i) => {
+                        if(i === 24) return 
+                        return <div role="presentation" key={'tsg' + i}></div>
+                    })
+                }
+            </Wrapper>
+            <Wrapper className="schedule-group">
+                {
+                    scheduleList.length > 0 && scheduleList.map((schedule) => {
+                        return <div role="presentation tab" tabIndex={'0'} className="time-sche"></div>
+                    })
+                }
+            </Wrapper>   
+        </Wrapper>
     )
 }
 

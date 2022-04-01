@@ -16,8 +16,16 @@ function ScheduleView(){
         name: '저장'
     }]
     const [searchValue, setSearchValue] = useState('')
-    const [selectValue, setSelectValue] = useState('month')
-    const [modalState, setModalState] = useState(true)
+    const [selectValue, setSelectValue] = useState(params.type)
+    const [scheduleList, setScheduleList] = useState([])
+    const [newSchedule, setNewSchedule] = useState({
+        'title': '',
+        'time': '',
+        'category': '',
+        'participant': [],
+        'content': '' 
+    })
+    const [modalState, setModalState] = useState(false)
     const [alarm, setAlarm] = useState(false)
 
     const onChangeSearch = (e) => setSearchValue(e.target.value)
@@ -32,6 +40,25 @@ function ScheduleView(){
         }
 
         setModalState(false)
+        setNewSchedule({
+            'title': '',
+            'time': '',
+            'category': '',
+            'participant': [],
+            'content': '' 
+        })
+    }
+    const onChangeNewSchedule = (e) => {
+        let name = e.target.name
+        let value
+
+        if(name === 'category'){
+            value = e.target.id
+        } else {
+            value = e.target.value
+        }
+
+        setNewSchedule({...newSchedule, [name] : value})
     }
 
     useEffect(() => {
@@ -66,12 +93,18 @@ function ScheduleView(){
                     <SelectBox list={list} value={selectValue} onChange={onChangeSelect}/>
                     <Button className={'add-btn'} onClick={onClickAddBtn}>Add</Button>
                 </Wrapper>
-                <Calendar type={'grid'} params={params}/>
+                <Calendar styleType={'grid'} params={params} scheduleList={scheduleList}/>
             </Wrapper>  
 
             {/* modal */}
             {
-                modalState && <NewScheduleModal buttonList={buttonList} onClickModalBtn={onClickModalBtn}/>
+                modalState && 
+                <NewScheduleModal 
+                    buttonList={buttonList} 
+                    newSchedule={newSchedule}
+                    onClickModalBtn={onClickModalBtn}
+                    onChange={onChangeNewSchedule}
+                />
             }
 
             {/* alarm */}

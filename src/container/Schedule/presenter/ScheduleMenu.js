@@ -82,7 +82,7 @@ function ScheduleMenu(){
     return (
         <SubMenuBox>
             <SubMenuTitle type={'button'} titles={titles} curTitle={params.sub} onClickSubTitle={onClickSubTitle}/>
-            <Calendar type={'small'} params={params}/>
+            <Calendar styleType={'small'} params={params} scheduleList={[]}/>
             <Status checkList={checkList} name={'status'} onChange={onChange}/>
         </SubMenuBox>
     )
