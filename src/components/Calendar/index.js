@@ -143,7 +143,7 @@ function CalendarHeader(props){
 function CalendarDay(props){
     const { styleType, type, days, selectedDate, weekDates } = props
     return (
-        <Wrapper className="days-group">
+        <Wrapper className={"days-group" + " " + type}>
             {
                 ((styleType === 'grid' && type !== 'day') || styleType === 'small') && days.map((day, i) => {
                     return (
