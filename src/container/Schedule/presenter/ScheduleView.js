@@ -66,6 +66,12 @@ function ScheduleView(){
         navigator(url)
     },[selectValue])
 
+    useEffect(() => {
+        if(Object.keys(params).length === 0){
+            setSelectValue('month')
+        }
+    },[params])
+
     const createUrl = (type = 'month') => {
         let url = ''
         if(Object.keys(params).length === 0){

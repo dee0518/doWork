@@ -5,7 +5,7 @@ function SelectBox(props){
 
     return (
         <Wrapper className="select-box-group">
-            <select value={value} onChange={(e) => onChange(e)}>
+            <select value={value === undefined? 'month': value} onChange={(e) => onChange(e)}>
                 {
                     list.map((item, i) => <option key={'s' + i} value={item.toLowerCase()}>{item}</option>)
                 }
