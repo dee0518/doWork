@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { Header, Schedule } from './Path'
 import { MAIN, MAINSUB } from './navigation/Constant'
+import { useParams } from 'react-router';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         </Route>
         <Route path={'/'} element={<Navigate replace to={MAIN}/>}/>
         <Route path={'/deeWork/'} element={<Navigate replace to={MAIN}/>}/>
+        {console.log(useParams())}
       </Routes>
     </div>
   );
