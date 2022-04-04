@@ -1,0 +1,57 @@
+.login-wrapper {
+    position: relative;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    background: $color-purple;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+        width: 300px;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    .input-form {
+        margin-bottom: 15px;
+
+        &:last-of-type {
+            margin-bottom: 50px;
+        }
+
+        input {
+            width: 340px;
+            height: 45px;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background: $color-white;
+        }
+
+        input::placeholder {
+            color: $color-text5;
+        }
+    
+        input::-webkit-input-placeholder {
+            color: $color-text5;
+        }
+    
+        input:-ms-input-placeholder {
+            color: $color-text5;
+        }
+    }
+
+    .login-btn {
+        width: 340px;
+        height: 50px;
+        border-radius: 8px;
+        background: $color-yellow;
+        color: $color-white;
+        font-size: 1.6rem;
+    }
+}

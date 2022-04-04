@@ -16,9 +16,11 @@ export { default as TimeTable } from './components/TimeTable'
 export { default as Calendar } from './components/Calendar'
 export { default as Checkbox } from './components/Checkbox'
 export { default as SearchForm } from './components/SearchForm'
+export { default as InputTextForm } from './components/InputTextForm'
 export { default as SelectBox } from './components/SelectBox'
 
 // container
+export { default as Login } from './container/Login'
 export { default as Schedule } from './container/Schedule'
 
 
