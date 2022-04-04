@@ -4,10 +4,11 @@ import { MAIN, MAINSUB } from './navigation/Constant'
 import { useParams } from 'react-router';
 
 function App() {
+  const params = useParams()
   return (
     <div className="wrapper">
       <Header/>
-      {console.log(useParams())}
+      {console.log(params)}
       <Routes>
         <Route path={MAIN} element={<Schedule/>}>
             <Route path={MAINSUB} element={<Schedule/>}/>
