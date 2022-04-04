@@ -8,13 +8,13 @@ function App() {
   return (
     <div className="wrapper">
       <Header/>
-      {console.log(params)}
+      {console.log(window.location.href)}
       <Routes>
         <Route path={MAIN} element={<Schedule/>}>
             <Route path={MAINSUB} element={<Schedule/>}/>
         </Route>
         <Route path={'/'} element={<Navigate replace to={MAIN}/>}/>
-        <Route path={'/deeWork/'} element={<Navigate replace to={MAIN}/>}/>
+        <Route path={'/deeWork'} element={<Navigate replace to={MAIN}/>}/>
         
       </Routes>
     </div>
