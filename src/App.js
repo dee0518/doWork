@@ -11,6 +11,7 @@ function App() {
             <Route path={MAINSUB} element={<Schedule/>}/>
         </Route>
         <Route path={'/'} element={<Navigate replace to={MAIN}/>}/>
+        <Route path={'/deeWork/'} element={<Navigate replace to={MAIN}/>}/>
       </Routes>
     </div>
   );
