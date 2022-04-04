@@ -7,13 +7,14 @@ function App() {
   return (
     <div className="wrapper">
       <Header/>
+      {console.log(useParams())}
       <Routes>
         <Route path={MAIN} element={<Schedule/>}>
             <Route path={MAINSUB} element={<Schedule/>}/>
         </Route>
         <Route path={'/'} element={<Navigate replace to={MAIN}/>}/>
         <Route path={'/deeWork/'} element={<Navigate replace to={MAIN}/>}/>
-        {console.log(useParams())}
+        
       </Routes>
     </div>
   );
