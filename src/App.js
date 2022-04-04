@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { Header, Schedule } from './Path'
 import { MAIN, MAINSUB } from './navigation/Constant'
 
@@ -10,6 +10,7 @@ function App() {
         <Route path={MAIN} element={<Schedule/>}>
             <Route path={MAINSUB} element={<Schedule/>}/>
         </Route>
+        <Route path={'/'} element={<Navigate replace to={MAIN}/>}/>
       </Routes>
     </div>
   );
