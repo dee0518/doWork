@@ -1,15 +1,22 @@
+import React from "react";
 import { Wrapper, Button } from '../../Path'
 
 function CalendarHeader(props){
     const { styleType, type, selectedDate, weekDates } = props
 
     return (
-        <Wrapper className="calendar-header-group">
+        <Wrapper className={'calendar-header-group' + ' ' + styleType}>
             <Button className="prev-btn" onClick={props.onClickArrowBtn}>prev</Button>
             <div>
-                { (styleType === 'small' || (type === 'month' || type === undefined )) && `${selectedDate.toLocaleString('en-US',{ month: 'long' })}, ${selectedDate.getFullYear()}`}
-                { (styleType !== 'small' && type === 'week') && `${selectedDate.toLocaleString('en-US',{ month: 'long' })} ${weekDates[0]} - ${weekDates[6]}, ${selectedDate.getFullYear()}`}
-                { (styleType !== 'small' && type === 'day') && `${selectedDate.toLocaleString('en-US',{ month: 'long' })} ${selectedDate.getDate()}, ${selectedDate.getFullYear()}`}
+                {selectedDate.toLocaleString('en-US',{ month: 'long' })}
+                { (styleType === 'small' || (type === 'month' || type === undefined )) && `, ${selectedDate.getFullYear()}`}
+                { (styleType !== 'small' && type === 'week') && 
+                    ` ${weekDates[0]} - ${weekDates[6]}`
+                }
+                { (styleType !== 'small' && type === 'day') && ` ${selectedDate.getDate()}, ${selectedDate.getFullYear()}`}
+                { (styleType === 'grid' && type === 'week') && 
+                    `, ${selectedDate.getFullYear()}`
+                }
             </div>
             <Button className="next-btn" onClick={props.onClickArrowBtn}>next</Button>
         </Wrapper>

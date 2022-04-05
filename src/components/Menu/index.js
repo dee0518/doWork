@@ -1,5 +1,6 @@
+import React from "react";
 import { NavLink } from 'react-router-dom'
-import { MAIN } from '../../navigation/Constant'
+import { MAIN, MYPAGE } from '../../navigation/Constant'
 
 function Menu(){
     return (
@@ -7,9 +8,13 @@ function Menu(){
             <h2 className='blind'>Navigataion</h2>
             <ul>
                 <li>
-                    <NavLink to={'main'}
+                    <NavLink to={MAIN}
                         className={({ isActive }) => 'schedule'+ (isActive ? ' activated' : '')}>
                         <span>Schedule</span>
+                    </NavLink>
+                    <NavLink to={MYPAGE}
+                        className={({ isActive }) => 'myPage'+ (isActive ? ' activated' : '')}>
+                        <span>My page</span>
                     </NavLink>
                 </li>
             </ul>

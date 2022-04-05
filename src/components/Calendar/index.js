@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react"
+import React, { useState, useEffect } from 'react'
 import { CalendarHeader, CalendarDay, CalendarDates, TimeTable, Wrapper } from '../../Path'
 
 function Calendar(props){
-    const { styleType, params, scheduleList } = props
+    const { styleType, today, params, scheduleList } = props
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-    const today = new Date()
     const [selectedDate, setSelectedDate] = useState()
-    const [curDates, setCurDates] = useState([])
-    const [weekDates, setWeekDates] = useState([])
+    const [weekDates,setWeekDates] = useState([])
+    const [curDates,setCurDates] = useState([])
 
     const addDates = () => {  
         let year = selectedDate.getFullYear()
@@ -33,8 +32,6 @@ function Calendar(props){
             showedDates.push(k)
         }
 
-        setCurDates([...showedDates])
-
         let selectedDay = selectedDate.getDay()
         let date = selectedDate.getDate()
 
@@ -52,7 +49,8 @@ function Calendar(props){
             showedWeekDates.splice(idx, 0 , lastOfWeekDate--)
         }
 
-        setWeekDates([...showedWeekDates])
+        setWeekDates(showedWeekDates)
+        setCurDates(showedDates)
     }
 
     const onClickArrowBtn = (e) => {
@@ -61,17 +59,17 @@ function Calendar(props){
         let month = selectedDate.getMonth()
         let date = selectedDate.getDate()
 
-        if(params.type === 'day'){
-            if(type === 'prev'){
-                setSelectedDate(new Date(year, month, date - 1))
-            } else {
-                setSelectedDate(new Date(year, month, date + 1))
-            }
-        } else if(params.type === 'week') {
+        if(params.sub === 'schedule' || params.type === 'week') {
             if(type === 'prev'){
                 setSelectedDate(new Date(year, month, date - 7))
             } else {
                 setSelectedDate(new Date(year, month, date + 7))
+            }
+        } else if(params.type === 'day'){
+            if(type === 'prev'){
+                setSelectedDate(new Date(year, month, date - 1))
+            } else {
+                setSelectedDate(new Date(year, month, date + 1))
             }
         } else {
             if(type === 'prev'){
@@ -87,10 +85,10 @@ function Calendar(props){
     },[selectedDate])
 
     useEffect(() => {
-        if(Object.keys(params).length === 0){
-            setSelectedDate(today)
-        } else {
+        if(Object.keys(params).length !== 0){
             setSelectedDate(new Date(params.year, params.month - 1, params.date))
+        } else {
+            setSelectedDate(today)
         }
     },[params])
 
@@ -124,7 +122,7 @@ function Calendar(props){
                                 )
                         }
                         {
-                                ( styleType === 'grid' && (params.type === 'week' || params.type === 'day')) && (
+                                styleType === 'grid' && params.type !== 'month' && (
                                     <TimeTable
                                         type={params.type} 
                                         scheduleList={scheduleList}

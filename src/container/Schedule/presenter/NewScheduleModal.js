@@ -1,3 +1,4 @@
+import React from "react";
 import { Modal, InputTextForm } from "../../../Path"
 
 function NewScheduleModal(props){

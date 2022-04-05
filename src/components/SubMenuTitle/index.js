@@ -1,3 +1,4 @@
+import React from "react";
 import { Button, Wrapper } from '../../Path'
 
 function SubMenuTitle (props){

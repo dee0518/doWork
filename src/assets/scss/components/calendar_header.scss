@@ -1,0 +1,74 @@
+.calendar-header-group {
+    div {
+        font-weight: 500;
+        color: $color-text2;
+    }
+
+    button {
+        width: 40px;
+        height: 40px;
+        text-indent: -9999px;
+        background: $color-white;
+    }
+}
+
+.calendar-header-group.small, .calendar-header-group.schedule {
+    display: grid;
+    grid-template-columns: 1fr 40px 40px;
+    grid-template-rows: 1fr;
+    grid-gap: 10px;
+    margin-bottom: 25px;
+
+    div {
+        grid-column: 1;
+        grid-row: 1;
+        font-size: 2.4rem;
+        line-height: 40px;
+    }
+
+    button {
+        border: 1px solid $color-border2;
+        border-radius: 6px;
+        background: url(../../images/arrow_left.svg) no-repeat center;
+    }
+
+    .prev-btn {
+        grid-row: 1;
+        grid-column: 2;
+    }
+
+    .next-btn {
+        grid-row: 1;
+        grid-column: 3;
+        text-indent: 9999px;
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+    }
+}
+
+.calendar-header-group.grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid $color-border4;
+    padding: 20px 0;
+
+    div {
+        margin: 0 10px;
+        font-size: 2.2rem;
+        font-weight: 500;
+        line-height: 1.5;
+    }
+
+    button {
+        border: none;
+        background: url(../../images/arrow_bottom.svg) no-repeat;
+        background-position: center;
+        transform: rotate(90deg);
+    }
+
+    .next-btn {
+        transform: rotate(270deg);
+        text-indent: 9999px;
+    }
+}

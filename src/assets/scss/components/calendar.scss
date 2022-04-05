@@ -1,18 +1,4 @@
 .calendar {
-    .calendar-header-group {
-        div {
-            font-weight: 500;
-            color: $color-text2;
-        }
-
-        button {
-            width: 40px;
-            height: 40px;
-            text-indent: -9999px;
-            background: $color-white;
-        }
-    }
-
     .days-group {
         display: flex;
         align-items: center;
@@ -47,40 +33,6 @@
 }
 
 .calendar.small {
-    .calendar-header-group {
-        display: grid;
-        grid-template-columns: 1fr 40px 40px;
-        grid-template-rows: 1fr;
-        grid-gap: 10px;
-        margin-bottom: 25px;
-
-        div {
-            grid-column: 1;
-            grid-row: 1;
-            font-size: 2.4rem;
-            line-height: 40px;
-        }
-
-        button {
-            border: 1px solid $color-border2;
-            border-radius: 6px;
-            background: url(../../images/arrow_left.svg) no-repeat center;
-        }
-
-        .prev-btn {
-            grid-row: 1;
-            grid-column: 2;
-        }
-
-        .next-btn {
-            grid-row: 1;
-            grid-column: 3;
-            text-indent: 9999px;
-            -webkit-transform: scaleX(-1);
-            transform: scaleX(-1);
-        }
-    }
-
     .days-dates-group {
         padding: 20px 15px;
         border-radius: 10px;
@@ -124,33 +76,6 @@
     @include commonWrapper;
     min-width: 515px;
 
-    .calendar-header-group {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-bottom: 1px solid $color-border4;
-        padding: 20px 0;
-
-        div {
-            margin: 0 10px;
-            font-size: 2.2rem;
-            font-weight: 500;
-            line-height: 1.5;
-        }
-
-        button {
-            border: none;
-            background: url(../../images/arrow_bottom.svg) no-repeat;
-            background-position: center;
-            transform: rotate(90deg);
-        }
-
-        .next-btn {
-            transform: rotate(270deg);
-            text-indent: 9999px;
-        }
-    }
-
     .days-group {
         border-bottom: 1px solid $color-border4;
         padding: 15px 0;
@@ -172,6 +97,7 @@
 
     .dates-group {
         a {
+            position: relative;
             height: 180px;
             padding: 15px;
             border-bottom: 1px solid $color-border3;
@@ -182,6 +108,22 @@
 
         a:last-child, a:nth-last-child(2), a:nth-last-child(3), a:nth-last-child(4), a:nth-last-child(5), a:nth-last-child(6), a:nth-last-child(7) {
             border-bottom: none;
+        }
+
+        .today {
+            color: $color-white;
+        }
+
+        .today::before {
+            content: "";
+            position: absolute;
+            left: 7px;
+            top: 10px;
+            z-index: -1;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: $color-pink;   
         }
     }
 

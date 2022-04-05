@@ -1,3 +1,5 @@
+import React from "react";
+
 function Wrapper(props){
     const {className, children} = props
 

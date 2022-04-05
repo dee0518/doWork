@@ -1,3 +1,4 @@
+import React from "react";
 import { Wrapper, Button } from '../../Path'
 
 function Modal(props){

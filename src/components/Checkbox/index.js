@@ -1,3 +1,5 @@
+import React from "react";
+
 function Checkbox(props){
     const { name, info, onChange } = props
 
