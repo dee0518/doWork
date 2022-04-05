@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useNavigate, useParams } from 'react-router'
 import { Button, Calendar, SearchForm, SelectBox, Wrapper } from "../../../Path"
 import ScheduleMenu from "./ScheduleMenu"
@@ -7,6 +7,7 @@ import NewScheduleModal from "./NewScheduleModal"
 function ScheduleView(){
     const navigator = useNavigate()
     const params = useParams()
+    const today = new Date()
     const list = ['Month', 'Week','Day']
     const buttonList = [{
         className: 'close-btn',
@@ -15,6 +16,7 @@ function ScheduleView(){
         className: 'save-btn',
         name: '저장'
     }]
+
     const [searchValue, setSearchValue] = useState('')
     const [selectValue, setSelectValue] = useState(params.type)
     const [scheduleList, setScheduleList] = useState([])
@@ -29,9 +31,7 @@ function ScheduleView(){
     const [alarm, setAlarm] = useState(false)
 
     const onChangeSearch = (e) => setSearchValue(e.target.value)
-    const onChangeSelect = (e) => {
-        setSelectValue(e.target.value)    
-    }
+    const onChangeSelect = (e) => setSelectValue(e.target.value)   
     const onClickAddBtn = () => setModalState(true)
     const onClickAlarmBtn = () => setAlarm(true)
     const onClickModalBtn = (e) => {
@@ -48,6 +48,19 @@ function ScheduleView(){
             'content': '' 
         })
     }
+
+    const onClickSubTitle = (title) => {
+        let url;
+
+        if(Object.keys(params).length === 0){
+            url = `${title}/month/${today.getFullYear()}/${today.getMonth() + 1}/${today.getDate()}`
+        } else {
+            url = `${title}/${params.type}/${params.year}/${params.month}/${params.date}`
+        }
+
+        navigator(url)
+    }
+
     const onChangeNewSchedule = (e) => {
         let name = e.target.name
         let value
@@ -62,31 +75,33 @@ function ScheduleView(){
     }
 
     useEffect(() => {
-        let url = createUrl(selectValue)
+        if(selectValue === '') return 
+
+        let url;
+        if(Object.keys(params).length === 0){
+            url = `calendar/${selectValue}/${today.getFullYear()}/${today.getMonth() + 1}/${today.getDate()}`
+        } else {
+            url = `${params.sub}/${selectValue}/${params.year}/${params.month}/${params.date}`
+        }
+
         navigator(url)
     },[selectValue])
+  
 
     useEffect(() => {
         if(Object.keys(params).length === 0){
             setSelectValue('month')
-        }
+        } 
     },[params])
-
-    const createUrl = (type = 'month') => {
-        let url = ''
-        if(Object.keys(params).length === 0){
-            let today = new Date()
-            url = `calendar/${type}/${today.getFullYear()}/${today.getMonth() + 1}/${today.getDate()}`
-        } else {
-            url = `${params.sub}/${type}/${params.year}/${params.month}/${params.date}`
-        }
-
-        return url
-    }
 
     return (
         <Wrapper className="schedule-view-wrapper">
-            <ScheduleMenu/>
+            <ScheduleMenu
+                onClickSubTitle={onClickSubTitle}
+                params={params}
+                today={today} 
+                scheduleList={scheduleList}
+            />
             <Wrapper className="search-cal-group">
                 <Wrapper className="top-group">
                     <SearchForm
@@ -99,7 +114,12 @@ function ScheduleView(){
                     <SelectBox list={list} value={selectValue} onChange={onChangeSelect}/>
                     <Button className={'add-btn'} onClick={onClickAddBtn}>Add</Button>
                 </Wrapper>
-                <Calendar styleType={'grid'} params={params} scheduleList={scheduleList}/>
+                <Calendar 
+                    styleType={'grid'} 
+                    params={params}
+                    today={today} 
+                    scheduleList={scheduleList}
+                />
             </Wrapper>  
 
             {/* modal */}

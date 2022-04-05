@@ -1,9 +1,9 @@
-import { useState } from 'react'
-import { useNavigate, useParams } from 'react-router'
+import React, { useState } from 'react'
 import { SubMenuBox, SubMenuTitle, Calendar } from '../../../Path'
+import Schedule from './Schedule'
 import Status from './Status'
 
-const data = [{
+const checkboxData = [{
     id: 1,
     label: 'all',
     checked: true,
@@ -30,29 +30,10 @@ const data = [{
     color: 'green'
 }]
 
-function ScheduleMenu(){
-    const navigator = useNavigate()
-    const params = useParams()
+function ScheduleMenu(props){
+    const { onClickSubTitle, params, today, scheduleList } = props
     const titles = ['calendar','schedule']
-    const [checkList,setCheckList] = useState(data)
-
-    const onClickSubTitle = (title) => {
-        let url = createUrl(title)
-
-        navigator(url)
-    }
-
-    const createUrl = (title = params.sub) => {
-        let url = ''
-        if(Object.keys(params).length === 0){
-            let today = new Date()
-            url = `${title}/month/${today.getFullYear()}/${today.getMonth() + 1}/${today.getDate()}`
-        } else {
-            url = `${title}/${params.type}/${params.year}/${params.month}/${params.date}`
-        }
-
-        return url
-    }
+    const [checkList,setCheckList] = useState(checkboxData)
 
     const onChange = (e) => {
         let id = Number(e.target.id.split('_')[1])
@@ -82,8 +63,28 @@ function ScheduleMenu(){
     return (
         <SubMenuBox>
             <SubMenuTitle type={'button'} titles={titles} curTitle={params.sub} onClickSubTitle={onClickSubTitle}/>
-            <Calendar styleType={'small'} params={params} scheduleList={[]}/>
-            <Status checkList={checkList} name={'status'} onChange={onChange}/>
+            {
+                params.sub !== 'schedule' && (
+                    <>
+                        <Calendar 
+                            styleType={'small'} 
+                            params={params}
+                            today={today} 
+                            scheduleList={scheduleList}
+                        />
+                        <Status checkList={checkList} name={'status'} onChange={onChange}/>
+                    </>
+                )
+            }
+            {
+                params.sub === 'schedule' && (
+                    <Schedule 
+                        params={params}
+                        today={today}
+                        scheduleList={scheduleList}
+                    />
+                )
+            }
         </SubMenuBox>
     )
 }
