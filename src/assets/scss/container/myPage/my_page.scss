@@ -1,0 +1,53 @@
+.my-page-wrapper {
+    .profile-info-group {
+        display: flex;
+        padding-bottom: 40px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid $color-border1;
+
+        .profile-image {
+            text-indent: -9999px;
+            width: 60px;
+            height: 60px;
+            margin-right: 20px;
+            border-radius: 50%;
+            background-color: $color-border1;
+        }
+
+        .profile-info {
+            span {
+                display: block;
+            }
+
+            .name {
+                margin-bottom: 5px;
+                font-size: 2rem;
+                line-height: 1.5; 
+                font-weight: bold;
+            }
+
+            .career {
+                font-size: 1.6rem;
+                line-height: 1.5;
+                font-weight: 300;
+            }
+        }
+    }
+
+    .account-menu {
+        li {
+            position: relative;
+            
+            a, span {
+                display: block;
+                padding: 20px 0;
+                text-decoration: none;
+                text-transform: capitalize;
+                font-size: 1.6rem;
+                line-height: 1.5;
+                font-weight: 300;
+                color: $color-text2;
+            }
+        }
+    }
+}
