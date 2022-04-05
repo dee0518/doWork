@@ -1,6 +1,12 @@
 .sub-menu-title-group {
     margin-bottom: 55px;
 
+    h2 {
+        font-size: 2.8rem;
+        line-height: 1.5;
+        font-weight: bold;
+    }
+
     span.title {
         color: $color-text2;
     }
