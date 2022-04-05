@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from 'react-router-dom';
-import { Wrapper, Header, Login, Schedule } from './Path'
-import { LOGIN, MAIN, MAINSUB } from './navigation/Constant'
+import { Wrapper, Header, Login, Schedule, MyPage } from './Path'
+import { LOGIN, MAIN, MAINSUB, MYPAGE, MYPAGESUB } from './navigation/Constant'
 
 function AppRouter(props){
     const { refreshUser, isLoggedIn, userObj } = props
@@ -13,6 +13,9 @@ function AppRouter(props){
                     <>
                         <Route path={MAIN} element={<Schedule/>}>
                             <Route path={MAINSUB} element={<Schedule/>}/>
+                        </Route>
+                        <Route path={MYPAGE} element={<MyPage/>}>
+                            <Route path={MYPAGESUB} element={<MyPage/>}/>
                         </Route>
                     </>
                 ) : (
