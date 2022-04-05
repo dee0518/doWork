@@ -9,8 +9,8 @@ function SubMenuTitle (props){
     }
 
     return (
-        <Wrapper className="sub-menu-title-group">
-            { type === 'text' && titles[0] }
+        <Wrapper className="sub-menu-title-group">    
+            { type === 'text' && <h2>{titles[0]}</h2>}
             {
                 type === 'button' && 
                 titles.map((title, i) => {

@@ -22,5 +22,6 @@ export { default as SelectBox } from './components/SelectBox'
 // container
 export { default as Login } from './container/Login'
 export { default as Schedule } from './container/Schedule'
+export { default as MyPage } from './container/MyPage'
 
 
