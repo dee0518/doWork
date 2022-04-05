@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/deeWork/static/css/main.cba1efc7.css",
-    "main.js": "/deeWork/static/js/main.dd97f85d.js",
+    "main.js": "/deeWork/static/js/main.aa0e11b8.js",
     "static/media/logo.svg": "/deeWork/static/media/logo.5ff15e8148f1ff6b9591.svg",
     "static/media/menu_chat_off.svg": "/deeWork/static/media/menu_chat_off.46a17112e765225189d7.svg",
     "static/media/menu_chat_on.svg": "/deeWork/static/media/menu_chat_on.f99f0463c1e5661f47d2.svg",
@@ -22,10 +22,10 @@
     "static/media/ico_close.svg": "/deeWork/static/media/ico_close.e04d3469f6f2821f5a5f.svg",
     "static/media/ico_add.svg": "/deeWork/static/media/ico_add.cdeafd1f1c4ca095ad67.svg",
     "main.cba1efc7.css.map": "/deeWork/static/css/main.cba1efc7.css.map",
-    "main.dd97f85d.js.map": "/deeWork/static/js/main.dd97f85d.js.map"
+    "main.aa0e11b8.js.map": "/deeWork/static/js/main.aa0e11b8.js.map"
   },
   "entrypoints": [
     "static/css/main.cba1efc7.css",
-    "static/js/main.dd97f85d.js"
+    "static/js/main.aa0e11b8.js"
   ]
 }
