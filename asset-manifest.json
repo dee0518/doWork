@@ -1,12 +1,14 @@
 {
   "files": {
-    "main.css": "/deeWork/static/css/main.bc20e5db.css",
-    "main.js": "/deeWork/static/js/main.23b7e9c1.js",
+    "main.css": "/deeWork/static/css/main.cba1efc7.css",
+    "main.js": "/deeWork/static/js/main.dd97f85d.js",
     "static/media/logo.svg": "/deeWork/static/media/logo.5ff15e8148f1ff6b9591.svg",
     "static/media/menu_chat_off.svg": "/deeWork/static/media/menu_chat_off.46a17112e765225189d7.svg",
     "static/media/menu_chat_on.svg": "/deeWork/static/media/menu_chat_on.f99f0463c1e5661f47d2.svg",
     "static/media/menu_schedule_off.svg": "/deeWork/static/media/menu_schedule_off.675681632f532bca2ce4.svg",
     "static/media/menu_schedule_on.svg": "/deeWork/static/media/menu_schedule_on.8a37b0d024ada38395c9.svg",
+    "static/media/ico_login.svg": "/deeWork/static/media/ico_login.734cd94fcd6c97035021.svg",
+    "static/media/ico_warn.svg": "/deeWork/static/media/ico_warn.553a16e066de41073a0c.svg",
     "static/media/menu_graph_off.svg": "/deeWork/static/media/menu_graph_off.9d4a4a939c64472d5d75.svg",
     "static/media/menu_graph_on.svg": "/deeWork/static/media/menu_graph_on.c2507707ce0ad2507c34.svg",
     "index.html": "/deeWork/index.html",
@@ -19,11 +21,11 @@
     "static/media/menu_profile_on.svg": "/deeWork/static/media/menu_profile_on.d46f4e8645007b5105bf.svg",
     "static/media/ico_close.svg": "/deeWork/static/media/ico_close.e04d3469f6f2821f5a5f.svg",
     "static/media/ico_add.svg": "/deeWork/static/media/ico_add.cdeafd1f1c4ca095ad67.svg",
-    "main.bc20e5db.css.map": "/deeWork/static/css/main.bc20e5db.css.map",
-    "main.23b7e9c1.js.map": "/deeWork/static/js/main.23b7e9c1.js.map"
+    "main.cba1efc7.css.map": "/deeWork/static/css/main.cba1efc7.css.map",
+    "main.dd97f85d.js.map": "/deeWork/static/js/main.dd97f85d.js.map"
   },
   "entrypoints": [
-    "static/css/main.bc20e5db.css",
-    "static/js/main.23b7e9c1.js"
+    "static/css/main.cba1efc7.css",
+    "static/js/main.dd97f85d.js"
   ]
 }
