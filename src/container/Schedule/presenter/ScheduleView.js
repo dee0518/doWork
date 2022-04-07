@@ -4,7 +4,8 @@ import { Button, Calendar, SearchForm, SelectBox, Wrapper } from "../../../Path"
 import ScheduleMenu from "./ScheduleMenu"
 import NewScheduleModal from "./NewScheduleModal"
 
-function ScheduleView(){
+function ScheduleView(props){
+    const { scheduleList, onAddSchedule, onSetDate } = props
     const navigator = useNavigate()
     const params = useParams()
     const today = new Date()
@@ -19,12 +20,12 @@ function ScheduleView(){
 
     const [searchValue, setSearchValue] = useState('')
     const [selectValue, setSelectValue] = useState(params.type)
-    const [scheduleList, setScheduleList] = useState([])
     const [newSchedule, setNewSchedule] = useState({
         'title': '',
-        'time': '',
+        'started_at': '',
+        'ended_at': '',
         'category': '',
-        'participant': [],
+        'participants': '',
         'content': '' 
     })
     const [modalState, setModalState] = useState(false)
@@ -36,15 +37,16 @@ function ScheduleView(){
     const onClickAlarmBtn = () => setAlarm(true)
     const onClickModalBtn = (e) => {
         if(e.target.textContent === '저장'){
-
+            onAddSchedule(newSchedule)
         }
 
         setModalState(false)
         setNewSchedule({
             'title': '',
-            'time': '',
+            'started_at': '',
+            'ended_at': '',
             'category': '',
-            'participant': [],
+            'participants': '',
             'content': '' 
         })
     }
@@ -101,6 +103,7 @@ function ScheduleView(){
                 params={params}
                 today={today} 
                 scheduleList={scheduleList}
+                onSetDate={onSetDate}
             />
             <Wrapper className="search-cal-group">
                 <Wrapper className="top-group">
@@ -119,6 +122,7 @@ function ScheduleView(){
                     params={params}
                     today={today} 
                     scheduleList={scheduleList}
+                    onSetDate={onSetDate}
                 />
             </Wrapper>  
 

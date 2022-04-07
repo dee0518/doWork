@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-
-import "firebase/database"
+import { getFirestore } from "firebase/firestore";
+import { collection, addDoc, doc, updateDoc, getDoc, getDocs } from "firebase/firestore";
 // import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
@@ -18,4 +18,35 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
 export const authService = getAuth()
-// export const dbService = firebase.fireStore()
+export const dbService = getFirestore(app)
+
+export const addDocument = async (collectionName, data) => {
+  const docRef = await addDoc(collection(dbService, collectionName), data)
+}
+
+export const updateDocument = async (collectionName, refName, data) => {
+  const refDoc = doc(dbService, collectionName, refName)
+  await updateDoc(refDoc, data)
+}
+
+export const getDocument = async(collectionName, refName) => {
+  const docRef = doc(dbService, collectionName, refName);
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    return {
+      result: true,
+      data: docSnap.data()
+    }
+  } else {
+    return { result: false }
+  }
+}
+
+export const getDocuments = async(customQuery) => {
+  const q = customQuery
+
+  const querySnapshot = await getDocs(q);
+
+  return querySnapshot
+}

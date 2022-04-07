@@ -11,11 +11,11 @@ function AppRouter(props){
             <Routes>
                 {isLoggedIn? (
                     <>
-                        <Route path={MAIN} element={<Schedule/>}>
-                            <Route path={MAINSUB} element={<Schedule/>}/>
+                        <Route path={MAIN} element={<Schedule userObj={userObj}/>}>
+                            <Route path={MAINSUB} element={<Schedule userObj={userObj}/>}/>
                         </Route>
-                        <Route path={MYPAGE} element={<MyPage/>}>
-                            <Route path={MYPAGESUB} element={<MyPage/>}/>
+                        <Route path={MYPAGE} element={<MyPage userObj={userObj}/>}>
+                            <Route path={MYPAGESUB} element={<MyPage userObj={userObj}/>}/>
                         </Route>
                     </>
                 ) : (

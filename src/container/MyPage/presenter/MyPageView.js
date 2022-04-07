@@ -4,12 +4,13 @@ import { Wrapper } from "../../../Path";
 import MyPageMenu from "./MyPageMenu";
 import Settings from "./Settings"
 
-function MyPageView(){
+function MyPageView(props){
+    const { userObj } = props
     const params = useParams()
 
     return (
         <Wrapper className="my-page-wrapper">
-            <MyPageMenu/>
+            <MyPageMenu userObj={userObj}/>
             {params.sub === 'settings' && <Settings/>}
         </Wrapper>
     )

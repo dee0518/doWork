@@ -13,8 +13,7 @@ function App() {
       if (user) {
         setUserObj({
           displayName: user.displayName,
-          uid: user.uid,
-          updateProfile: (args) => user.updateProfile(args),
+          uid: user.uid
         })
       } else {
         setUserObj(null)
@@ -22,14 +21,18 @@ function App() {
 
       setInit(true)
     })
+
+    return () => {
+      onAuthStateChanged(authService, (user) => {})
+    }
   },[])
 
   const refreshUser = () => {
     const user = authService.currentUser;
     setUserObj({
       displayName: user.displayName,
-      uid: user.uid,
-      updateProfile: (args) => user.updateProfile(args),
+      uid: user.uid
+      // updateProfile: (args) => user.updateProfile(args),
     })
   }
 

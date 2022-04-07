@@ -90,10 +90,11 @@ function ScheduleItem(props){
             <span>{schedule.title}</span>
             <span>{schedule.time}</span>
             <span>
+                {schedule.participant}
                 {
-                    schedule.participants.length > 0 && schedule.participants.map((part) => {
-                        return <span></span>
-                    })
+                    // schedule.participants.length > 0 && schedule.participants.map((part) => {
+                    //     return <span></span>
+                    // })
                 }
             </span>
         </li>
@@ -101,18 +102,3 @@ function ScheduleItem(props){
 }
 
 export default Schedule
-
-// {
-//     id: 0,
-//     title: '제목',
-//     category: 'private'
-//     started_at: '',
-//     ended_at: '',
-//     participants: [{
-//         id:1,
-//         name: '이름',
-//         email: '이메일',
-//         profile-image:''
-//     }],
-//     content: ''
-// }

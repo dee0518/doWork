@@ -31,7 +31,7 @@ const checkboxData = [{
 }]
 
 function ScheduleMenu(props){
-    const { onClickSubTitle, params, today, scheduleList } = props
+    const { onClickSubTitle, params, today, scheduleList, onSetDate } = props
     const titles = ['calendar','schedule']
     const [checkList,setCheckList] = useState(checkboxData)
 
@@ -71,6 +71,7 @@ function ScheduleMenu(props){
                             params={params}
                             today={today} 
                             scheduleList={scheduleList}
+                            onSetDate={onSetDate}
                         />
                         <Status checkList={checkList} name={'status'} onChange={onChange}/>
                     </>

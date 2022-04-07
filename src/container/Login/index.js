@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { images, InputTextForm } from "../../Path";
 import { authService } from "../../firebase";
 import { createUserWithEmailAndPassword , signInWithPopup, signInWithEmailAndPassword, GoogleAuthProvider  } from "firebase/auth";
+import { addDocument } from "../../firebase";
 import { useNavigate } from "react-router";
 import { MAIN } from "../../navigation/Constant";
 
@@ -22,18 +23,27 @@ function Login(){
         if(newAccount){
             createUserWithEmailAndPassword(authService, loginValue.email, loginValue.password)
                 .then((userCredential) => {
-                    // Signed in
-                    const user = userCredential.user;
-                    // ...
+                    navigator(MAIN)
                 })
                 .catch((error) => {
-                    const errorMessage = error.message;
+                    const code = error.code
+                    let errorMessage;
+
+                    if(code === 'auth/invalid-email'){
+                        errorMessage = '이메일 형식이 아니에요.'
+                    } else if(code === 'auth/email-already-in-use') {
+                        errorMessage = '이미 가입되어 있는 이메일이에요.'
+                    } else if(code === 'auth/weak-password'){
+                        errorMessage = '비밀번호 6자리 이상으로 설정해주세요.'
+                    } else {
+                        errorMessage = error.message.split('/')[1].split(')')[0];
+                    }
+                    
                     setError(errorMessage)
                 });
         } else {
             signInWithEmailAndPassword(authService, loginValue.email, loginValue.password)
             .then((userCredential) => {
-                const user = userCredential.user
                 navigator(MAIN)
             })
             .catch((error) => {
@@ -41,11 +51,11 @@ function Login(){
                 let errorMessage;
 
                 if(code === 'auth/invalid-email'){
-                    errorMessage = '이메일 형식이 아닙니다.'
+                    errorMessage = '이메일 형식이 아니에요.'
                 } else if(code === 'auth/user-not-found') {
-                    errorMessage = '가입된 이메일이 아닙니다.'
+                    errorMessage = '가입된 이메일이 아니에요.'
                 } else if(code === 'auth/wrong-password'){
-                    errorMessage = '비밀번호가 일치하지 않습니다.'
+                    errorMessage = '비밀번호가 일치하지 않아요.'
                 } else {
                     errorMessage = error.message.split('/')[1].split(')')[0];
                 }
@@ -60,10 +70,12 @@ function Login(){
         signInWithPopup(authService, provider)
             .then((result) => {
                 // This gives you a Google Access Token. You can use it to access the Google API.
-                const credential = GoogleAuthProvider.credentialFromResult(result);
-                const token = credential.accessToken;
+                // const credential = GoogleAuthProvider.credentialFromResult(result);
+                // const token = credential.accessToken;
                 // The signed-in user info.
                 const user = result.user;
+                console.log(user)
+                navigator(MAIN)
                 // ...
             }).catch((error) => {
                 const code = error.code

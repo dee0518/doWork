@@ -16,24 +16,26 @@ function NewScheduleModal(props){
                 labelClass={'blind'} 
                 labelText={'제목'}
             />
-            <InputTextForm
-                id={'time'} 
-                name={'time'} 
-                placeholder={'dd/mm/yyyy'} 
-                value={newSchedule.time} 
-                onChange={onChange} 
-                labelClass={'label-title'} 
-                labelText={'시간'}
-            />
+            <div className="input-form">
+                <div className="label-title">시간</div>
+                <div className="date-group">
+                    <label htmlFor="started_at" className="time">from</label>
+                    <input id="started_at" type="date" name="started_at" onChange={(e) => onChange(e)} value={newSchedule.started_at}/>
+                </div>
+                <div className="date-group">
+                    <label htmlFor="ended_at" className="time">to</label>
+                    <input id="ended_at" type="date" name="ended_at" onChange={(e) => onChange(e)} value={newSchedule.ended_at}/>
+                </div>
+            </div>
             <div className="input-form">
                 <div className="label-title">분류</div>
-                <input id="todo" type="radio" name="category" onChange={(e) => onChange(e)} checked={newSchedule.category === 'todo'}/>
+                <input id="todo" type="radio" name="category" onChange={(e) => onChange(e)} checked={newSchedule.category === 'todo'} value={'todo'}/>
                 <label htmlFor="todo" className="pink">to do</label>
-                <input id="private" type="radio" name="category" onChange={(e) => onChange(e)} checked={newSchedule.category === 'private'}/>
+                <input id="private" type="radio" name="category" onChange={(e) => onChange(e)} checked={newSchedule.category === 'private'} value={'private'}/>
                 <label htmlFor="private" className="yellow">private</label>
-                <input id="meeting" type="radio" name="category" onChange={(e) => onChange(e)} checked={newSchedule.category === 'meeting'}/>
+                <input id="meeting" type="radio" name="category" onChange={(e) => onChange(e)} checked={newSchedule.category === 'meeting'} value={'meeting'}/>
                 <label htmlFor="meeting" className="skyblue">meeting</label>
-                <input id="complete" type="radio" name="category" onChange={(e) => onChange(e)} checked={newSchedule.category === 'complete'}/>
+                <input id="complete" type="radio" name="category" onChange={(e) => onChange(e)} checked={newSchedule.category === 'complete'} value={'complete'}/>
                 <label htmlFor="complete" className="green">complete</label>  
             </div>
             <InputTextForm

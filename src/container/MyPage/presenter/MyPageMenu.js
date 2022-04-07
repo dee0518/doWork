@@ -23,8 +23,8 @@ function MyPageMenu(props){
             <div className="profile-info-group">
                 <div className="profile-image">profile image</div>
                 <div className="profile-info">
-                    <span className="name">name.lee</span>
-                    <span className="career">front-end-developer</span>
+                    <span className="name">{userObj.displayName? userObj.displayName : 'User'}</span>
+                    <span className="career">{userObj.career? userObj.career : 'your career'}</span>
                 </div>
             </div>         
             <ul className="account-menu">
