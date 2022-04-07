@@ -21,6 +21,7 @@
     .guide-group {
         display: flex;
         flex-direction: column;
+        align-items: center;
         margin-bottom: 60px;
 
         .auth-guide {
@@ -32,6 +33,10 @@
             line-height: 1.5;
             font-weight: bold;
             color: $color-white;
+
+            &.pink {
+                color: $color-pink;
+            }
         }
     }
 
