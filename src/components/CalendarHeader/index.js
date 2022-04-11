@@ -6,7 +6,7 @@ function CalendarHeader(props){
 
     return (
         <Wrapper className={'calendar-header-group' + ' ' + styleType}>
-            <Button className="prev-btn" onClick={props.onClickArrowBtn}>prev</Button>
+            {styleType !== 'schedule' && <Button className="prev-btn" onClick={props.onClickArrowBtn}>prev</Button>}
             <div>
                 {selectedDate.toLocaleString('en-US',{ month: 'long' })}
                 { (styleType === 'small' || (type === 'month' || type === undefined )) && `, ${selectedDate.getFullYear()}`}
@@ -18,7 +18,7 @@ function CalendarHeader(props){
                     `, ${selectedDate.getFullYear()}`
                 }
             </div>
-            <Button className="next-btn" onClick={props.onClickArrowBtn}>next</Button>
+            {styleType !== 'schedule' && <Button className="next-btn" onClick={props.onClickArrowBtn}>next</Button>}
         </Wrapper>
     )
 }

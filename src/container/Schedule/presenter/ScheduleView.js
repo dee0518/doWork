@@ -37,7 +37,11 @@ function ScheduleView(props){
     const onClickAlarmBtn = () => setAlarm(true)
     const onClickModalBtn = (e) => {
         if(e.target.textContent === '저장'){
-            onAddSchedule(newSchedule)
+            if(new Date(newSchedule.started_at) > new Date(newSchedule.ended_at)){
+
+            } else {
+                onAddSchedule(newSchedule)
+            }
         }
 
         setModalState(false)

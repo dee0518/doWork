@@ -11,6 +11,7 @@ function AppRouter(props){
             <Routes>
                 {isLoggedIn? (
                     <>
+                        <Route path={LOGIN} element={<Schedule userObj={userObj}/>}/>
                         <Route path={MAIN} element={<Schedule userObj={userObj}/>}>
                             <Route path={MAINSUB} element={<Schedule userObj={userObj}/>}/>
                         </Route>

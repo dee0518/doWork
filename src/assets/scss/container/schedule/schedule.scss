@@ -78,4 +78,72 @@
             }
         }
     }
+
+    .menu-schedule-list-group {
+
+        .schedule-group {
+            height: calc(100vh - 265px);
+            overflow-y: auto;
+
+            .schedule-item {
+                @include commonWrapperbdrs15;
+                overflow: hidden;
+                margin-bottom: 15px;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+
+                &.private .info-group {
+                    background-color: $color-yellow;
+                }
+
+                &.todo .info-group {
+                    background-color: $color-pink;
+                }
+
+                &.meeting .info-group {
+                    background-color: $color-skyblue;
+                }
+
+                &.complete .info-group {
+                    background-color: $color-green;
+                }
+
+                .schedule-date {
+                    display: flex;
+                    align-items: center;
+                    height: 40px;
+                    padding-top: 5px;
+                    padding-left: 15px;
+                    border-bottom: 1px solid $color-border5;
+                    font-size: 1.6rem;
+                    font-weight: 500;
+                    line-height: 1.5;
+                }
+
+                .info-group {
+                    padding: 15px;
+                    color: $color-white;
+                    line-height: 1.5;
+
+                    .title {
+                        margin-bottom: 5px;
+                        font-weight: bold;
+                        font-size: 1.4rem;
+                    }
+
+                    .content {
+                        margin-bottom: 20px;
+                        font-size: 1.2rem;
+                        font-weight: 500;
+                    }
+
+                    .participant {
+                        font-size: 1.2rem;
+                    }
+                }
+            }
+        }
+    }
 }

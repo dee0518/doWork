@@ -36,10 +36,11 @@ function ScheduleData(props){
             where('uid', '==', uid),
             where('started_at', '<=', started_at)
         )
-
+        
         const data = await getDocuments(q)
         let dataGroup = []
         data.forEach((doc) => {
+            console.log(doc.data())
             dataGroup.push(doc.data())
         })
         setSchedules(dataGroup)
@@ -78,6 +79,8 @@ function ScheduleData(props){
 
     useEffect(() => {
         getSchedule(userObj.uid, term.started_at, term.ended_at)
+
+        return () => getSchedule(userObj.uid, term.started_at, term.ended_at)
     },[])
 
     return (
