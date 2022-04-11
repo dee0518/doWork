@@ -1,9 +1,9 @@
-// base
-@import "./base/index";
-
 // abstracts
 @import "./abstracts/variables_color";
 @import "./abstracts/mixin_common";
+
+// base
+@import "./base/index";
 
 // components
 @import "./components/header_area";

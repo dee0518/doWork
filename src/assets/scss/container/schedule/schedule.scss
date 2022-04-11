@@ -84,6 +84,12 @@
         .schedule-group {
             height: calc(100vh - 265px);
             overflow-y: auto;
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+            
+            &::-webkit-scrollbar {
+                display: none; /* Chrome, Safari, Opera*/
+            }
 
             .schedule-item {
                 @include commonWrapperbdrs15;
@@ -94,26 +100,10 @@
                     margin-bottom: 0;
                 }
 
-                &.private .info-group {
-                    background-color: $color-yellow;
-                }
-
-                &.todo .info-group {
-                    background-color: $color-pink;
-                }
-
-                &.meeting .info-group {
-                    background-color: $color-skyblue;
-                }
-
-                &.complete .info-group {
-                    background-color: $color-green;
-                }
-
                 .schedule-date {
                     display: flex;
                     align-items: center;
-                    height: 40px;
+                    height: 45px;
                     padding-top: 5px;
                     padding-left: 15px;
                     border-bottom: 1px solid $color-border5;
@@ -123,9 +113,26 @@
                 }
 
                 .info-group {
-                    padding: 15px;
-                    color: $color-white;
+                    word-break: break-all;
+                    position: relative;
+                    padding: 15px 20px 15px 15px;
+                    border-bottom: 1px solid $color-border5;
+                    color: $color-text2;
                     line-height: 1.5;
+
+                    &:last-child {
+                        border-bottom: none;
+                    }
+
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        right: 0;
+                        top: 0;
+                        display: block;
+                        width: 15px;
+                        height: 100%;
+                    }
 
                     .title {
                         margin-bottom: 5px;

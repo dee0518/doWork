@@ -18,6 +18,7 @@ export { default as Checkbox } from './components/Checkbox'
 export { default as SearchForm } from './components/SearchForm'
 export { default as InputTextForm } from './components/InputTextForm'
 export { default as SelectBox } from './components/SelectBox'
+export { default as ScheduleItem } from './components/ScheduleItem'
 
 // container
 export { default as Login } from './container/Login'

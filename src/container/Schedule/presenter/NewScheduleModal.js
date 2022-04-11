@@ -22,10 +22,6 @@ function NewScheduleModal(props){
                     <label htmlFor="started_at" className="time">from</label>
                     <input id="started_at" type="date" name="started_at" onChange={(e) => onChange(e)} value={newSchedule.started_at}/>
                 </div>
-                <div className="date-group">
-                    <label htmlFor="ended_at" className="time">to</label>
-                    <input id="ended_at" type="date" name="ended_at" onChange={(e) => onChange(e)} value={newSchedule.ended_at}/>
-                </div>
             </div>
             <div className="input-form">
                 <div className="label-title">분류</div>

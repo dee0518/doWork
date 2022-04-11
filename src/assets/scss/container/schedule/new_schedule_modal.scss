@@ -37,25 +37,25 @@
             }
 
             .date-group {
-                flex-basis: calc(50% - 35px);
+                flex-basis: calc(100% - 70px);
                 padding: 10px 15px 5px;
                 background-color: $color-bg-gray;
-                border-radius: 5px 0 0 5px;
+                border-radius: 5px;
 
-                &:last-child {
-                    position: relative;
-                    border-radius: 0 5px 5px 0;
+                // &:last-child {
+                //     position: relative;
+                //     border-radius: 0 5px 5px 0;
 
-                    &::before {
-                        content: "";
-                        position: absolute;
-                        left: 0;
-                        top: 15px;
-                        width: 1px;
-                        height: calc(100% - 30px);
-                        background-color: $color-border1;
-                    }
-                }
+                //     &::before {
+                //         content: "";
+                //         position: absolute;
+                //         left: 0;
+                //         top: 15px;
+                //         width: 1px;
+                //         height: calc(100% - 30px);
+                //         background-color: $color-border1;
+                //     }
+                // }
 
                 label {
                     font-size: 1.2rem;

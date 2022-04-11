@@ -12,7 +12,7 @@ a {
 html {
     font-size: 0.625em;
     line-height: 1;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', 'Noto Sans KR', sans-serif;
 }
 
 img {
@@ -27,4 +27,44 @@ img {
 
 .wrapper > div {
     display: flex;
+}
+
+.bg-private {
+    background-color: $color-yellow;
+}
+
+.bg-todo {
+    background-color: $color-pink;
+}
+
+.bg-meeting {
+    background-color: $color-skyblue;
+}
+
+.bg-complete {
+    background-color: $color-green;
+}
+
+.bg-all {
+    background-color: $color-purple;
+}
+
+.right-bar-private::after {
+    background-color: $color-yellow;
+}
+
+.right-bar-todo::after {
+    background-color: $color-pink;
+}
+
+.right-bar-meeting::after {
+    background-color: $color-skyblue;
+}
+
+.right-bar-complete::after {
+    background-color: $color-green;
+}
+
+.right-bar-all::after {
+    background-color: $color-purple;
 }

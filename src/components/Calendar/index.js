@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { CalendarHeader, CalendarDay, CalendarDates, TimeTable, Wrapper } from '../../Path'
 
 function Calendar(props){
-    const { styleType, today, params, scheduleList, onSetDate } = props
+    const { styleType, today, params, scheduleList, onSetDate, checkList } = props
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
     const [selectedDate, setSelectedDate] = useState()
     const [weekDates,setWeekDates] = useState([])
@@ -117,10 +117,13 @@ function Calendar(props){
                         {
                                 ( styleType === 'small' || (params.type === undefined || params.type === 'month')) && (
                                     <CalendarDates
+                                        styleType={styleType} 
                                         today={today} 
                                         params={params}
                                         selectedDate={selectedDate} 
                                         curDates={curDates} 
+                                        scheduleList={scheduleList}
+                                        checkList={checkList}
                                     />
                                 )
                         }

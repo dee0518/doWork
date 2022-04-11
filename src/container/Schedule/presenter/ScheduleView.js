@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useNavigate, useParams } from 'react-router'
+import { checkboxData } from "../baseData"
 import { Button, Calendar, SearchForm, SelectBox, Wrapper } from "../../../Path"
 import ScheduleMenu from "./ScheduleMenu"
 import NewScheduleModal from "./NewScheduleModal"
@@ -20,6 +21,7 @@ function ScheduleView(props){
 
     const [searchValue, setSearchValue] = useState('')
     const [selectValue, setSelectValue] = useState(params.type)
+    const [checkList,setCheckList] = useState(checkboxData)
     const [newSchedule, setNewSchedule] = useState({
         'title': '',
         'started_at': '',
@@ -80,6 +82,31 @@ function ScheduleView(props){
         setNewSchedule({...newSchedule, [name] : value})
     }
 
+    const onChageCheckList = (e)=> {
+        let id = Number(e.target.id.split('_')[1])
+
+        let curChk = checkList[id - 1].checked
+        let restChk = checkList.filter((v,i) => i !== 0 && i != id - 1 && v.checked === true).length
+
+        setCheckList(checkList.map((check) => {
+            if(id === 1){
+                return {...check, checked: !checkList[0].checked}
+            } else if(check.id === id){
+                return {...check, checked: !check.checked}
+            }
+
+            if(check.id === 1){
+                if(curChk){
+                    return {...check, checked: false}
+                } else if(restChk === 3) {
+                    return {...check, checked: true}
+                }
+            }
+            
+            return check
+        }))
+    }
+
     useEffect(() => {
         if(selectValue === '') return 
 
@@ -97,7 +124,9 @@ function ScheduleView(props){
     useEffect(() => {
         if(Object.keys(params).length === 0){
             setSelectValue('month')
-        } 
+        } else {
+            setSelectValue(params.type)
+        }
     },[params])
 
     return (
@@ -108,6 +137,8 @@ function ScheduleView(props){
                 today={today} 
                 scheduleList={scheduleList}
                 onSetDate={onSetDate}
+                checkList={checkList}
+                onChange={onChageCheckList}
             />
             <Wrapper className="search-cal-group">
                 <Wrapper className="top-group">
@@ -127,6 +158,7 @@ function ScheduleView(props){
                     today={today} 
                     scheduleList={scheduleList}
                     onSetDate={onSetDate}
+                    checkList={checkList}
                 />
             </Wrapper>  
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import ScheduleView from "./presenter/ScheduleView"
 import { addDocument, dbService, getDocuments } from "../../firebase";
-import { collection, query, where, orderBy } from "firebase/firestore";
+import { collection, query, where } from "firebase/firestore";
 
 function ScheduleData(props){
     const { userObj } = props
@@ -40,7 +40,6 @@ function ScheduleData(props){
         const data = await getDocuments(q)
         let dataGroup = []
         data.forEach((doc) => {
-            console.log(doc.data())
             dataGroup.push(doc.data())
         })
         setSchedules(dataGroup)

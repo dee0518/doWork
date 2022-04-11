@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { CalendarHeader, Wrapper } from "../../../Path"
+import { CalendarHeader, Wrapper, ScheduleItem } from "../../../Path"
 
 function Schedule(props){
     const { today, params, scheduleList } = props
@@ -61,7 +61,6 @@ function Schedule(props){
                 onClickArrowBtn={onClickArrowBtn}
             />
             <ScheduleList 
-                today={today}
                 weekDates={weekDates}
                 selectedDate={selectedDate}
                 scheduleList={scheduleList}
@@ -71,63 +70,43 @@ function Schedule(props){
 }
 
 function ScheduleList(props){
-    const { today, weekDates, selectedDate, scheduleList } = props
+    const { weekDates, selectedDate, scheduleList } = props
 
     return (
         <ul className="schedule-group">
             {
-                scheduleList.length > 0 && scheduleList.map((sch,i) => {
+                weekDates.length > 0 && weekDates.map((d, i) => {
                     let year = selectedDate.getFullYear()
                     let month = selectedDate.getMonth()
                     let date = selectedDate.getDate()
 
-                    let startedMonth = month
-                    let endedMonth = month
+                    if(date < 6 && weekDates[0] > 20) {
+                        year = (month - 1 < 0)? year - 1 : year
+                        month = (month - 1 < 0)? 11 : month - 1
+                    } else if(date > 30 && weekDates[6] < 10){
+                        year = (month + 1 > 11)? year + 1 : year
+                        month = (month + 1 > 11)? 0 : month + 1 
+                    }
 
-                    let sch_date = new Date(sch.started_at)
+                    let dateSche = scheduleList.filter(v => {
+                        let sch_date = new Date(v.started_at)
+                        if(sch_date.getFullYear() === year &&
+                        sch_date.getMonth() === month &&
+                        sch_date.getDate() === d){
+                            return v
+                        }
+                    })
 
-                    if(date < 7 && weekDates[0] > 22){
-                        startedMonth = month - 1
-                    } else if(date > 20 && weekDates[6] < 10){
-                        endedMonth = month + 1
-                    } 
-
-                    if(sch_date >= new Date(year, startedMonth, weekDates[0]) && sch_date <= new Date(year, endedMonth,  weekDates[6])){
+                    if(dateSche.length > 0){
                         return <ScheduleItem 
                             key={'si' + i} 
-                            schedule={sch}
+                            date={`${year}-${month + 1}-${d}`}
+                            schedule={dateSche}
                         />
-                    }
+                    } 
                 })
             }
-            {
-                scheduleList.length <= 0 && <li>No Schedule.</li>
-            }
         </ul>
-    )
-}
-
-function ScheduleItem(props){
-    const { schedule } = props
-
-    return (
-        <li className={"schedule-item" + ' ' + schedule.category}>
-            <div className="schedule-date">
-                {`${new Date(schedule.started_at).toLocaleString('en-US',{ month: 'long' })} ${new Date(schedule.started_at).getDate()}`}
-            </div>
-            <div className="info-group">     
-                <div className="title" aria-label="schedule title">{schedule.title}</div>
-                <div className="content" aria-label="schedule content">{schedule.content}</div>
-                <div className="participant" aria-label="schedule participant">
-                    {`with ${schedule.participants}`}
-                    {
-                        // schedule.participants.length > 0 && schedule.participants.map((part) => {
-                        //     return <span></span>
-                        // })
-                    }
-                </div>
-            </div>
-        </li>
     )
 }
 
