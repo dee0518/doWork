@@ -13,15 +13,9 @@ function ScheduleItem(props){
                     return (<div key ={'sci' + i} className={"info-group" + " right-bar-" + sch.category}>     
                         <div className="title" aria-label="schedule title">{sch.title}</div>
                         <div className="content" aria-label="schedule content">{sch.content}</div>
-                        <div className="participant" aria-label="schedule participant">
-                            {sch.participants !== '' && `with ${sch.participants}`}
-                            {sch.participants === '' && 'No member'}
-                            {
-                                // schedule.participants.length > 0 && schedule.participants.map((part) => {
-                                //     return <span></span>
-                                // })
-                            }
-                        </div>
+                        {sch.participants.length > 0 && <div className="participant" aria-label="schedule participant">
+                            with {sch.participants.length} members
+                        </div>}
                     </div>)
                 })
             }

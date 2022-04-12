@@ -12,7 +12,7 @@ function ScheduleData(props){
     })
     const [schedules, setSchedules] = useState([])
 
-    const addSchedule = async (uid, title, category, started_at, ended_at, participants, content) => {
+    const addSchedule = async (uid, title, category, started_at, ended_at, started_time, ended_time, participants, content) => {
         try {
             await addDocument('schedule', {
                 uid: uid,
@@ -20,11 +20,13 @@ function ScheduleData(props){
                 category: category,
                 started_at: started_at,
                 ended_at: ended_at,
+                started_time: started_time,
+                ended_time: ended_time,
                 participants: participants,
                 content: content
             })
           } catch (e) {
-            console.error("Error adding document: ", e);
+                console.error("Error adding document: ", e);
           } finally {
             getSchedule(uid, term.started_at, term.ended_at)
           }
@@ -51,10 +53,12 @@ function ScheduleData(props){
         let category = newSchedule.category
         let started_at = newSchedule.started_at
         let ended_at = newSchedule.ended_at
+        let started_time = newSchedule.started_time
+        let ended_time = newSchedule.ended_time
         let participants = newSchedule.participants
         let content = newSchedule.content
 
-        await addSchedule(uid, title, category, started_at, ended_at, participants, content)
+        await addSchedule(uid, title, category, started_at, ended_at, started_time, ended_time, participants, content)
     }
 
     const onSetDate = (selectedDate, curDates) => {

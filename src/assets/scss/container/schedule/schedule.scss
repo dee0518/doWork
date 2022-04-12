@@ -138,16 +138,20 @@
                         margin-bottom: 5px;
                         font-weight: bold;
                         font-size: 1.4rem;
+                        line-height: 1.5;
                     }
 
                     .content {
-                        margin-bottom: 20px;
                         font-size: 1.2rem;
+                        line-height: 1.5;
                         font-weight: 500;
                     }
 
                     .participant {
+                        margin-top: 20px;
                         font-size: 1.2rem;
+                        line-height: 1.5;
+                        opacity: 0.4;
                     }
                 }
             }
