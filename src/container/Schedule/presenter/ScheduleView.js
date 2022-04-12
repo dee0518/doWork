@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useNavigate, useParams } from 'react-router'
-import { checkboxData } from "../baseData"
+import { checkboxData, scheduleInit } from "../baseData"
 import { Button, Calendar, SearchForm, SelectBox, Wrapper } from "../../../Path"
 import ScheduleMenu from "./ScheduleMenu"
 import NewScheduleModal from "./NewScheduleModal"
@@ -22,20 +22,28 @@ function ScheduleView(props){
     const [searchValue, setSearchValue] = useState('')
     const [selectValue, setSelectValue] = useState(params.type)
     const [checkList,setCheckList] = useState(checkboxData)
-    const [newSchedule, setNewSchedule] = useState({
-        'title': '',
-        'started_at': '',
-        'ended_at': '',
-        'category': '',
-        'participants': '',
-        'content': '' 
-    })
+    const [newSchedule, setNewSchedule] = useState(scheduleInit)
     const [modalState, setModalState] = useState(false)
     const [alarm, setAlarm] = useState(false)
 
     const onChangeSearch = (e) => setSearchValue(e.target.value)
     const onChangeSelect = (e) => setSelectValue(e.target.value)   
-    const onClickAddBtn = () => setModalState(true)
+    const onClickAddBtn = () => {
+        let pre = new Date()
+        let year = pre.getFullYear()
+        let month = pre.getMonth() + 1 > 9? pre.getMonth() + 1: '0' + (pre.getMonth() + 1)
+        let date = pre.getDate()
+        let hours = pre.getHours() > 9? pre.getHours() : '0' + pre.getHours()
+        let endHours = pre.getHours() + 1 > 9? pre.getHours() + 1 : '0' + (pre.getHours() + 1)
+        let minutes = Math.ceil(pre.getMinutes()/10) * 10 >= 60? '00': Math.ceil(pre.getMinutes()/10) * 10
+
+        setNewSchedule({...newSchedule, 
+            'started_at' : `${year}-${month}-${date}`,
+            'started_time' : `${hours}:${minutes}`,
+            'ended_time': `${endHours}:${minutes}`
+        })
+    }
+
     const onClickAlarmBtn = () => setAlarm(true)
     const onClickModalBtn = (e) => {
         if(e.target.textContent === '저장'){
@@ -47,14 +55,7 @@ function ScheduleView(props){
         }
 
         setModalState(false)
-        setNewSchedule({
-            'title': '',
-            'started_at': '',
-            'ended_at': '',
-            'category': '',
-            'participants': '',
-            'content': '' 
-        })
+        setNewSchedule(scheduleInit)
     }
 
     const onClickSubTitle = (title) => {
@@ -75,11 +76,32 @@ function ScheduleView(props){
 
         if(name === 'category'){
             value = e.target.id
-        } else {
+        } else{
             value = e.target.value
         }
 
         setNewSchedule({...newSchedule, [name] : value})
+    }
+
+    const onAddParticipants = () => {
+        if(newSchedule.participants.length < 8){
+            setNewSchedule({...newSchedule, 
+                'participant': '',
+                'participants' : [...newSchedule.participants, newSchedule.participant]
+            })
+        } else {
+            setNewSchedule({...newSchedule, 
+                'participant': ''
+            })
+        } 
+    } 
+
+    const onDeleteParticipant = (name) => {
+        let filterGroup = newSchedule.participants.filter(v => v != name)
+
+        setNewSchedule({...newSchedule,
+            'participants' : filterGroup
+        })
     }
 
     const onChageCheckList = (e)=> {
@@ -108,6 +130,10 @@ function ScheduleView(props){
     }
 
     useEffect(() => {
+        if(newSchedule.started_at !== '' && !modalState) setModalState(true)
+    },[newSchedule])
+
+    useEffect(() => {
         if(selectValue === '') return 
 
         let url;
@@ -124,7 +150,7 @@ function ScheduleView(props){
     useEffect(() => {
         if(Object.keys(params).length === 0){
             setSelectValue('month')
-        } else {
+        } else if(params.type === 'day'){
             setSelectValue(params.type)
         }
     },[params])
@@ -149,7 +175,14 @@ function ScheduleView(props){
                     <Button className={'alarm-btn'} onClick={onClickAlarmBtn}>Alarm</Button>
                 </Wrapper>
                 <Wrapper className="select-add-group">
-                    <SelectBox list={list} value={selectValue} onChange={onChangeSelect}/>
+                    <SelectBox 
+                        id={'calendar-type'} 
+                        labelClass={'blind'}
+                        labelText={'calendar-show-type'}
+                        list={list} 
+                        value={selectValue} 
+                        onChange={onChangeSelect}
+                    />
                     <Button className={'add-btn'} onClick={onClickAddBtn}>Add</Button>
                 </Wrapper>
                 <Calendar 
@@ -170,6 +203,8 @@ function ScheduleView(props){
                     newSchedule={newSchedule}
                     onClickModalBtn={onClickModalBtn}
                     onChange={onChangeNewSchedule}
+                    onAddParticipants={onAddParticipants}
+                    onDeleteParticipant={onDeleteParticipant}
                 />
             }
 

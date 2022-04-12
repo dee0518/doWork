@@ -2,7 +2,7 @@
     .modal-bg {
         width: 600px;
         margin-left: -300px;
-        margin-top: -287px;
+        margin-top: -350px;
         padding: 20px 30px 30px;
         border-radius: 10px;
 
@@ -36,9 +36,14 @@
                 line-height: 45px;
             }
 
+            &.time-date-group {
+                flex-wrap: wrap;
+            }
+
             .date-group {
                 flex-basis: calc(100% - 70px);
                 padding: 10px 15px 5px;
+                margin-bottom: 15px;
                 background-color: $color-bg-gray;
                 border-radius: 5px;
 
@@ -63,6 +68,61 @@
                     font-weight: 500;
                     color: $color-purple;
                     text-transform: capitalize;
+                }
+            }
+
+            .time-group {
+                display: flex;
+                flex-basis: calc(100% - 70px);
+                padding: 10px 15px;
+                margin-left: 70px;
+                background-color: $color-bg-gray;
+                border-radius: 5px;
+
+                .select-box-group {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    width: 50%;
+                    height: 30px;
+
+                    &:first-child {
+                        padding-right: 25px;
+
+                        &::after {
+                            content: "";
+                            position: absolute;
+                            right: 0;
+                            display: block;
+                            width: 1px;
+                            height: 20px;
+                            background-color: $color-border2;
+                        }
+                    }
+
+                    &:last-child {
+                        padding-left: 20px;
+                        padding-right: 10px;
+                    }
+
+                    label {
+                        font-size: 1.1rem;
+                        line-height: 1.5;
+                        font-weight: 500;
+                        color: $color-purple;
+                        text-transform: capitalize;
+                    }
+
+                    select {
+                        width: 40px;
+                        height: 100%;
+                        border: none;
+                        background: transparent;
+                        font-size: 1.2rem;
+                        line-height: 1.5;
+                        outline: none;
+                    }
                 }
             }
 
@@ -121,6 +181,63 @@
             input:checked + .green {
                 border-color: $color-green;
                 background-color: $color-green;
+            }
+
+            &.participant-input-form {
+                position: relative;
+                flex-wrap: wrap;
+                
+                input {
+                    flex-basis: calc(100% - 70px);
+                    padding-right: 50px;
+                }
+
+                .add-participant-btn {
+                    position: absolute;
+                    right: 7px;
+                    top: 8px;
+                    width: 30px;
+                    height: 30px;
+                    border: 1px solid $color-border4;
+                    border-radius: 50%;
+                    background: url(../../../images/ico_add.svg) no-repeat center;
+                    background-size: 10px;
+                    text-indent: -9999px;
+                }
+
+                .participants-list {
+                    display: flex;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    flex-basis: calc(100% -70px);
+                    margin-top: 15px;
+                    padding-left: 70px;
+
+                    .participant-item {
+                        padding-left: 10px;
+                        margin-right: 10px;
+                        margin-bottom: 10px;
+                        border-radius: 5px;
+                        border: 1px solid $color-border2;
+                        overflow: hidden;
+
+                        span {
+                            font-size: 1.4rem;
+                            line-height: 1.5;
+                            color: $color-text2;
+                        }
+
+                        .delete-participant-btn {
+                            width: 30px;
+                            height: 30px;
+                            margin-left: 10px;
+                            border: none;
+                            background: $color-white url(../../../images/ico_close.svg) no-repeat center;
+                            background-size: 10px;
+                            text-indent: -9999px;
+                        }
+                    }
+                }
             }
 
             textarea {

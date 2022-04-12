@@ -1,3 +1,5 @@
+import React from "react"
+
 function ScheduleItem(props){
     const { date, schedule } = props
 
