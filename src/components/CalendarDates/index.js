@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom"
-import { Wrapper } from '../../Path'
+import { Wrapper, ScheduleInCalendar } from '../../Path'
 
 function CalendarDates(props){
     const { styleType, today, params, selectedDate, scheduleList, curDates, checkList } = props
@@ -96,10 +96,10 @@ function CalendarDate(props){
                         if(i === 1) return 'day'
                         else return u
                     }).join('/')
-
-                    if(i < 4){
+                    
+                    if(dateSche.length <= 5 || i < 4){
                         return (
-                            <SchedulePresentation
+                            <ScheduleInCalendar
                                 key={'sp' + i}
                                 url={changedUrl}
                                 schedule={sch}
@@ -108,7 +108,7 @@ function CalendarDate(props){
                     } else if(i === 4){
                         let temp = {title : '더보기...', category: 'all'}
                         return (
-                            <SchedulePresentation
+                            <ScheduleInCalendar
                                 key={'sp' + i}
                                 url={changedUrl}
                                 schedule={temp}
@@ -118,16 +118,6 @@ function CalendarDate(props){
                 })
             }
         </Wrapper>      
-    )
-}
-
-function SchedulePresentation(props){
-    const { url, schedule } = props
-    
-    return (
-        <div className={"date-sch-group" + " bg-" + schedule.category} role="presentation">
-            <Link to={url}>{schedule.title}</Link>
-        </div> 
     )
 }
 

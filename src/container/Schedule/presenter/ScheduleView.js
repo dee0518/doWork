@@ -47,15 +47,17 @@ function ScheduleView(props){
     const onClickAlarmBtn = () => setAlarm(true)
     const onClickModalBtn = (e) => {
         if(e.target.textContent === '저장'){
-            if(new Date(newSchedule.started_at) > new Date(newSchedule.ended_at)){
+            if(newSchedule.title === '' || newSchedule.category === '' || newSchedule.content === '') {
 
             } else {
                 onAddSchedule(newSchedule)
             }
-        }
+        } 
 
-        setModalState(false)
-        setNewSchedule(scheduleInit)
+        if((newSchedule.title === '' || newSchedule.category === '' || newSchedule.content === '') || e.target.textContent === '닫기') {
+            setModalState(false)
+            setNewSchedule(scheduleInit)
+        }   
     }
 
     const onClickSubTitle = (title) => {

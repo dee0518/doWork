@@ -20,6 +20,7 @@ export { default as InputTextForm } from './components/InputTextForm'
 export { default as SelectBox } from './components/SelectBox'
 export { default as ScheduleItem } from './components/ScheduleItem'
 export { default as ScheduleList } from './components/ScheduleList'
+export { default as ScheduleInCalendar } from './components/ScheduleInCalendar'
 
 // container
 export { default as Login } from './container/Login'

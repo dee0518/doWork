@@ -131,7 +131,10 @@ function Calendar(props){
                                 styleType === 'grid' && params.type !== 'month' && (
                                     <TimeTable
                                         type={params.type} 
+                                        selectedDate={selectedDate} 
+                                        weekDates={weekDates}
                                         scheduleList={scheduleList}
+                                        checkList={checkList}
                                     />
                                 )
                         }

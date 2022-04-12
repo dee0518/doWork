@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import ScheduleView from "./presenter/ScheduleView"
 import { addDocument, dbService, getDocuments } from "../../firebase";
-import { collection, query, where } from "firebase/firestore";
+import { collection, query, where, orderBy } from "firebase/firestore";
 
 function ScheduleData(props){
     const { userObj } = props
@@ -36,7 +36,9 @@ function ScheduleData(props){
         const scheduleRef = collection(dbService, 'schedule')
         const q = query(scheduleRef, 
             where('uid', '==', uid),
-            where('started_at', '<=', started_at)
+            where('started_at', '<=' , started_at),
+            orderBy('started_at'),
+            orderBy('started_time')
         )
         
         const data = await getDocuments(q)
@@ -44,6 +46,7 @@ function ScheduleData(props){
         data.forEach((doc) => {
             dataGroup.push(doc.data())
         })
+
         setSchedules(dataGroup)
     }
 
