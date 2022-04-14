@@ -47,14 +47,14 @@ function ScheduleView(props){
     const onClickAlarmBtn = () => setAlarm(true)
     const onClickModalBtn = (e) => {
         if(e.target.textContent === '저장'){
-            if(newSchedule.title === '' || newSchedule.category === '' || newSchedule.content === '') {
+            if(newSchedule.title === '' || newSchedule.category === '') {
 
             } else {
                 onAddSchedule(newSchedule)
             }
         } 
-
-        if((newSchedule.title === '' || newSchedule.category === '' || newSchedule.content === '') || e.target.textContent === '닫기') {
+        
+        if((newSchedule.title !== '' && newSchedule.category !== '') || e.target.textContent === '닫기') {
             setModalState(false)
             setNewSchedule(scheduleInit)
         }   
@@ -82,7 +82,20 @@ function ScheduleView(props){
             value = e.target.value
         }
 
-        setNewSchedule({...newSchedule, [name] : value})
+        let ended_time = newSchedule.ended_time
+
+        if(name === 'started_time' &&
+            Number(value.split(':')[0]) >= Number(ended_time.split(':')[0])
+        ){
+            ended_time = value.split(':').map((t,i)=> {
+                if(i === 0) return Number(t) + 1 > 23? '00': Number(t) + 1
+                else return t
+            }).join(':')
+
+            setNewSchedule({...newSchedule, [name] : value, 'ended_time': ended_time})
+        } else {
+            setNewSchedule({...newSchedule, [name] : value})
+        }
     }
 
     const onAddParticipants = () => {

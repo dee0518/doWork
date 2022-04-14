@@ -59,7 +59,7 @@ function Calendar(props){
         let month = selectedDate.getMonth()
         let date = selectedDate.getDate()
 
-        if(params.sub === 'schedule' || params.type === 'week') {
+        if(params.type === 'week') {
             if(type === 'prev'){
                 setSelectedDate(new Date(year, month, date - 7))
             } else {

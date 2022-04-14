@@ -24,7 +24,7 @@ function TimeTable(props){
         })
    
         let dateSche = scheduleList.filter(v => {
-            let sch_date = new Date(v.started_at)
+            let sch_date = new Date(v.started_at.toDate())
             if(sch_date.getFullYear() === year &&
             sch_date.getMonth() === month &&
             sch_date.getDate() === (type === 'day'? date : d) && !falseCheckList.includes(v.category)){
