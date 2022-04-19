@@ -25,11 +25,11 @@ function ScheduleData(props){
                 participants: participants,
                 content: content
             })
-          } catch (e) {
+        } catch (e) {
                 console.error("Error adding document: ", e);
-          } finally {
+        } finally {
             getSchedule(uid, term.started_at, term.ended_at)
-          }
+        }
     }
 
     const getSchedule = async(uid, started_at, endeded_at) => {
@@ -93,6 +93,10 @@ function ScheduleData(props){
     useEffect(() => {
         getSchedule(userObj.uid, term.started_at, term.ended_at)
     },[term])
+
+    useEffect(() => {
+        return () => getSchedule(userObj.uid, term.started_at, term.ended_at)
+    },[])
 
     return (
         <ScheduleView 

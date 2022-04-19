@@ -29,9 +29,6 @@ function MyPageMenu(props){
             </div>         
             <ul className="account-menu">
                 <li>
-                    <Link to={'settings'}>settings</Link>
-                </li>
-                <li>
                     <Link to={''} onClick={() => onLogout()}>logout</Link>
                 </li>
                 <li>

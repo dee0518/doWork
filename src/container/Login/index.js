@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { images, InputTextForm } from "../../Path";
-import { authService } from "../../firebase";
+import { authService, dbService } from "../../firebase";
 import { createUserWithEmailAndPassword , signInWithPopup, signInWithEmailAndPassword, GoogleAuthProvider  } from "firebase/auth";
-import { addDocument } from "../../firebase";
-import { useNavigate } from "react-router";
-import { MAIN } from "../../navigation/Constant";
+import { collection, query, where } from "firebase/firestore";
+import { addDocument, getDocuments } from "../../firebase";
 
-function Login(){
-    const navigator = useNavigate()
+function Login(props){
+    const { onSignUpUser } = props
     const [newAccount, setNewAccount] = useState(false)
     const [error, setError] = useState('')
     const [loginValue, setLoginValue] = useState({
@@ -22,8 +21,12 @@ function Login(){
         
         if(newAccount){
             createUserWithEmailAndPassword(authService, loginValue.email, loginValue.password)
-                .then((userCredential) => {
-                    navigator(MAIN)
+                .then(async (userCredential) => {
+                    let user = userCredential.user
+  
+                    const result = await addUser(user, false)
+
+                    onSignUpUser(result)
                 })
                 .catch((error) => {
                     const code = error.code
@@ -36,7 +39,7 @@ function Login(){
                     } else if(code === 'auth/weak-password'){
                         errorMessage = '비밀번호 6자리 이상으로 설정해주세요.'
                     } else {
-                        errorMessage = error.message.split('/')[1].split(')')[0];
+                        errorMessage = error.message
                     }
                     
                     setError(errorMessage)
@@ -44,7 +47,7 @@ function Login(){
         } else {
             signInWithEmailAndPassword(authService, loginValue.email, loginValue.password)
             .then((userCredential) => {
-                navigator(MAIN)
+                onSignUpUser(true)
             })
             .catch((error) => {
                 const code = error.code
@@ -68,14 +71,16 @@ function Login(){
     const onClickGoggleBtn = () => {
         const provider = new GoogleAuthProvider();
         signInWithPopup(authService, provider)
-            .then((result) => {
-                // This gives you a Google Access Token. You can use it to access the Google API.
-                // const credential = GoogleAuthProvider.credentialFromResult(result);
-                // const token = credential.accessToken;
-                // The signed-in user info.
+            .then(async (result) => {
                 const user = result.user;
-                console.log(user)
-                navigator(MAIN)
+                const checkedUser = await getUser(user.uid)
+                let userResult = false
+                
+                if(!checkedUser) {
+                    userResult = await addUser(user, true) 
+                } else userResult = true
+
+                onSignUpUser(userResult)
                 // ...
             }).catch((error) => {
                 const code = error.code
@@ -89,6 +94,38 @@ function Login(){
 
                 setError(errorMessage)
             });
+    }
+
+    const addUser = async (user, isGoogle) => {
+        const result = await addDocument('users', {
+            uid: user.uid,
+            email: user.email,
+            name: '',
+            career: '',
+            profile: '',
+            isGoogle: isGoogle
+        })
+
+        return result
+    }
+
+    const getUser = async (uid) => {
+        const userRef = collection(dbService, 'users')
+        const q = query(userRef, 
+            where('uid', '==', uid)
+        )
+
+        const data = await getDocuments(q)
+        let dataGroup = []
+
+        if(data.size !== 0){
+            data.forEach((doc) => {
+                dataGroup.push({id: doc.id, ...doc.data()})
+            })
+        }
+
+        if(dataGroup.length > 0) return true
+        else return false
     }
 
     return (
@@ -123,6 +160,7 @@ function Login(){
                     id={'password'} 
                     name={'password'} 
                     type={'password'}
+                    autocomplete={'off'}
                     placeholder={'비밀번호'} 
                     value={loginValue.password} 
                     onChange={onChange} 

@@ -22,6 +22,8 @@ export const dbService = getFirestore(app)
 
 export const addDocument = async (collectionName, data) => {
   const docRef = await addDoc(collection(dbService, collectionName), data)
+
+  return docRef.id
 }
 
 export const updateDocument = async (collectionName, refName, data) => {

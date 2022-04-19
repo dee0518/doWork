@@ -11,7 +11,7 @@ function MyPageView(props){
     return (
         <Wrapper className="my-page-wrapper">
             <MyPageMenu userObj={userObj}/>
-            {params.sub === 'settings' && <Settings/>}
+            <Settings/>
         </Wrapper>
     )
 }

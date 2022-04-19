@@ -19,6 +19,7 @@
         flex-basis: calc(100% - 450px);
         height: 100vh;
         padding: 25px 35px;
+        min-width: 574px;
         overflow-y: scroll;
 
         .top-group {
@@ -89,6 +90,12 @@
             
             &::-webkit-scrollbar {
                 display: none; /* Chrome, Safari, Opera*/
+            }
+
+            .empty-msg {
+                font-size: 1.6rem;
+                line-height: 1.5;
+                color: $color-text6;
             }
 
             .schedule-item {

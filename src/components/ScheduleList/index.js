@@ -35,6 +35,10 @@ function ScheduleList(props){
                             date={`${year}-${month + 1}-${d}`}
                             schedule={dateSche}
                         />
+                    } else {
+                        if(i === 0){
+                            return <span key={'e-msg'} className="empty-msg">No Schedule.</span>
+                        }
                     } 
                 })
             }

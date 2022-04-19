@@ -1,17 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { Routes, Route } from 'react-router-dom';
+import { useNavigate } from "react-router";
 import { Wrapper, Header, Login, Schedule, MyPage } from './Path'
 import { LOGIN, MAIN, MAINSUB, MYPAGE, MYPAGESUB } from './navigation/Constant'
 
 function AppRouter(props){
     const { refreshUser, isLoggedIn, userObj } = props
+    const navigator = useNavigate()
+
+    const [addUser, setAddUser] = useState(false)
+
+    const onSignUpUser = (result) => {
+        setAddUser(Boolean(result))
+        navigator(MAIN)
+    }
+
     return (
         <Wrapper className="wrapper">
-            {isLoggedIn && <Header/>}
+            {isLoggedIn && addUser && <Header/>}
             <Routes>
-                {isLoggedIn? (
+                {(isLoggedIn && addUser)? (
                     <>
-                        <Route path={LOGIN} element={<Schedule userObj={userObj}/>}/>
                         <Route path={MAIN} element={<Schedule userObj={userObj}/>}>
                             <Route path={MAINSUB} element={<Schedule userObj={userObj}/>}/>
                         </Route>
@@ -20,7 +29,7 @@ function AppRouter(props){
                         </Route>
                     </>
                 ) : (
-                    <Route path={LOGIN} element={<Login/>}/>
+                    <Route path={LOGIN} element={<Login onSignUpUser={onSignUpUser}/>}/>
                 )}
             </Routes>
         </Wrapper>
