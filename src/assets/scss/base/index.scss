@@ -1,70 +1,71 @@
 * {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-sizing: border-box;
 }
 
 a {
-    text-align: none;
+  text-align: none;
 }
 
 html {
-    font-size: 0.625em;
-    line-height: 1;
-    font-family: 'Poppins', 'Noto Sans KR', sans-serif;
+  font-size: 0.625em;
+  line-height: 1;
+  font-family: "Poppins", "Noto Sans KR", sans-serif;
 }
 
 img {
-    border: none;
+  border: none;
 }
 
 .blind {
-    position: absolute;
-    left: -9999px;
-    top: -9999px;
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
 }
 
 .wrapper > div {
-    display: flex;
+  padding-left: 450px;
+  overflow-x: hidden;
 }
 
 .bg-private {
-    background-color: $color-yellow;
+  background-color: $color-yellow;
 }
 
 .bg-todo {
-    background-color: $color-pink;
+  background-color: $color-pink;
 }
 
 .bg-meeting {
-    background-color: $color-skyblue;
+  background-color: $color-skyblue;
 }
 
 .bg-complete {
-    background-color: $color-green;
+  background-color: $color-green;
 }
 
 .bg-all {
-    background-color: $color-purple;
+  background-color: $color-purple;
 }
 
 .right-bar-private::after {
-    background-color: $color-yellow;
+  background-color: $color-yellow;
 }
 
 .right-bar-todo::after {
-    background-color: $color-pink;
+  background-color: $color-pink;
 }
 
 .right-bar-meeting::after {
-    background-color: $color-skyblue;
+  background-color: $color-skyblue;
 }
 
 .right-bar-complete::after {
-    background-color: $color-green;
+  background-color: $color-green;
 }
 
 .right-bar-all::after {
-    background-color: $color-purple;
+  background-color: $color-purple;
 }

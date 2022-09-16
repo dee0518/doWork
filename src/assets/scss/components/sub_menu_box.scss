@@ -1,8 +1,12 @@
 .sub-menu-box {
-    flex-shrink: 0;
-    width: 450px;
-    height: 100vh;
-    padding: 50px 30px 50px 110px;
-    background: $color-white;
-    box-shadow: 4px 0 20px 0 rgba(0,0,0,.15);
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  width: 450px;
+  height: 100%;
+  padding: 50px 25px 50px 100px;
+  background: $color-white;
+  box-shadow: 4px 0 20px 0 rgba(0, 0, 0, 0.15);
+  overflow-y: auto;
 }
