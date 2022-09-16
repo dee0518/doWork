@@ -1,6 +1,6 @@
 <h1>deeWork: 함께 일해 보아요</h1>
 <span>2021-10-01 ~ 2022-10-12 (12일)</span>
-
+<br>
 <div> 
   <img src="https://img.shields.io/badge/scss-CC6699?style=for-the-badge&logo=sass&logoColor=white"> 
   <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB"> 
@@ -11,12 +11,14 @@
   <img src="https://img.shields.io/badge/notion-eeeeee?style=for-the-badge&logo=notion&logoColor=black">
   <img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">
 </div>
+
 <br>
 
 ## 소개
 
 스케쥴을 추가하여 일정을 관리할 수 있는 프로젝트.<br>
 구글 캘린더를 레퍼런스로 해당 기능들을 구현하며 공부하고자 한다.
+
 <br>
 
 ## 목표
