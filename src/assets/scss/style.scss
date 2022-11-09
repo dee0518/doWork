@@ -1,24 +1,24 @@
 // abstracts
-@import "./abstracts/variables_color";
-@import "./abstracts/mixin_common";
+@import './abstracts/variables_color';
+@import './abstracts/mixin_common';
 
 // base
-@import "./base/index";
+@import './base/index';
 
 // components
-@import "./components/header_area";
-@import "./components/sub_menu_box";
-@import "./components/sub_menu_title";
-@import "./components/checkbox";
-@import "./components/calendar_header";
-@import "./components/calendar";
-@import "./components/select_box";
-@import "./components/search_form";
-@import "./components/modal";
+@import './components/header_area';
+@import './components/sub_menu_box';
+@import './components/sub_menu_title';
+@import './components/checkbox';
+@import './components/calendar_header';
+@import './components/calendar';
+@import './components/select_box';
+@import './components/search_form';
+@import './components/modal';
 
 // container
-@import "./container/login/login";
-@import "./container/schedule/schedule";
-@import "./container/schedule/new_schedule_modal";
-@import "./container/myPage/my_page";
-@import "./container/myPage/settings";
+@import './pages/login/login';
+@import './pages/schedule/schedule';
+@import './pages/schedule/new_schedule_modal';
+@import './pages/myPage/my_page';
+@import './pages/myPage/settings';
