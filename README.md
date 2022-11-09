@@ -6,13 +6,15 @@
 구글 캘린더를 레퍼런스로 해당 기능들을 구현하며 공부하고자 한다.
 <br>
 
-<span>2021-10-01 ~ 2022-10-12 (12일)</span>
+<div>1차 : 2021.10.01 ~ 2021.10.12 (12일)</div>
+<div>2차 : 2022.11.10 ~  현재 진행중</div>
 
 <br>
 
 <div> 
   <img src="https://img.shields.io/badge/scss-CC6699?style=for-the-badge&logo=sass&logoColor=white"> 
-  <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB"> 
+  <img src="https://img.shields.io/badge/-React-%2361DAFB"> 
+  <img src="https://img.shields.io/badge/-Typescript-%233178C6">
   <img src="https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white">
   <br>
   <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
