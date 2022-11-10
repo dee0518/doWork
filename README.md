@@ -1,41 +1,32 @@
-<br>
-
-<h1>deeWork</h1>
-
-스케쥴을 추가하여 일정을 관리할 수 있는 프로젝트.<br>
-구글 캘린더를 레퍼런스로 해당 기능들을 구현하며 공부하고자 한다.
-<br>
-
-<div>1차 : 2021.10.01 ~ 2021.10.12 (12일)</div>
-<div>2차 : 2022.11.10 ~  현재 진행중</div>
+# deeWork
+<img src="https://img.shields.io/badge/-SCSS-CC6699?style=flat&logo=sass&logoColor=white"> <img src="https://img.shields.io/badge/-react-61DAFB?style=flat&logo=react&logoColor=white"> <img src="https://img.shields.io/badge/Typescript-3178C6?style=flat&logo=Typescript&logoColor=white"> <img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat&logo=Firebase&logoColor=white">
 
 <br>
 
-<div> 
-  <img src="https://img.shields.io/badge/scss-CC6699?style=for-the-badge&logo=sass&logoColor=white"> 
-  <img src="https://img.shields.io/badge/-React-%2361DAFB"> 
-  <img src="https://img.shields.io/badge/-Typescript-%233178C6">
-  <img src="https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white">
-  <br>
-  <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
-  <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
-  <img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">
-  <img src="https://img.shields.io/badge/notion-eeeeee?style=for-the-badge&logo=notion&logoColor=black">
-</div>
+## 1. Outline
+deeWork는 달력에 일정을 추가하여 스케쥴을 관리할 수 있는 서비스이다. 파이어베이스를 이용하여 데이터 통신을 하고 있으며 현재 typescript를 적용하며 리뉴얼하고 있다. 구현된 기능은 아래와 같다.
+<br>
+- schedule관리할 수 있는 달력
+- 로그인/회원가입
 
 <br>
 
-## 목표
-
-1. scss 적용.
-2. Firebase
-   i. google 로그인 구현
-   ii. 데이터 통신
-3. 타입스크립트 및 웹팩
+## 2. Folder Structure
+```
+deeWork/
+├── public/
+├── src/
+|    ├── assets/
+|    ├── components/
+|    ├── pages/
+|    ├── types/
+|    ├── App.tsx
+|    ├── Constant.ts
+|    ├── firebase.ts
+|    ├── index.tsx
+|    └── router.tsx
+├── ts.confing.json
+└── package.json
+```
 
 <br>
-
-## 구현 기능
-
-1. schedule관리할 수 있는 달력 페이지
-2. 로그인/회원가입
