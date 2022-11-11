@@ -10,6 +10,8 @@ const Menu = () => {
           <NavLink to={MAIN} className={({ isActive }) => 'schedule' + (isActive ? ' activated' : '')}>
             <span>Schedule</span>
           </NavLink>
+        </li>
+        <li>
           <NavLink to={MYPAGE} className={({ isActive }) => 'myPage' + (isActive ? ' activated' : '')}>
             <span>My page</span>
           </NavLink>

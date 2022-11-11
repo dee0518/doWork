@@ -12,7 +12,7 @@ a {
 html {
   font-size: 0.625em;
   line-height: 1;
-  font-family: "Poppins", "Noto Sans KR", sans-serif;
+  font-family: 'Poppins', 'Noto Sans KR', sans-serif;
 }
 
 img {
@@ -25,8 +25,8 @@ img {
   top: -9999px;
 }
 
-.wrapper > div {
-  padding-left: 450px;
+.wrapper {
+  padding-left: 400px;
   overflow-x: hidden;
 }
 
