@@ -1,8 +1,7 @@
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
-import { collection, addDoc, doc, updateDoc, getDoc, getDocs } from "firebase/firestore";
-// import { getAnalytics } from "firebase/analytics";
+import { initializeApp } from 'firebase/app';
+// import { getAuth } from 'firebase/auth';
+// import { getFirestore } from "firebase/firestore";
+// import { collection, addDoc, doc, updateDoc, getDoc, getDocs } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -11,44 +10,44 @@ const firebaseConfig = {
   storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_APP_ID,
-  measurementId: process.env.REACT_APP_MEASUREMENT_ID
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
-export const authService = getAuth()
-export const dbService = getFirestore(app)
+// export const authService = getAuth();
 
-export const addDocument = async (collectionName, data) => {
-  const docRef = await addDoc(collection(dbService, collectionName), data)
+// export const dbService = getFirestore(app);
 
-  return docRef.id
-}
+// export const addDocument = async (collectionName, data) => {
+//   const docRef = await addDoc(collection(dbService, collectionName), data)
 
-export const updateDocument = async (collectionName, refName, data) => {
-  const refDoc = doc(dbService, collectionName, refName)
-  await updateDoc(refDoc, data)
-}
+//   return docRef.id
+// }
 
-export const getDocument = async(collectionName, refName) => {
-  const docRef = doc(dbService, collectionName, refName);
-  const docSnap = await getDoc(docRef);
+// export const updateDocument = async (collectionName, refName, data) => {
+//   const refDoc = doc(dbService, collectionName, refName)
+//   await updateDoc(refDoc, data)
+// }
 
-  if (docSnap.exists()) {
-    return {
-      result: true,
-      data: docSnap.data()
-    }
-  } else {
-    return { result: false }
-  }
-}
+// export const getDocument = async(collectionName, refName) => {
+//   const docRef = doc(dbService, collectionName, refName);
+//   const docSnap = await getDoc(docRef);
 
-export const getDocuments = async(customQuery) => {
-  const q = customQuery
+//   if (docSnap.exists()) {
+//     return {
+//       result: true,
+//       data: docSnap.data()
+//     }
+//   } else {
+//     return { result: false }
+//   }
+// }
 
-  const querySnapshot = await getDocs(q);
+// export const getDocuments = async(customQuery) => {
+//   const q = customQuery
 
-  return querySnapshot
-}
+//   const querySnapshot = await getDocs(q);
+
+//   return querySnapshot
+// }

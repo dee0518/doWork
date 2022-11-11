@@ -1,3 +1,5 @@
+type EventHandler = (any) => void;
+
 interface LabelProps {
   htmlFor: string;
   [key: string]: string;
@@ -6,7 +8,7 @@ interface LabelProps {
 interface InputProps {
   id: string;
   type: string;
-  [key: string]: string;
+  [key: string]: string | EventHandler;
 }
 
 interface InputFormProps {

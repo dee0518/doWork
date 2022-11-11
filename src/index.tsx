@@ -3,5 +3,5 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import './assets/scss/style.scss';
 
-const root = ReactDOM.createRoot(document.querySelector('#root') as HTMLElement);
+const root = ReactDOM.createRoot(document.querySelector('#root') as HTMLDivElement);
 root.render(<App />);

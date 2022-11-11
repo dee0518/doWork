@@ -1,17 +1,30 @@
 @mixin commonWrapper {
-    border: 1px solid $color-border5;
-    border-radius: 30px;
-    box-shadow: 0 4px 30px 0 rgba(224,224,224,.5);
+  border: 1px solid $color-border5;
+  border-radius: 30px;
+  box-shadow: 0 4px 30px 0 rgba(224, 224, 224, 0.5);
 }
 
 @mixin commonWrapperbdrs15 {
-    border: 1px solid $color-border5;
-    border-radius: 15px;
-    box-shadow: 0 4px 30px 0 rgba(224,224,224,.5);
+  border: 1px solid $color-border5;
+  border-radius: 15px;
+  box-shadow: 0 4px 30px 0 rgba(224, 224, 224, 0.5);
 }
 
 @mixin textEllipse {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@mixin flexBox($direction: row, $wrap: nowrap, $justify: normal, $align: normal) {
+  display: flex;
+  flex-flow: $direction $wrap;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin buttonNone {
+  border: 0;
+  padding: 0;
+  background: transparent;
 }
