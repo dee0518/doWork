@@ -9,8 +9,9 @@
 deeWork는 달력에 일정을 추가하여 스케쥴을 관리할 수 있는 서비스이다. 파이어베이스를 이용하여 데이터 통신을 하고 있으며 현재 typescript를 적용하며 리뉴얼하고 있다. 구현된 기능은 아래와 같다.
 <br>
 
-- schedule관리할 수 있는 달력
 - 로그인/회원가입
+- schedule관리할 수 있는 달력
+
 
 <br>
 
@@ -32,6 +33,10 @@ deeWork/
 ├── ts.confing.json
 └── package.json
 ```
+- assets : 이미지와 scss같은 정적인 파일을 담은 폴더
+- components : 작은 단위의 컴포넌트를 담은 폴더
+- pages : 화면을 구성하는 컴포넌트를 담은 폴더
+- types : 글로벌로 선언되어야 하는 타입들을 담은 폴더
 
 <br>
 
@@ -39,8 +44,8 @@ deeWork/
 
 1. typescript 적용에 따른 타입 오류
 
-- async & await 문의 return 값은 Promise\<T\>의 형태로 지정되어야 한다.
+  - async & await 문의 return 값은 Promise\<T\>의 형태로 지정되어야 한다.
 
 2. Unexpected any. Specify a different type.eslint@typescript-eslint/no-explicit-any 오류 : 타입 any의 노란색 물결
 
-- eslintrc.js에 "@typescript-eslint/no-explicit-any": "off" 추가
+  - eslintrc.js에 "@typescript-eslint/no-explicit-any": "off" 추가
