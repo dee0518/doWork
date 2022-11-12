@@ -43,9 +43,9 @@ deeWork/
 ## 3. Issue & Slove
 
 1. typescript 적용에 따른 타입 오류
-
-  - async & await 문의 return 값은 Promise\<T\>의 형태로 지정되어야 한다.
+    - 원인 : 비동기 호출하는 함수 부분에서 return값의 타입에 대한 오류가 발생했다. 
+    - 해결 : async & await 문의 return 값은 Promise\<T\>의 형태로 지정되어야 한다.
 
 2. Unexpected any. Specify a different type.eslint@typescript-eslint/no-explicit-any 오류 : 타입 any의 노란색 물결
-
-  - eslintrc.js에 "@typescript-eslint/no-explicit-any": "off" 추가
+    - 원인 : eslint가 명시적으로 선언되는 any를 방지하기 위하여 뜨는 경고이다.
+    - 해결 : eslintrc.js에 "@typescript-eslint/no-explicit-any": "off" 추가
