@@ -45,6 +45,22 @@ deeWork/
 1. typescript 적용에 따른 타입 오류
     - 원인 : 비동기 호출하는 함수 부분에서 return값의 타입에 대한 오류가 발생했다. 
     - 해결 : async & await 문의 return 값은 Promise\<T\>의 형태로 지정되어야 한다.
+    ```javascript
+    const request = async (url: string, options : Options): Promise<any> => {
+      try {
+        const response = await fetch(url, options);
+        const json = await response.json();
+
+        if(response.ok){
+            return response.json();
+        }
+        
+        throw new Error('에러입니다.')
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    ```
 
 2. Unexpected any. Specify a different type.eslint@typescript-eslint/no-explicit-any 오류 : 타입 any의 노란색 물결
     - 원인 : eslint가 명시적으로 선언되는 any를 방지하기 위하여 뜨는 경고이다.
