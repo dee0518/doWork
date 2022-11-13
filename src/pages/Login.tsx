@@ -1,5 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { authActions } from '../store/auth';
 import { signIn, signUp } from '../api/auth';
 import images from '../assets/images/importImage';
 import InputForm from '../components/moleclues/InputForm';
@@ -11,6 +13,8 @@ interface UserInfo {
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [isLoginMode, setIsLoginMode] = useState<boolean>(true);
   const [error, setError] = useState<string>('');
   const [userInfo, setUserInfo] = useState<UserInfo>({ email: '', password: '' });
@@ -32,8 +36,10 @@ const Login = () => {
     if (isLoginMode) {
       const response = await signIn(userInfo);
 
-      if (response.result) navigate('/main');
-      else {
+      if (response.result) {
+        dispatch(authActions.setIsLoggedIn(true));
+        navigate('/main');
+      } else {
         setError(
           response.error.message === 'INVALID_EMAIL'
             ? '같이 일하고 있는 계정이 아니에요 (ㅇㅅㅇ)'
