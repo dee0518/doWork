@@ -1,252 +1,264 @@
 .calendar {
-    .days-group {
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
+  &__header {
+    @include flexBox(row, nowrap, space-around, center);
 
-        div {
-            font-weight: 500;
-            text-align: center;
+    div {
+      font-weight: 500;
+      text-align: center;
+    }
+  }
 
-            span {
-                display: block; 
-            }
-        }
+  &__week {
+    display: grid;
+    text-align: center;
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  &__dates {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+
+    a {
+      display: block;
+      text-decoration: none;
+      color: $color-gray-100;
+      text-align: center;
+      font-weight: 500;
     }
 
-    .dates-group {
-        display: grid;
-        grid-template-columns: repeat(7,1fr);
-
-        a {
-            display: block;
-            text-decoration: none;
-            color: $color-text2;
-            text-align: center;
-            font-weight: 500;
-        }
-
-        .other a {
-            color: $color-text7;
-        }
+    .other a {
+      color: $color-text7;
     }
+  }
+
+  &.large {
+    @include commonWrapper;
+    min-width: 600px;
+
+    .calendar__week {
+      padding: 15px;
+      font-size: 1.3rem;
+      line-height: 1.5;
+    }
+
+    .calendar__dates {
+      li {
+        height: 180px;
+        padding: 10px 15px;
+        border-top: 1px solid $color-gray-30;
+        font-size: 1.5rem;
+        line-height: 1.5;
+      }
+    }
+  }
+  //     .dates-group {
+  //       .dates-cell {
+  //         position: relative;
+  //         flex-shrink: 0;
+  //         min-width: 0;
+  //         height: 180px;
+  //         border-bottom: 1px solid $color-border3;
+
+  //         a {
+  //           display: inline-block;
+  //           padding: 15px;
+  //           font-size: 1.5rem;
+  //           line-height: 1.5;
+  //           text-align: left;
+  //         }
+
+  //         &.today a {
+  //           color: $color-white;
+
+  //           &::before {
+  //             content: '';
+  //             position: absolute;
+  //             left: 7px;
+  //             top: 10px;
+  //             z-index: -1;
+  //             width: 30px;
+  //             height: 30px;
+  //             border-radius: 50%;
+  //             background-color: $color-pink;
+  //           }
+  //         }
+
+  //         &.other {
+  //           .date-sch-group {
+  //             opacity: 0.6;
+  //           }
+  //         }
+
+  //         .date-sch-group {
+  //           display: flex;
+  //           flex-direction: column;
+  //           flex-basis: 100%;
+  //           height: 25px;
+  //           border-radius: 6px;
+  //           justify-content: center;
+
+  //           a {
+  //             display: block;
+  //             overflow: hidden;
+  //             white-space: nowrap;
+  //             text-overflow: ellipsis;
+  //             padding: 0 5px;
+  //             font-weight: 300;
+  //             font-size: 1.2rem;
+  //             line-height: 1.5;
+  //             color: $color-white;
+  //           }
+  //         }
+  //       }
+
+  //       .dates-cell:last-child,
+  //       .dates-cell:nth-last-child(2),
+  //       .dates-cell:nth-last-child(3),
+  //       .dates-cell:nth-last-child(4),
+  //       .dates-cell:nth-last-child(5),
+  //       .dates-cell:nth-last-child(6),
+  //       .dates-cell:nth-last-child(7) {
+  //         border-bottom: none;
+  //       }
+  //     }
+
+  //     .time-table-group {
+  //       display: flex;
+  //       padding: 30px 15px;
+
+  //       .time-group {
+  //         flex-basis: 50px;
+  //         flex-shrink: 0;
+  //         padding-right: 10px;
+
+  //         div {
+  //           height: 60px;
+  //           text-align: center;
+  //           font-size: 1.2rem;
+  //           line-height: 1.5;
+  //           color: $color-text7;
+  //         }
+
+  //         div:last-child {
+  //           height: auto;
+  //         }
+  //       }
+
+  //       .time-schedule-group {
+  //         display: flex;
+  //         flex-basis: calc(100% - 50px);
+  //         flex-shrink: 0;
+
+  //         .time-schedule-wrapper {
+  //           position: relative;
+  //           width: 100%;
+  //           height: calc(100% - 14px);
+  //           margin-top: 7px;
+
+  //           .time-bg-group {
+  //             width: 100%;
+  //             height: 100%;
+
+  //             div {
+  //               width: 100%;
+  //               height: calc(100% / 24);
+  //               border-top: 1px solid $color-border6;
+
+  //               &:last-child {
+  //                 border-bottom: 1px solid $color-border6;
+  //               }
+  //             }
+  //           }
+
+  //           .schedule-group {
+  //             position: absolute;
+  //             left: 0;
+  //             top: 0;
+  //             width: 100%;
+  //             height: 100%;
+
+  //             .time-sche {
+  //               position: absolute;
+  //               width: 100%;
+  //               padding: 10px;
+  //               border-radius: 7px;
+  //               color: $color-white;
+  //               line-height: 1.5;
+  //               font-size: 1.2rem;
+  //               font-weight: 300;
+  //               overflow: hidden;
+
+  //               .title {
+  //                 @include textEllipse;
+
+  //                 font-size: 1.3rem;
+  //                 font-weight: bold;
+  //               }
+
+  //               .content {
+  //                 margin-top: 10px;
+  //                 padding-bottom: 30px;
+  //               }
+
+  //               .member {
+  //                 position: absolute;
+  //                 left: 10px;
+  //                 bottom: 10px;
+  //                 margin-top: 20px;
+  //               }
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
 }
 
 .calendar.small {
-    .days-dates-group {
-        padding: 20px 15px;
-        border-radius: 10px;
-        background-color: $color-bg-gray;
+  .calendar__week__dates__wrapper {
+    padding: 10px;
+    border-radius: 12px;
+    background-color: $color-gray-10;
+  }
 
-        .days-group {
-            div {
-                padding: 10px 0 30px;
-                color: $color-text8;
-                font-size: 1.2rem;
-                line-height: 1.423;
-            }
-        }
+  .calendar__week {
+    padding: 20px 0 5px;
+    color: $color-purple-90;
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.423;
+  }
 
-        .dates-group {
-            a {
-                height: 40px;
-                margin-bottom: 5px;
-                font-size: 1.4rem;
-                line-height: 40px;
-            }
+  .calendar__dates {
+    padding: 15px 0;
+    font-size: 1.4rem;
+    line-height: 40px;
+    text-align: center;
+  }
 
-            .today a {
-                border-radius: 50%;
-                background-color: $color-pink;
-                color: $color-white;
-            }
+  // .days-dates-group {
+  //   .dates-group {
+  //     a {
+  //       height: 40px;
+  //       margin-bottom: 5px;
+  //       font-size: 1.4rem;
+  //       line-height: 40px;
+  //     }
 
-            a:hover, .selected a {
-                color: $color-white;
-                border-radius: 50%;
-                background-color: $color-pink;
-                opacity: 0.5;
-                box-shadow: 0 4px 10px 0 rgba(206,206,206,.8);
-            }
-        }
-    }
-}
+  //     .today a {
+  //       border-radius: 50%;
+  //       background-color: $color-pink;
+  //       color: $color-white;
+  //     }
 
-.calendar.grid {
-    @include commonWrapper;
-    min-width: 515px;
-
-    .days-group {
-        border-bottom: 1px solid $color-border4;
-        padding: 15px 0;
-
-        &.week {
-            padding: 15px;
-        }
-
-        &.week div:first-child {
-            margin-left: 50px;
-        }
-
-        div {
-            width: 100%;
-            font-size: 1.5rem;
-            line-height: 1.5;
-        }
-    }
-
-    .dates-group {
-        .dates-cell {
-            position: relative;
-            flex-shrink: 0;
-            min-width: 0;
-            height: 180px;     
-            border-bottom: 1px solid $color-border3;    
-
-            a {
-                display: inline-block;
-                padding: 15px;
-                font-size: 1.5rem;
-                line-height: 1.5;
-                text-align: left;
-            }
-
-            &.today a {
-                color: $color-white;
-
-                &::before {
-                    content: "";
-                    position: absolute;
-                    left: 7px;
-                    top: 10px;
-                    z-index: -1;
-                    width: 30px;
-                    height: 30px;
-                    border-radius: 50%;
-                    background-color: $color-pink;  
-                } 
-            }
-
-            &.other {
-                .date-sch-group {
-                    opacity: 0.6;
-                }
-            }
-
-            .date-sch-group {
-                display: flex;
-                flex-direction: column;
-                flex-basis: 100%;
-                height: 25px;
-                border-radius: 6px;
-                justify-content: center;
-
-                a {
-                    display: block;
-                    overflow: hidden;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                    padding: 0 5px;
-                    font-weight: 300;
-                    font-size: 1.2rem;
-                    line-height: 1.5;
-                    color: $color-white;
-                }
-            }
-        }
-
-        .dates-cell:last-child, .dates-cell:nth-last-child(2), .dates-cell:nth-last-child(3), .dates-cell:nth-last-child(4), .dates-cell:nth-last-child(5), .dates-cell:nth-last-child(6), .dates-cell:nth-last-child(7) {
-            border-bottom: none;
-        }
-    }
-
-    .time-table-group {
-        display: flex;
-        padding: 30px 15px;
-
-        .time-group {
-            flex-basis: 50px;
-            flex-shrink: 0;
-            padding-right: 10px;
-
-            div {
-                height: 60px;
-                text-align: center;
-                font-size: 1.2rem;
-                line-height: 1.5;
-                color: $color-text7;
-            }
-
-            div:last-child {
-                height: auto;
-            }
-        }
-
-        .time-schedule-group {
-            display: flex;
-            flex-basis: calc(100% - 50px);
-            flex-shrink: 0;
-
-            .time-schedule-wrapper {
-                position: relative;
-                width: 100%;
-                height: calc(100% - 14px);
-                margin-top: 7px;
-
-                .time-bg-group {
-                    width: 100%;
-                    height: 100%;
-
-                    div {
-                        width: 100%;
-                        height: calc(100% / 24);
-                        border-top: 1px solid $color-border6;
-
-                        &:last-child {
-                            border-bottom: 1px solid $color-border6;
-                        }
-                    }
-                }
-
-                .schedule-group {
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                    width: 100%;
-                    height: 100%;
-                    
-                    .time-sche {
-                        position: absolute;
-                        width: 100%;
-                        padding: 10px;
-                        border-radius: 7px;
-                        color: $color-white;
-                        line-height: 1.5;
-                        font-size: 1.2rem;
-                        font-weight: 300;
-                        overflow: hidden;
-
-                        .title {
-                            @include textEllipse;
-
-                            font-size: 1.3rem;
-                            font-weight: bold;
-                        }
-
-                        .content {
-                            margin-top: 10px;
-                            padding-bottom: 30px;
-                        }
-
-                        .member {
-                            position: absolute;
-                            left: 10px;
-                            bottom: 10px;
-                            margin-top: 20px;
-                        }
-                    }
-                }
-            }
-        }
-    }
+  //     a:hover,
+  //     .selected a {
+  //       color: $color-white;
+  //       border-radius: 50%;
+  //       background-color: $color-pink;
+  //       opacity: 0.5;
+  //       box-shadow: 0 4px 10px 0 rgba(206, 206, 206, 0.8);
+  //     }
+  //   }
+  // }
 }

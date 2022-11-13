@@ -1,7 +1,7 @@
-.calendar-header-group {
+.calendar__header {
   div {
     font-weight: 500;
-    color: $color-text2;
+    color: $color-gray-100;
   }
 
   button {
@@ -12,33 +12,36 @@
   }
 }
 
-.calendar-header-group.small,
-.calendar-header-group.schedule {
+.calendar__header.small {
   display: grid;
-  grid-template-columns: 1fr 40px 40px;
+  grid-template-columns: 1fr 36px 36px;
   grid-template-rows: 1fr;
-  grid-gap: 10px;
+  grid-gap: 5px;
   margin-bottom: 25px;
 
-  div {
+  .calendar__header__date {
     grid-column: 1;
     grid-row: 1;
-    font-size: 2.4rem;
-    line-height: 40px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: $color-gray-100;
+    line-height: 36px;
   }
 
   button {
+    width: 36px;
+    height: 36px;
     border: 1px solid $color-border2;
     border-radius: 6px;
     background: url('../images/arrow_left.svg') no-repeat center;
   }
 
-  .prev-btn {
+  .calendar__header__prev-btn {
     grid-row: 1;
     grid-column: 2;
   }
 
-  .next-btn {
+  .calendar__header__next-btn {
     grid-row: 1;
     grid-column: 3;
     text-indent: 9999px;
@@ -47,16 +50,14 @@
   }
 }
 
-.calendar-header-group.grid {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-bottom: 1px solid $color-border4;
-  padding: 20px 0;
+.calendar__header.large {
+  @include flexBox(row, nowrap, center, center);
+  border-bottom: 1px solid $color-gray-40;
+  padding: 15px 0;
 
-  div {
-    margin: 0 10px;
-    font-size: 2.2rem;
+  .calendar__header__date {
+    margin: 0 15px;
+    font-size: 2rem;
     font-weight: 500;
     line-height: 1.5;
   }
@@ -64,11 +65,12 @@
   button {
     border: none;
     background: url('../images/arrow_bottom.svg') no-repeat;
+    background-size: 14px;
     background-position: center;
     transform: rotate(90deg);
   }
 
-  .next-btn {
+  .calendar__header__next-btn {
     transform: rotate(270deg);
     text-indent: 9999px;
   }
