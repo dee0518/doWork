@@ -17,10 +17,10 @@ interface InputFormProps {
 }
 
 const InputForm = ({ label, input }: InputFormProps) => {
-  const { htmlFor, ...labelRest } = label;
+  const { htmlFor, ...labelProps } = label;
   return (
     <div className="input__form">
-      <label htmlFor={htmlFor} {...labelRest} />
+      <label htmlFor={htmlFor} {...labelProps} />
       <input {...input} />
     </div>
   );

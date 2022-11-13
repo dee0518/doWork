@@ -5,7 +5,39 @@
   padding: 20px 30px;
   overflow-x: auto;
 
-  .calendar {
-    margin-top: 30px;
+  &__filter {
+    margin: 20px 0 10px;
+    height: 36px;
+    @include flexBox(row, nowrap, space-between, center);
+
+    select {
+      height: 100%;
+      padding: 0 35px 0 15px;
+      border-radius: 8px;
+      border: 1px solid $color-gray-50;
+      background: $color-white;
+      font-size: 1.5rem;
+      color: $color-gray-85;
+      background: url(../images/arrow_bottom.svg) no-repeat;
+      background-position: right 12px top 15px;
+      background-size: 12px;
+    }
+
+    .add__schedule-btn {
+      @include flexBox(row, nowrap, space-between, center);
+      gap: 6px;
+      height: 100%;
+      padding: 0 15px;
+      border-radius: 18px;
+      border: 1px solid $color-gray-50;
+      background: $color-white;
+      font-size: 1.5rem;
+      color: $color-gray-85;
+      cursor: pointer;
+
+      img {
+        width: 10px;
+      }
+    }
   }
 }

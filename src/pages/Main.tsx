@@ -6,6 +6,8 @@ import SubMenu from '../feature/SubMenu';
 import SearchForm from '../feature/SearchForm';
 import Calendar from '../feature/Calendar';
 import StatusCheckboxList from '../components/moleclues/StatusCheckboxList';
+import SelectBox from '../components/moleclues/SelectBox';
+import images from '../assets/images/importImage';
 
 const Main = () => {
   // const isLoggedIn = useSelector<ReducerType>(state => state.auth.isLoggedIn);
@@ -19,6 +21,13 @@ const Main = () => {
       </SubMenu>
       <main className="main">
         <SearchForm />
+        <div className="main__filter">
+          <SelectBox select={{ id: 'calendarType', optionList: ['Day', 'Week', 'Month'] }} />
+          <button className="add__schedule-btn">
+            <img src={images['ico_add.svg']} alt="+" />
+            Add
+          </button>
+        </div>
         <Calendar type="large" lang={'en'} strLeng={0} dateType={['year']} />
       </main>
     </Wrapper>

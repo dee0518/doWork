@@ -1,12 +1,10 @@
-.select-box-group {
-    select::-ms-expand { 
-        display: none;
-    }
+.select__box {
+  -o-appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 
-    select {
-        -o-appearance: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-    }  
+  &::-ms-expand {
+    display: none;
+  }
 }
