@@ -1,0 +1,43 @@
+.status__checkbox__list {
+  margin-top: 30px;
+
+  .input__form {
+    margin-bottom: 8px;
+  }
+
+  input {
+    display: none;
+  }
+
+  label {
+    @include flexBox($align: center);
+    padding-left: 28px;
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 1.5;
+    background: url(../images/chk_empty.svg) no-repeat;
+    background-position: left center;
+    background-size: 18px;
+    text-transform: capitalize;
+  }
+
+  .all.on {
+    background-image: url(../images/chk_purple.svg);
+  }
+
+  .todo.on {
+    background-image: url(../images/chk_pink.svg);
+  }
+
+  .private.on {
+    background-image: url(../images/chk_yellow.svg);
+  }
+
+  .important.on {
+    background-image: url(../images/chk_skyblue.svg);
+  }
+
+  .meeting.on {
+    background-image: url(../images/chk_green.svg);
+  }
+}
