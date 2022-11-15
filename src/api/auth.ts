@@ -1,12 +1,12 @@
 const SERVER_URL = 'https://identitytoolkit.googleapis.com/v1';
-const API_KEY = 'AIzaSyD0mSJJVAvNIGTjhHyn7nDxa1Re5fh9hOM';
+const API_KEY = process.env.FIREBASE_API_KEY;
 
 interface UserInfo {
   email: string;
   password: string;
 }
 
-const request = async (url: string, options = {}): Promise<any> => {
+const request = async (url: string, options: undefined | object = {}): Promise<any> => {
   try {
     const response = await fetch(url, options);
     const json = await response.json();
@@ -44,4 +44,14 @@ const signIn = async (userInfo: UserInfo): Promise<any> => {
   return request(`${SERVER_URL}/accounts:signInWithPassword?key=${API_KEY}`, options);
 };
 
-export { signUp, signIn };
+const oAuth = async () => {
+  const options = {
+    method: 'GET',
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
+  };
+  return request(`${SERVER_URL}/accounts:signInWithIdp?key=${API_KEY}`, options);
+};
+
+export { signUp, signIn, oAuth };
