@@ -119,6 +119,12 @@
     button {
       font-size: 1.3rem;
     }
+
+    .calendar {
+      display: none;
+      left: -10px;
+      top: 30px;
+    }
   }
 
   .select__box {

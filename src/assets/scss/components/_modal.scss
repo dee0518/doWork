@@ -12,13 +12,13 @@
     top: 50%;
     border-radius: 8px;
     background: $color-white;
-    overflow: hidden;
     transform: translate3d(-50%, -50%, 0);
 
     &__header {
       position: relative;
       width: 100%;
       padding: 15px 20px;
+      border-radius: 8px 8px 0 0;
       background: linear-gradient(to right, $color-purple-60, $color-purple-30);
 
       h3 {
