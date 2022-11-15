@@ -24,7 +24,7 @@
     padding: 30px;
     border-radius: 10px;
     background-color: rgba(51, 30, 148, 0.3);
-    box-shadow: 0 0 10px 3px rgba(178, 162, 243, 0.25);
+    box-shadow: $color-purple-shadow;
   }
 
   &__form {

@@ -10,5 +10,43 @@
     left: 0;
     top: 40px;
     z-index: 1;
+    width: 270px;
+    padding: 15px;
+    border-radius: 6px;
+    background: $color-white;
+    box-shadow: $color-purple-shadow;
+
+    &.small .calendar {
+      &__header {
+        grid-template-columns: 1fr 30px 30px;
+        margin-bottom: 10px;
+
+        &__date {
+          font-size: 1.5rem;
+        }
+
+        &__prev-btn,
+        &__next-btn {
+          width: 30px;
+          height: 30px;
+          border: 0;
+        }
+      }
+
+      &__week {
+        padding: 10px 0;
+        font-size: 1.1rem;
+
+        &__dates__wrapper {
+          padding: 0;
+          background: transparent;
+        }
+      }
+
+      &__dates {
+        padding: 0;
+        font-size: 1.2rem;
+      }
+    }
   }
 }
