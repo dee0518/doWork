@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { authActions } from '../store/auth';
-import { signIn, signUp } from '../api/auth';
+import { signIn, signUp, oAuth } from '../api/auth';
 import images from '../assets/images/importImage';
 import InputForm from '../components/moleclues/InputForm';
 
@@ -18,7 +18,10 @@ const Login = () => {
   const [isLoginMode, setIsLoginMode] = useState<boolean>(true);
   const [error, setError] = useState<string>('');
   const [userInfo, setUserInfo] = useState<UserInfo>({ email: '', password: '' });
-
+  const onClickAuth = async () => {
+    const response = await oAuth();
+    console.log(response);
+  };
   const onChangeMode = () => {
     setIsLoginMode(prev => !prev);
     setError('');
@@ -101,6 +104,9 @@ const Login = () => {
           </button>
           <button className="login__submit" type="submit">
             {isLoginMode ? '로그인' : '회원가입'}
+          </button>
+          <button type="button" className="login__google" onClick={onClickAuth}>
+            Google 로그인
           </button>
         </form>
       </div>
