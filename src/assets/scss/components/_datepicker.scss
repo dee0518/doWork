@@ -1,0 +1,14 @@
+.datepicker {
+  position: relative;
+
+  &__btn {
+    @include buttonNone;
+  }
+
+  .calendar {
+    position: absolute;
+    left: 0;
+    top: 40px;
+    z-index: 1;
+  }
+}

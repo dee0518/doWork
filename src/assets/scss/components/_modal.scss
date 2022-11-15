@@ -1,0 +1,110 @@
+.dimmend__layer {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.25);
+
+  .modal {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 8px;
+    background: $color-white;
+    overflow: hidden;
+    transform: translate3d(-50%, -50%, 0);
+
+    &__header {
+      position: relative;
+      width: 100%;
+      padding: 15px 20px;
+      background: linear-gradient(to right, $color-purple-60, $color-purple-30);
+
+      h3 {
+        font-size: 1.6rem;
+        color: $color-white;
+      }
+
+      button {
+        @include buttonNone;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 46px;
+        height: 46px;
+        background: url(../images/ico_close_white.svg) no-repeat;
+        background-position: center;
+      }
+    }
+
+    &__body {
+      padding: 15px 20px;
+    }
+  }
+}
+
+// @keyframes opacity {
+//   from {
+//     opacity: 0;
+//   }
+//   to {
+//     opacity: 1;
+//   }
+// }
+
+// .modal-wrapper {
+//   position: fixed;
+//   left: 0;
+//   top: 0;
+//   bottom: 0;
+//   right: 0;
+//   z-index: 1000;
+//   background: rgba(0, 0, 0, 0.2);
+//   animation: opacity 0.3s ease;
+
+//   .modal-bg {
+//     position: absolute;
+//     left: 50%;
+//     top: 50%;
+//     background: $color-white;
+
+//     &.static {
+//       width: 400px;
+//       padding: 30px 30px 20px;
+//       margin-left: -200px;
+//       margin-top: -128px;
+//       border-radius: 10px;
+//       text-align: center;
+
+//       span {
+//         display: block;
+//         font-size: 1.6rem;
+//         line-height: 1.5;
+//       }
+//     }
+
+//     .close-btn {
+//       position: absolute;
+//       right: 30px;
+//       top: 20px;
+//       width: 30px;
+//       height: 30px;
+//       border: none;
+//       text-indent: -9999px;
+//       background: url(../images/ico_close.svg) no-repeat;
+//       background-position: center;
+//     }
+
+//     .save-btn {
+//       width: 100%;
+//       height: 45px;
+//       margin-top: 30px;
+//       border: none;
+//       border-radius: 10px;
+//       background-color: $color-purple;
+//       color: $color-white;
+//       font-size: 1.5rem;
+//     }
+//   }
+// }

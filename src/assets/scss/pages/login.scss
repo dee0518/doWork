@@ -88,6 +88,16 @@
     font-size: 1.6rem;
   }
 
+  &__google {
+    @include buttonNone;
+    width: 100%;
+    height: 50px;
+    border: 1px solid $color-purple-30;
+    border-radius: 8px;
+    color: $color-purple-30;
+    font-size: 1.6rem;
+  }
+
   &__copyright {
     position: absolute;
     bottom: 10px;

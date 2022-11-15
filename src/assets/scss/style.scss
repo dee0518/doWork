@@ -6,19 +6,21 @@
 @import './base/index';
 
 // components
-@import './components/header_area';
-@import './components/subMenu';
-@import './components/statusCheckboxList';
+@import './components/_header_area';
+@import './components/sub_menu';
+@import './components/statu_checkbox_list';
 @import './components/calendar_header';
 @import './components/calendar';
 @import './components/select_box';
 @import './components/search_form';
 @import './components/modal';
+@import './components/datepicker';
+@import './components/new_schedule_modal';
 
 // container
 @import './pages/login';
 @import './pages/main';
-@import './pages/schedule/schedule';
-@import './pages/schedule/new_schedule_modal';
-@import './pages/myPage/my_page';
-@import './pages/myPage/settings';
+// @import './pages/schedule/schedule';
+// @import './pages/schedule/new_schedule_modal';
+// @import './pages/myPage/my_page';
+// @import './pages/myPage/settings';
