@@ -14,8 +14,8 @@
     "react-router-dom": "^6.4.3"
   },
   "scripts": {
-    "dev": "webpack-dev-server",
-    "start": "webpack --mode=development  --progress",
+    "dev": "webpack serve --mode=development --open ",
+    "start": "webpack --mode=development  --open --progress",
     "build": "webpack --mode=production  --progress"
   },
   "devDependencies": {

@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const dotenv = require('dotenv');
+const { web } = require('webpack');
 dotenv.config();
 
 module.exports = {
@@ -10,7 +11,9 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
+    clean: true,
   },
+  devtool: 'eval-source-map',
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
   },
@@ -18,6 +21,7 @@ module.exports = {
     rules: [
       {
         test: /\.(ts|tsx)$/,
+        exclude: /node_modules/,
         use: ['babel-loader', 'ts-loader'],
       },
       {
@@ -40,12 +44,14 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'public/index.html'),
     }),
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       'process.env': JSON.stringify(process.env),
     }),
   ],
   devServer: {
     port: 3000,
+    historyApiFallback: true,
     hot: true,
   },
 };
