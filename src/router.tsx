@@ -1,13 +1,15 @@
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
-import { LOGIN } from './Constant';
+import { LOGIN, MAIN, MYPAGE } from './Constant';
 import Login from './pages/Login';
+import Main from './pages/Main';
+import MyPage from './pages/MyPage';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path={LOGIN}>
       <Route index element={<Login />} />
-      {/* <Route path={MAIN} element={<Schedule />}></Route>
-      <Route path={MYPAGE} element={<MyPage />}></Route> */}
+      <Route path={MAIN} element={<Main />} />
+      <Route path={MYPAGE} element={<MyPage />}></Route>
     </Route>
   )
 );
