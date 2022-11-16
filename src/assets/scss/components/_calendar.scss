@@ -18,16 +18,19 @@
     display: grid;
     grid-template-columns: repeat(7, 1fr);
 
-    a {
-      display: block;
-      text-decoration: none;
+    li {
       color: $color-gray-100;
-      text-align: center;
       font-weight: 500;
-    }
+      cursor: pointer;
 
-    .other a {
-      color: $color-text7;
+      &.other {
+        color: $color-gray-60;
+      }
+
+      &.today {
+        color: $color-yellow;
+        font-weight: bold;
+      }
     }
   }
 
@@ -49,7 +52,6 @@
         border-top: 1px solid $color-gray-30;
         font-size: 1.5rem;
         line-height: 1.5;
-        cursor: pointer;
       }
     }
   }
@@ -237,6 +239,12 @@
     font-size: 1.4rem;
     line-height: 40px;
     text-align: center;
+
+    li:hover {
+      border-radius: 50%;
+      background: $color-purple-50;
+      color: $color-white;
+    }
   }
 
   // .days-dates-group {
