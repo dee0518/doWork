@@ -1,20 +1,29 @@
 import InputForm from './InputForm';
+import { Status, scheduleActions } from '../../store/schedule';
+import { useDispatch } from 'react-redux';
+import { ChangeEvent } from 'react';
 
 interface StatusCheckboxList {
-  statusList: string[];
+  statusList: Status[];
 }
 
 const StatusCheckboxList = ({ statusList }: StatusCheckboxList) => {
+  const dispatch = useDispatch();
+
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch(scheduleActions.setFilter(e.target.id));
+  };
+
   return (
     <div className="status__checkbox__list">
-      {statusList.map(status => {
-        const classStr = status.replace(/\s/g, '');
-
+      {statusList.map(({ id, name, checked }) => {
+        const c = name.replace(/\s/g, '');
+        const className = checked ? `on ${c}` : c;
         return (
           <InputForm
-            key={classStr}
-            input={{ id: classStr, type: 'checkbox' }}
-            label={{ htmlFor: classStr, children: status }}
+            key={id}
+            input={{ id, type: 'checkbox', checked: checked, onChange: onChange }}
+            label={{ htmlFor: id, children: name, className: className }}
           />
         );
       })}

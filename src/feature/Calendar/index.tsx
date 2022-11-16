@@ -1,15 +1,21 @@
+// import { useSelector } from 'react-redux';
+// import { ReducerType } from 'store/rootReducer';
+// import { scheduleActions } from 'store/schedule';
 import CalendarHeader from './CalendarHeader';
 import CalendarWeek from './CalendarWeek';
-import CalendarDates from './CalendarDates';
+// import CalendarDates from './CalendarDates';
 
 interface CalendarProps {
   type: string;
   lang: string;
+  date: Date;
   dateType: string[];
   strLeng: number;
+  onClickDate: (date: Date) => void;
+  onClickHeaderBtn: (date: Date) => void;
 }
 
-const Calendar = ({ type, lang, dateType, strLeng }: CalendarProps) => {
+const Calendar = ({ date, type, lang, dateType, strLeng, onClickDate, onClickHeaderBtn }: CalendarProps) => {
   const today = new Date();
 
   const year: number = today.getFullYear();
@@ -30,10 +36,21 @@ const Calendar = ({ type, lang, dateType, strLeng }: CalendarProps) => {
 
   return (
     <div className={`calendar ${type}`}>
-      <CalendarHeader type={type} date={today} dateType={dateType} week={[]} />
+      <CalendarHeader date={date} type={type} dateType={dateType} week={[]} onClickHeaderBtn={onClickHeaderBtn} />
       <div className="calendar__week__dates__wrapper">
         <CalendarWeek type={type} lang={lang} strLeng={strLeng} />
-        <CalendarDates dates={dates} />
+        <ul className="calendar__dates">
+          {dates.map((curDate, i) => {
+            const month = date.getMonth() + (i < 7 && curDate > 20 ? -1 : i > 24 && curDate < 7 ? 1 : 0);
+            const newDate = new Date(date.getFullYear(), month, curDate);
+            return (
+              // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-noninteractive-tabindex
+              <li key={i} tabIndex={0} onClick={onClickDate.bind(null, newDate)}>
+                {curDate}
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </div>
   );

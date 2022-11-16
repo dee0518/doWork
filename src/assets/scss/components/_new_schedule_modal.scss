@@ -9,8 +9,39 @@
     padding-left: 80px;
 
     &:first-child {
+      @include flexBox(row, nowrap, normal, center);
       padding-top: 5px;
       padding-left: 0;
+      gap: 15px;
+
+      input {
+        display: none;
+      }
+
+      label {
+        padding-left: 22px;
+        font-size: 1.3rem;
+        text-transform: capitalize;
+        background: url(../images/radio_empty.svg) no-repeat;
+        background-position: left center;
+        background-size: 14px;
+      }
+
+      .newtodo.on {
+        background-image: url(../images/radio_pink.svg);
+      }
+
+      .newprivate.on {
+        background-image: url(../images/radio_yellow.svg);
+      }
+
+      .newimportant.on {
+        background-image: url(../images/radio_skyblue.svg);
+      }
+
+      .newmeeting.on {
+        background-image: url(../images/radio_green.svg);
+      }
     }
 
     &:nth-child(2) {
@@ -71,7 +102,7 @@
     @include flexBox(row, nowrap, normal, center);
     position: relative;
     width: 50%;
-    padding: 35px 13px 15px;
+    padding: 35px 5px 5px;
     background: $color-gray-10;
 
     &::before {
@@ -117,17 +148,18 @@
 
   .datepicker {
     button {
+      padding: 10px;
       font-size: 1.3rem;
     }
 
     .calendar {
-      display: none;
-      left: -10px;
-      top: 30px;
+      left: 0px;
+      top: 40px;
     }
   }
 
   .select__box {
+    padding: 10px;
     margin-left: 15px;
     border: none;
     background: transparent;

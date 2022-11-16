@@ -8,7 +8,8 @@ interface LabelProps {
 interface InputProps {
   id: string;
   type: string;
-  [key: string]: string | EventHandler;
+  checked?: boolean;
+  [key: string]: string | boolean | EventHandler;
 }
 
 interface InputFormProps {
