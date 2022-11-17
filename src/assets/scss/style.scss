@@ -6,7 +6,8 @@
 @import './base/index';
 
 // components
-@import './components/_header_area';
+@import './components/header_area';
+@import './components/wrapper';
 @import './components/sub_menu';
 @import './components/statu_checkbox_list';
 @import './components/calendar_header';
@@ -20,6 +21,7 @@
 // container
 @import './pages/login';
 @import './pages/main';
+@import './pages/mypage';
 // @import './pages/schedule/schedule';
 // @import './pages/schedule/new_schedule_modal';
 // @import './pages/myPage/my_page';
