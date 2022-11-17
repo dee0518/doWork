@@ -19,7 +19,6 @@ const auth = createSlice({
     setUser: (state, action: PayloadAction<UserInfo>): void => {
       state.isLoggedIn = true;
       state.user = action.payload;
-      console.log(action.payload);
     },
     setIsLoggedIn: (state, action: PayloadAction<boolean>): void => {
       state.isLoggedIn = action.payload;

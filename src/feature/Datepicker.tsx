@@ -25,7 +25,7 @@ const Datepicker = ({
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
     <div className="datepicker">
-      <button className="datepicker__btn" onClick={onOpenDatePicker}>
+      <button className="datepicker__btn" type="button" onClick={onOpenDatePicker}>
         {changeDate(selectedAt)}
       </button>
       {isShowCalendar && (

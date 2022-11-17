@@ -1,6 +1,7 @@
 import CalendarHeader from './CalendarHeader';
 import CalendarWeek from './CalendarWeek';
-// import CalendarDates from './CalendarDates';
+// eslint-disable-next-line import/no-unresolved
+import { ScheduleList } from '../../types/schedule';
 
 interface CalendarProps {
   type: string;
@@ -10,9 +11,19 @@ interface CalendarProps {
   strLeng: number;
   onClickDate: (date: Date) => void;
   onClickHeaderBtn: (date: Date) => void;
+  scheduleList?: ScheduleList[];
 }
 
-const Calendar = ({ date, type, lang, dateType, strLeng, onClickDate, onClickHeaderBtn }: CalendarProps) => {
+const Calendar = ({
+  date,
+  type,
+  lang,
+  dateType,
+  strLeng,
+  scheduleList,
+  onClickDate,
+  onClickHeaderBtn,
+}: CalendarProps) => {
   const today = new Date();
   const todayYear = today.getFullYear();
   const todayMonth = today.getMonth();
@@ -59,6 +70,18 @@ const Calendar = ({ date, type, lang, dateType, strLeng, onClickDate, onClickHea
             );
           })}
         </ul>
+        {scheduleList && (
+          <div className="time__table">
+            {scheduleList.length > 0 &&
+              scheduleList.map(({ type, start, end, title }) => (
+                <div
+                  className={type}
+                  style={{ left: `${(100 / 7) * start}%`, width: `${((end - start + 1) * 100) / 7}%` }}>
+                  {title}
+                </div>
+              ))}
+          </div>
+        )}
       </div>
     </div>
   );

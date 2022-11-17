@@ -32,7 +32,7 @@ const Login = () => {
     const response = await signIn(userInfo);
 
     if (response.result) {
-      const getUserResponse = await getUserEmail(response.email);
+      const getUserResponse = await getUserEmail(response.data.email);
       const [, user] = Object.entries(getUserResponse);
       const [, value] = user;
 

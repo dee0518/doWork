@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { scheduleActions } from '../store/schedule';
 import { ReducerType } from '../store/rootReducer';
@@ -11,14 +11,35 @@ import SelectBox from '../components/moleclues/SelectBox';
 import NewScheduleModal from '../feature/NewScheduleModal';
 import Wrapper from '../components/atom/Wrapper';
 import images from '../assets/images/importImage';
+import { getScheduleAll } from '../api/schedule';
+import { useNavigate } from 'react-router-dom';
+import { LOGIN } from '../Constant';
+// eslint-disable-next-line import/no-unresolved
+import { ScheduleList } from '../types/schedule';
 
 const Main = () => {
-  // const isLoggedIn = useSelector<ReducerType>(state => state.auth.isLoggedIn);
+  const navigator = useNavigate();
   const dispatch = useDispatch();
   const { statusFilter, selected_at } = useSelector((state: ReducerType) => state.schedule);
+  const { user, isLoggedIn } = useSelector((state: ReducerType) => state.auth);
 
   const [isShowNewSchedule, setIsShowNewSchedule] = useState(false);
+  const [scheduleList, setScheduleList] = useState<ScheduleList[]>([]);
 
+  useEffect(() => {
+    if (isLoggedIn) getSchedule();
+    else navigator(LOGIN);
+  }, []);
+
+  const getSchedule = async () => {
+    const response = await getScheduleAll(user.email);
+
+    if (response.result) {
+      setScheduleList(response.data);
+    } else {
+      alert('스케쥴 리스트 가져오기 실패');
+    }
+  };
   const onOpenModal = () => setIsShowNewSchedule(true);
   const onClose = () => setIsShowNewSchedule(false);
   const onClickDate = (date: Date) => {
@@ -59,6 +80,7 @@ const Main = () => {
           lang={'en'}
           strLeng={0}
           dateType={['year']}
+          scheduleList={scheduleList}
           onClickDate={onClickDate}
           onClickHeaderBtn={onClickHeaderBtn}
         />

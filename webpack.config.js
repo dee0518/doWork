@@ -2,11 +2,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const dotenv = require('dotenv');
-const { web } = require('webpack');
 dotenv.config();
 
 module.exports = {
-  mode: 'development',
   entry: path.resolve(__dirname, 'src/index.tsx'),
   output: {
     path: path.resolve(__dirname, 'dist'),

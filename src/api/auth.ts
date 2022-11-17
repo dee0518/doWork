@@ -1,23 +1,6 @@
 // eslint-disable-next-line import/no-unresolved
 import { UserInfo, LoginInfo } from '../types/auth';
-
-const FIREBASE_URL = 'https://identitytoolkit.googleapis.com/v1';
-const SERVER_URL = 'https://dowork-bd9d9-default-rtdb.firebaseio.com';
-const API_KEY = process.env.FIREBASE_API_KEY;
-
-const request = async (url: string, options: undefined | object = {}): Promise<any> => {
-  try {
-    const response = await fetch(url, options);
-    const json = await response.json();
-
-    return {
-      result: response.ok,
-      ...json,
-    };
-  } catch (e) {
-    console.log(e);
-  }
-};
+import { FIREBASE_URL, SERVER_URL, API_KEY, request } from './index';
 
 const signUp = async (userInfo: LoginInfo): Promise<any> => {
   const options = {
@@ -73,4 +56,16 @@ const getUserEmail = async (email: string): Promise<any> => {
   return request(`${SERVER_URL}/users.json?orderBy="email"&equalTo="${email}"&print=pretty`, options);
 };
 
-export { signUp, signIn, oAuth, postUser, getUserEmail };
+const deleteUser = async (idToken: string): Promise<any> => {
+  const options = {
+    method: 'POST',
+    body: JSON.stringify({ idToken }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  return request(`${FIREBASE_URL}/accounts:delete?key=${API_KEY}`, options);
+};
+
+export { signUp, signIn, oAuth, postUser, getUserEmail, deleteUser };

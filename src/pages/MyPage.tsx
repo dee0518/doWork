@@ -3,12 +3,12 @@ import { LOGIN } from '../Constant';
 import Header from '../components/Header';
 import SubMenu from '../feature/SubMenu';
 import Wrapper from '../components/atom/Wrapper';
+import { useSelector } from 'react-redux';
+import { ReducerType } from '../store/rootReducer';
 
 const MyPage = () => {
-  const userObj = {
-    displayName: 'sdf',
-    career: 'sdfsdf',
-  };
+  const { user } = useSelector((state: ReducerType) => state.auth);
+
   const onLogout = () => {};
   const onOpenModal = () => {};
   const onToggleTheme = () => {};
@@ -20,8 +20,8 @@ const MyPage = () => {
         <div className="mypage__info__group">
           <div className="mypage__info__profile" aria-label="profile"></div>
           <div className="mypage__info__detail">
-            <span className="name">{userObj.displayName ? userObj.displayName : 'User'}</span>
-            <span className="career">{userObj.career ? userObj.career : 'your career'}</span>
+            <span className="name">{user.displayName ? user.displayName : 'User'}</span>
+            <span className="career">{user.career ? user.career : 'your career'}</span>
           </div>
         </div>
         <ul className="mypage__menu">
@@ -50,7 +50,7 @@ const MyPage = () => {
               </Link>
             </li>
             <li>
-              <Link to={'settings'} onClick={onOpenModal}>
+              <Link to={'deleteAccount'}>
                 <span>Delete Account</span>
                 <span>Your account can deleted.</span>
               </Link>
