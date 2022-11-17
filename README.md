@@ -1,6 +1,6 @@
 # deeWork
 
-<img src="https://img.shields.io/badge/-SCSS-CC6699?style=flat&logo=sass&logoColor=white"> <img src="https://img.shields.io/badge/-react-61DAFB?style=flat&logo=react&logoColor=white"> <img src="https://img.shields.io/badge/Typescript-3178C6?style=flat&logo=Typescript&logoColor=white"> <img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat&logo=Firebase&logoColor=white">
+<img src="https://img.shields.io/badge/-SCSS-CC6699?style=flat&logo=sass&logoColor=white"> <img src="https://img.shields.io/badge/-react-61DAFB?style=flat&logo=react&logoColor=white"> <img src="https://img.shields.io/badge/Typescript-3178C6?style=flat&logo=Typescript&logoColor=white"> <img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat&logo=Firebase&logoColor=white"> <br>
 [https://dee-work.vercel.app/](https://dee-work.vercel.app/)
 <br>
 
@@ -69,3 +69,4 @@ deeWork/
 3. 인터페이스 타입 설정에 따른 문제점
     - 원인 : 안에 같은 내용을 담은 인터페이스를 각 컴포넌트에서 생성하여 사용할 경우 서로 다른 인터페이스로 인식
     - 해결 : 인터페이스를 정의하는 파일을 만들어 export하여 사용
+
