@@ -1,10 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-interface UserInfo {
-  id: string;
-  email: string;
-  name: string;
-}
+// eslint-disable-next-line import/no-unresolved
+import { UserInfo } from '../types/auth';
 
 interface authState {
   isLoggedIn: boolean;
@@ -21,7 +17,9 @@ const auth = createSlice({
   initialState,
   reducers: {
     setUser: (state, action: PayloadAction<UserInfo>): void => {
+      state.isLoggedIn = true;
       state.user = action.payload;
+      console.log(action.payload);
     },
     setIsLoggedIn: (state, action: PayloadAction<boolean>): void => {
       state.isLoggedIn = action.payload;
