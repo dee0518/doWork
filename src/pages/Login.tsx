@@ -33,10 +33,9 @@ const Login = () => {
 
     if (response.result) {
       const getUserResponse = await getUserEmail(response.data.email);
-      const [, user] = Object.entries(getUserResponse);
-      const [, value] = user;
+      const [[, user]] = Object.entries(getUserResponse.data);
 
-      dispatch(authActions.setUser(value as UserInfo));
+      dispatch(authActions.setUser(user as UserInfo));
       navigate('/main');
     } else {
       setError(

@@ -20,14 +20,14 @@ const CalendarHeader = ({ date, type, dateType, week, onClickHeaderBtn }: Header
 
   return (
     <div className={`calendar__header ${type}`}>
-      <button className="calendar__header__prev-btn" aria-label="month prev" onClick={onClick}></button>
+      <button className="calendar__header__prev-btn" aria-label="month prev" type="button" onClick={onClick}></button>
       <span className="calendar__header__date">
         {date.toLocaleString('en-US', { month: 'long' })}
         {dateType.includes('date') && ` ${date.getDate()}`}
         {dateType.includes('year') && `, ${date.getFullYear()}`}
         {dateType.includes('week') && ` ${week[0]} - ${week[6]}`}
       </span>
-      <button className="calendar__header__next-btn" aria-label="month next" onClick={onClick}></button>
+      <button className="calendar__header__next-btn" aria-label="month next" type="button" onClick={onClick}></button>
     </div>
   );
 };

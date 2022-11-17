@@ -1,7 +1,8 @@
 import CalendarHeader from './CalendarHeader';
 import CalendarWeek from './CalendarWeek';
+import TimeTable from '../TimeTable';
 // eslint-disable-next-line import/no-unresolved
-import { ScheduleList } from '../../types/schedule';
+import { ScheduleInfo } from '../../types/schedule';
 
 interface CalendarProps {
   type: string;
@@ -11,7 +12,7 @@ interface CalendarProps {
   strLeng: number;
   onClickDate: (date: Date) => void;
   onClickHeaderBtn: (date: Date) => void;
-  scheduleList?: ScheduleList[];
+  scheduleList?: ScheduleInfo[];
 }
 
 const Calendar = ({
@@ -39,7 +40,7 @@ const Calendar = ({
 
   const theRestOfDatesOnPrevMonth: number[] = new Array(theDayOfTheWeekOn1st)
     .fill(1)
-    .map((_, i, self) => lastDateOnPrevMonth - self.length + i);
+    .map((_, i, self) => lastDateOnPrevMonth - self.length + i + 1);
   const theDatesOnCurMonth: number[] = new Array(lastDateOnCurMonth).fill(1).map((_, i) => i + 1);
   const theRestOfDatesOnNextMonth: number[] = new Array(6 - theDayOfTheWeekOnLast).fill(1).map((_, i) => i + 1);
   const dates: number[] = [...theRestOfDatesOnPrevMonth, ...theDatesOnCurMonth, ...theRestOfDatesOnNextMonth];
@@ -70,18 +71,7 @@ const Calendar = ({
             );
           })}
         </ul>
-        {scheduleList && (
-          <div className="time__table">
-            {scheduleList.length > 0 &&
-              scheduleList.map(({ type, start, end, title }) => (
-                <div
-                  className={type}
-                  style={{ left: `${(100 / 7) * start}%`, width: `${((end - start + 1) * 100) / 7}%` }}>
-                  {title}
-                </div>
-              ))}
-          </div>
-        )}
+        {scheduleList && scheduleList.length > 0 && <TimeTable date={date} dates={dates} scheduleList={scheduleList} />}
       </div>
     </div>
   );

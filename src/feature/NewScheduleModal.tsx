@@ -44,7 +44,10 @@ const NewScheduleModal = ({ onClose }: NewScheduleModalProps) => {
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
+    if (title.trim() === '') return;
+
     const [, newStatus] = status.split('_');
+
     const schedule = {
       user: user.email,
       title,

@@ -15,7 +15,7 @@ import { getScheduleAll } from '../api/schedule';
 import { useNavigate } from 'react-router-dom';
 import { LOGIN } from '../Constant';
 // eslint-disable-next-line import/no-unresolved
-import { ScheduleList } from '../types/schedule';
+import { ScheduleInfo } from '../types/schedule';
 
 const Main = () => {
   const navigator = useNavigate();
@@ -24,7 +24,7 @@ const Main = () => {
   const { user, isLoggedIn } = useSelector((state: ReducerType) => state.auth);
 
   const [isShowNewSchedule, setIsShowNewSchedule] = useState(false);
-  const [scheduleList, setScheduleList] = useState<ScheduleList[]>([]);
+  const [scheduleList, setScheduleList] = useState([]);
 
   useEffect(() => {
     if (isLoggedIn) getSchedule();
@@ -35,13 +35,17 @@ const Main = () => {
     const response = await getScheduleAll(user.email);
 
     if (response.result) {
-      setScheduleList(response.data);
+      const schList = Object.entries(response.data).map(([, value]) => value);
+      setScheduleList(schList);
     } else {
       alert('스케쥴 리스트 가져오기 실패');
     }
   };
   const onOpenModal = () => setIsShowNewSchedule(true);
-  const onClose = () => setIsShowNewSchedule(false);
+  const onClose = () => {
+    getSchedule();
+    setIsShowNewSchedule(false);
+  };
   const onClickDate = (date: Date) => {
     dispatch(scheduleActions.setSelectedAt(JSON.stringify(date)));
   };

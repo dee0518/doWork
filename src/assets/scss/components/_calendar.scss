@@ -40,6 +40,10 @@
       text-transform: capitalize;
     }
 
+    .calendar__week__dates__wrapper {
+      position: relative;
+    }
+
     .calendar__dates {
       li {
         height: 180px;
