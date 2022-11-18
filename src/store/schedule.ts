@@ -9,6 +9,7 @@ export interface Status {
 interface scheduleState {
   mode: string;
   statusFilter: Status[];
+  searchKeyword: string;
   selected_at: string;
 }
 
@@ -21,6 +22,7 @@ const initialState: scheduleState = {
     { id: '3', name: 'important', checked: true },
     { id: '4', name: 'meeting', checked: true },
   ],
+  searchKeyword: '',
   selected_at: `${new Date().getFullYear()}.${new Date().getMonth() + 1}.${new Date().getDate()}`,
 };
 
@@ -51,6 +53,9 @@ const schedule = createSlice({
           }
         }
       });
+    },
+    setSearchKeyword: (state, action: PayloadAction<string>) => {
+      state.searchKeyword = action.payload;
     },
     setSelectedAt: (state, action: PayloadAction<string>) => {
       const year: number = new Date(JSON.parse(action.payload)).getFullYear();

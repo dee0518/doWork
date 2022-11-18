@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { scheduleActions } from '../store/schedule';
 import { ReducerType } from '../store/rootReducer';
@@ -70,7 +70,7 @@ const Main = () => {
       <main className="main__contents">
         <SearchForm />
         <div className="main__filter">
-          <SelectBox select={{ id: 'calendarType', optionList: ['Day', 'Week', 'Month'] }} />
+          <SelectBox select={{ id: 'calendarType', optionList: ['Month'] }} />
           <button className="add__schedule-btn" onClick={onOpenModal}>
             <img src={images['ico_add.svg']} alt="+" />
             Add
