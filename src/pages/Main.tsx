@@ -14,8 +14,6 @@ import images from '../assets/images/importImage';
 import { getScheduleAll } from '../api/schedule';
 import { useNavigate } from 'react-router-dom';
 import { LOGIN } from '../Constant';
-// eslint-disable-next-line import/no-unresolved
-import { ScheduleInfo } from '../types/schedule';
 
 const Main = () => {
   const navigator = useNavigate();
@@ -23,7 +21,7 @@ const Main = () => {
   const { statusFilter, selected_at } = useSelector((state: ReducerType) => state.schedule);
   const { user, isLoggedIn } = useSelector((state: ReducerType) => state.auth);
 
-  const [isShowNewSchedule, setIsShowNewSchedule] = useState(false);
+  const [isShowNewSchedule, setIsShowNewSchedule] = useState<boolean>(false);
   const [scheduleList, setScheduleList] = useState([]);
 
   useEffect(() => {

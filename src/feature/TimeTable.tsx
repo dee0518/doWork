@@ -1,3 +1,6 @@
+import { useSelector } from 'react-redux';
+import { ReducerType } from 'store/rootReducer';
+
 interface TimeTableList {
   type: string;
   title: string;
@@ -8,6 +11,7 @@ interface TimeTableList {
 const TimeTable = ({ date, dates, scheduleList }) => {
   const year = date.getFullYear();
   const month = date.getMonth();
+  const { statusFilter } = useSelector((state: ReducerType) => state.schedule);
 
   const firstDateMonth = dates[0] > 20 ? month - 1 : month;
   const lastDateMonth = dates[dates.length - 1] < 7 ? month + 1 : month;
@@ -15,7 +19,7 @@ const TimeTable = ({ date, dates, scheduleList }) => {
   const lastDate = new Date(year, lastDateMonth, dates[dates.length - 1]);
   const timeTable = Array.from(new Array(dates.length / 7), () => []);
 
-  const filterScheduleList = scheduleList.filter(({ from_at, to_at }) => {
+  let filterScheduleList = scheduleList.filter(({ from_at, to_at }) => {
     const fromDate = new Date(from_at);
     const toDate = new Date(to_at);
 
@@ -24,6 +28,10 @@ const TimeTable = ({ date, dates, scheduleList }) => {
     else if (fromDate <= lastDate && lastDate <= toDate) return true;
     else return false;
   });
+  console.log(statusFilter);
+
+  const statusList = statusFilter.filter(({ checked }) => checked).map(({ name }) => name.replace(/\s/g, ''));
+  filterScheduleList = filterScheduleList.filter(({ status }) => statusList.includes(status));
 
   const clacGapDay = (time: number): number => time / (1000 * 60 * 60 * 24);
 
