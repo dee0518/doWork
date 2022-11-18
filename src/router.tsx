@@ -1,9 +1,12 @@
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
-import { LOGIN, MAIN, MYPAGE, SIGNUP } from './Constant';
+import { DELETEACCOUNT, EDITACCOUNT, LOGIN, MAIN, MYPAGE, SIGNUP } from './Constant';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Main from './pages/Main';
 import MyPage from './pages/MyPage';
+import Settings from './components/Setting';
+import EditAccount from './components/EditAccount';
+import DeleteAccount from './components/DeleteAccount';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -11,7 +14,11 @@ const router = createBrowserRouter(
       <Route index element={<Login />} />
       <Route path={SIGNUP} element={<SignUp />} />
       <Route path={MAIN} element={<Main />} />
-      <Route path={MYPAGE} element={<MyPage />}></Route>
+      <Route path={MYPAGE} element={<MyPage />}>
+        <Route index element={<Settings />} />
+        <Route path={EDITACCOUNT} element={<EditAccount />} />
+        <Route path={DELETEACCOUNT} element={<DeleteAccount />} />
+      </Route>
     </Route>
   )
 );

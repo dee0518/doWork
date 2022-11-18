@@ -1,11 +1,11 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { LOGIN } from '../Constant';
-import Header from '../components/Header';
-import SubMenu from '../feature/SubMenu';
-import Wrapper from '../components/atom/Wrapper';
 import { useDispatch, useSelector } from 'react-redux';
 import { ReducerType } from '../store/rootReducer';
 import { authActions } from '../store/auth';
+import Header from '../components/Header';
+import Wrapper from '../components/atom/Wrapper';
+import SubMenu from '../feature/SubMenu';
 
 const MyPage = () => {
   const navigator = useNavigate();
@@ -17,8 +17,6 @@ const MyPage = () => {
     dispatch(authActions.setUser(null));
     navigator(LOGIN);
   };
-  const onOpenModal = () => {};
-  const onToggleTheme = () => {};
 
   return (
     <Wrapper className="mypage">
@@ -40,31 +38,7 @@ const MyPage = () => {
           </li>
         </ul>
       </SubMenu>
-      <main className="setting">
-        <h3>settings</h3>
-        <div className="setting__contents">
-          <ul>
-            <li>
-              <Link to={'editProfile'}>
-                <span>edit profile</span>
-                <span>You can change your name, profile, position.</span>
-              </Link>
-            </li>
-            <li>
-              <Link to={'changePw'}>
-                <span>change password</span>
-                <span>You can change your password</span>
-              </Link>
-            </li>
-            <li>
-              <Link to={'deleteAccount'}>
-                <span>Delete Account</span>
-                <span>Your account can deleted.</span>
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </main>
+      <Outlet />
     </Wrapper>
   );
 };
