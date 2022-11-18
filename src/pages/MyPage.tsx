@@ -1,15 +1,22 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { LOGIN } from '../Constant';
 import Header from '../components/Header';
 import SubMenu from '../feature/SubMenu';
 import Wrapper from '../components/atom/Wrapper';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ReducerType } from '../store/rootReducer';
+import { authActions } from '../store/auth';
 
 const MyPage = () => {
+  const navigator = useNavigate();
+  const dispatch = useDispatch();
   const { user } = useSelector((state: ReducerType) => state.auth);
 
-  const onLogout = () => {};
+  const onLogout = () => {
+    dispatch(authActions.setIsLoggedIn(false));
+    dispatch(authActions.setUser(null));
+    navigator(LOGIN);
+  };
   const onOpenModal = () => {};
   const onToggleTheme = () => {};
 
