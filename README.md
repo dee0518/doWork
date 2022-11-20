@@ -9,6 +9,15 @@
 doWork는 달력에 일정을 추가하여 스케쥴을 관리할 수 있는 서비스이다. 파이어베이스를 이용하여 데이터 통신을 하고 있으며 현재 typescript를 적용하며 리뉴얼하고 있다. 구현된 기능은 아래와 같다.
 <br>
 
+### 기획
+- 컨셉
+- Process Flow
+- 디자인 : [doWork Figma](https://www.figma.com/file/sMXTsGVLePYJwoEsA1e26n/doWork?node-id=0%3A1&t=GqktNgDIHzG0dZMa-0)
+
+<br>
+
+
+### 주요 기능
 - 로그인/회원가입
 - schedule관리할 수 있는 달력
 
@@ -69,4 +78,9 @@ deeWork/
 3. 인터페이스 타입 설정에 따른 문제점
     - 원인 : 안에 같은 내용을 담은 인터페이스를 각 컴포넌트에서 생성하여 사용할 경우 서로 다른 인터페이스로 인식
     - 해결 : 인터페이스를 정의하는 파일을 만들어 export하여 사용
+    
+
+<br>
+
+## 회고
 
