@@ -5,7 +5,10 @@ import SelectBox from '../components/moleclues/SelectBox';
 import { ChangeEvent, MouseEvent, FormEvent, useState } from 'react';
 import { postSchedule } from '../api/schedule';
 import { useSelector } from 'react-redux';
-import { ReducerType } from 'store/rootReducer';
+import { ReducerType } from '../store/rootReducer';
+import { debounce, isEmpty } from 'lodash';
+import { getUserEmail } from '../api/user';
+import { UserInfo } from '../types/auth';
 
 interface NewScheduleModalProps {
   onClose: () => void;
@@ -19,6 +22,10 @@ interface DatepickerState {
 }
 
 type CollaboratorsState = string[];
+type userSearchState = {
+  email: string;
+  name: string;
+};
 
 const setTimeUnit = (time: number): string => (time < 10 ? `0${time}:00` : `${time}:00`);
 const datepickerState: DatepickerState = {
@@ -35,7 +42,8 @@ const NewScheduleModal = ({ onClose }: NewScheduleModalProps) => {
   const { user } = useSelector((state: ReducerType) => state.auth);
   const [title, setTitle] = useState<string>('');
   const [collaborators, setCollaborators] = useState<CollaboratorsState>([]);
-  const [userSearchList, setUserSearchList] = useState<CollaboratorsState>([]);
+  const [userSearch, setUserSearch] = useState<userSearchState | null>(null);
+  const [searchUserKeyword, setSearchUserKeyword] = useState<string>('');
   const [content, setContent] = useState<string>('');
   const [status, setStatus] = useState<string>('new_todo');
   const [fromDate, setFromDate] = useState<DatepickerState>(datepickerState);
@@ -73,17 +81,45 @@ const NewScheduleModal = ({ onClose }: NewScheduleModalProps) => {
 
     if (name === 'status') setStatus(e.target.id);
     else if (name === 'title') setTitle(e.target.value);
-    else if (name === 'collaborators') setTitle(e.target.value);
-    else if (name === 'content') setContent(e.target.value);
+    else if (name === 'collaborators') {
+      setSearchUserKeyword(e.target.value);
+      searchUser(e);
+    } else if (name === 'content') setContent(e.target.value);
     else if (name === 'from') setFromDate(prev => ({ ...prev, time: e.target.value }));
     else if (name === 'to') setToDate(prev => ({ ...prev, time: e.target.value }));
   };
+
+  const searchUser = e => {
+    const { value } = e.target as HTMLInputElement;
+
+    debounce(async () => {
+      const response = await getUserEmail(value);
+      if (response && !isEmpty(response.data)) {
+        const [[, value]]: [string, UserInfo][] = Object.entries(response.data);
+
+        if (collaborators.includes(value.email)) return;
+        setUserSearch({ email: value.email, name: value.displayName });
+      }
+    }, 500)();
+  };
+
+  const onAddCollaborator = (email, _) => {
+    if (collaborators.length >= 5) {
+      alert('5명까지만 추가 가능합니다.');
+      return;
+    }
+
+    setCollaborators(prev => [...prev, email]);
+    console.log('sdf');
+    setUserSearch(null);
+    console.log('error');
+    setSearchUserKeyword('');
+  };
+
   const onOpenDatepicker = (type, _) => {
     if (type === 'from') {
       setFromDate(prev => ({ ...prev, isOpen: true }));
-      // setToDate(prev => ({ ...prev, isOpen: false }));
     } else {
-      // setFromDate(prev => ({ ...prev, isOpen: false }));
       setToDate(prev => ({ ...prev, isOpen: true }));
     }
   };
@@ -95,9 +131,18 @@ const NewScheduleModal = ({ onClose }: NewScheduleModalProps) => {
   };
 
   const onClickDate = (type, selectedAt) => {
-    type === 'from'
-      ? setFromDate(prev => ({ ...prev, isOpen: false, selectedAt, date: selectedAt }))
-      : setToDate(prev => ({ ...prev, isOpen: false, selectedAt, date: selectedAt }));
+    if (type === 'from') {
+      setFromDate(prev => ({ ...prev, isOpen: false, selectedAt, date: selectedAt }));
+
+      if (selectedAt > toDate.selectedAt) {
+        setToDate(prev => ({ ...prev, selectedAt, date: selectedAt }));
+      }
+    } else {
+      setToDate(prev => ({ ...prev, isOpen: false, selectedAt, date: selectedAt }));
+      if (selectedAt < fromDate.selectedAt) {
+        setFromDate(prev => ({ ...prev, selectedAt, date: selectedAt }));
+      }
+    }
   };
 
   const onClickHeaderBtn = (type, date) => {
@@ -181,14 +226,18 @@ const NewScheduleModal = ({ onClose }: NewScheduleModalProps) => {
             input={{
               id: 'collaborator',
               type: 'text',
+              value: searchUserKeyword,
               name: 'collaborators',
               placeholder: 'abc@email.com',
               onChange: onChange,
             }}
             label={{ htmlFor: 'collaborator', className: 'blind', children: '이메일 검색' }}
           />
-          {userSearchList.length > 0 && (
-            <ul className="autoComplete">{userSearchList.length > 0 && userSearchList.map(user => <li>{user}</li>)}</ul>
+          {userSearch !== null && (
+            <button className="add__collaborator" onClick={onAddCollaborator.bind(null, userSearch.email)}>
+              <span>{userSearch.name}</span>
+              <span>{userSearch.email}</span>
+            </button>
           )}
           {collaborators.length > 0 && (
             <ul className="new__schedule__form__list">

@@ -80,6 +80,30 @@
       line-height: 1.25;
       resize: none;
     }
+
+    &__list {
+      @include flexBox(row, wrap, normal, center);
+      gap: 10px;
+      padding: 13px 0 0;
+
+      li {
+        @include flexBox(row, nowrap, space-between, center);
+        padding: 6px 10px 6px 13px;
+        border-radius: 30px;
+        border: 1px solid $color-gray-30;
+        gap: 8px;
+        font-size: 1.2rem;
+
+        button {
+          @include buttonNone;
+          width: 20px;
+          height: 20px;
+          background: url(../images/ico_close_gray.svg) no-repeat;
+          background-size: 12px;
+          background-position: center;
+        }
+      }
+    }
   }
 
   .status__checkbox__list {
@@ -163,6 +187,42 @@
     margin-left: 15px;
     border: none;
     background: transparent;
+  }
+
+  .add__collaborator {
+    @include buttonNone;
+    position: absolute;
+    left: 80px;
+    top: 42px;
+    z-index: 1;
+    width: calc(100% - 80px);
+    padding: 13px;
+    border-radius: 6px;
+    font-size: 1.2rem;
+    background: $color-white;
+    color: $color-gray-70;
+    box-shadow: 0 0 10px 2px rgba(213, 213, 213, 0.4);
+    text-align: left;
+    cursor: pointer;
+    transition: all ease 0.3s;
+
+    span {
+      display: block;
+
+      &:first-child {
+        margin-bottom: 3px;
+        font-size: 1.5rem;
+        color: $color-gray-85;
+      }
+    }
+
+    &:hover {
+      background-color: $color-purple-10;
+
+      span {
+        color: $color-purple-50;
+      }
+    }
   }
 
   &__submit {
