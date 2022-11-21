@@ -40,6 +40,7 @@ const Main = () => {
       alert('스케쥴 리스트 가져오기 실패');
     }
   };
+
   const onOpenModal = () => setIsShowNewSchedule(true);
   const onClose = () => {
     getSchedule();
@@ -54,6 +55,7 @@ const Main = () => {
 
   const onCloseDetailModal = () => {
     dispatch(scheduleActions.setEditedScheduleId(''));
+    getSchedule();
   };
 
   const onClickDetailModal = async (id, e: MouseEvent<HTMLElement>) => {

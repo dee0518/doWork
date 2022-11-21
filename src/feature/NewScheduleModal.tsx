@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { ReducerType } from '../store/rootReducer';
 import { debounce, isEmpty } from 'lodash';
 import { getUserEmail } from '../api/user';
+// eslint-disable-next-line import/no-unresolved
 import { UserInfo } from '../types/auth';
 
 interface NewScheduleModalProps {
@@ -110,10 +111,12 @@ const NewScheduleModal = ({ onClose }: NewScheduleModalProps) => {
     }
 
     setCollaborators(prev => [...prev, email]);
-    console.log('sdf');
     setUserSearch(null);
-    console.log('error');
     setSearchUserKeyword('');
+  };
+
+  const onDeleteCollaborator = (email, _) => {
+    setCollaborators(prev => prev.filter(mail => mail !== email));
   };
 
   const onOpenDatepicker = (type, _) => {
@@ -241,10 +244,13 @@ const NewScheduleModal = ({ onClose }: NewScheduleModalProps) => {
           )}
           {collaborators.length > 0 && (
             <ul className="new__schedule__form__list">
-              {collaborators.map((user, i) => (
+              {collaborators.map((email, i) => (
                 <li key={i}>
-                  <span>{user}</span>
-                  <button type="button" aria-label="delete collaborator"></button>
+                  <span>{email}</span>
+                  <button
+                    type="button"
+                    aria-label="delete collaborator"
+                    onClick={onDeleteCollaborator.bind(null, email)}></button>
                 </li>
               ))}
             </ul>
