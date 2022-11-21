@@ -1,7 +1,7 @@
 # doWork
 
 <img src="https://img.shields.io/badge/-SCSS-CC6699?style=flat&logo=sass&logoColor=white"> <img src="https://img.shields.io/badge/-react-61DAFB?style=flat&logo=react&logoColor=white"> <img src="https://img.shields.io/badge/Typescript-3178C6?style=flat&logo=Typescript&logoColor=white"> <img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat&logo=Firebase&logoColor=white"> <br>
-[https://do-work.vercel.app/](https://do-work.vercel.app/)
+<a href="https://do-work.vercel.app/" target="_blank">https://do-work.vercel.app/</a>
 <br>
 
 ## 1. Outline
@@ -25,10 +25,20 @@ doWork는 협업을 위해 스케쥴을 관리할 수 있는 서비스이다. �
 
 
 ### 주요 기능
-- 로그인/회원가입
-- schedule관리할 수 있는 달력
-
-
+현재 아래 기능들이 구현되어 있습니다.
+- [로그인](./src/pages/Login.tsx)
+- [회원가입](./src/pages/SignUp.tsx)
+- [메인](./src/pages/Main.tsx)
+    - 스케쥴 검색
+    - 스케쥴 타임라인
+    - status 필터
+    - 캘린더
+- [스케쥴 추가 모달](./src/feature/NewScheduleModal.tsx)
+    - datepicker
+    - 사용자 검색
+- [스케쥴 조회/삭제 모달](./src/feature/ScheduleDetailModal.tsx)
+- [마이페이지](./src/pages/MyPage.tsx)
+    - 로그아웃
 <br>
 
 ## 2. Folder Structure
@@ -86,6 +96,9 @@ doWork는 협업을 위해 스케쥴을 관리할 수 있는 서비스이다. �
     - 원인 : 안에 같은 내용을 담은 인터페이스를 각 컴포넌트에서 생성하여 사용할 경우 서로 다른 인터페이스로 인식
     - 해결 : 인터페이스를 정의하는 파일을 만들어 export하여 사용
     
+4. 캘린더 타임라인 화면 표시될 시 겹치지 않아도 위치가 0에서부터 시작하지 않는 문제.
+    - 원인 : top의 값을 index에 따라 주었기 때문.
+    - 해결 : 현재 해결 중입니다.
 
 <br>
 
