@@ -10,8 +10,10 @@ doWork는 달력에 일정을 추가하여 스케쥴을 관리할 수 있는 서
 <br>
 
 ### 기획
-- 컨셉
+- 브레인 스토밍
+![doWorkBrain](https://user-images.githubusercontent.com/92196967/202951366-8d09b543-0b1e-4834-b8bc-3eb46d4c8478.png)
 - Process Flow
+![doWorkFlow](https://user-images.githubusercontent.com/92196967/202951423-e9137af9-0771-4dd2-8f4b-c06d0bcf0ed4.png)
 - 디자인 : [doWork Figma](https://www.figma.com/file/sMXTsGVLePYJwoEsA1e26n/doWork?node-id=0%3A1&t=GqktNgDIHzG0dZMa-0)
 
 <br>
