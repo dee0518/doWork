@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { useEffect, useState, MouseEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { scheduleActions } from '../store/schedule';
 import { ReducerType } from '../store/rootReducer';
@@ -11,14 +11,15 @@ import SelectBox from '../components/moleclues/SelectBox';
 import NewScheduleModal from '../feature/NewScheduleModal';
 import Wrapper from '../components/atom/Wrapper';
 import images from '../assets/images/importImage';
-import { getScheduleAll } from '../api/schedule';
+import { deleteSchedule, getScheduleAll } from '../api/schedule';
 import { useNavigate } from 'react-router-dom';
 import { LOGIN } from '../Constant';
+import ScheduleDetailModal from '../feature/ScheduleDetailModal';
 
 const Main = () => {
   const navigator = useNavigate();
   const dispatch = useDispatch();
-  const { statusFilter, selected_at } = useSelector((state: ReducerType) => state.schedule);
+  const { statusFilter, selected_at, editedScheduleId } = useSelector((state: ReducerType) => state.schedule);
   const { user, isLoggedIn } = useSelector((state: ReducerType) => state.auth);
 
   const [isShowNewSchedule, setIsShowNewSchedule] = useState<boolean>(false);
@@ -33,7 +34,7 @@ const Main = () => {
     const response = await getScheduleAll(user.email);
 
     if (response.result) {
-      const schList = Object.entries(response.data).map(([, value]) => value);
+      const schList = Object.entries(response.data).map(([key, value]: [string, object]) => ({ id: key, ...value }));
       setScheduleList(schList);
     } else {
       alert('스케쥴 리스트 가져오기 실패');
@@ -51,9 +52,34 @@ const Main = () => {
     dispatch(scheduleActions.setSelectedAt(JSON.stringify(date)));
   };
 
+  const onCloseDetailModal = () => {
+    dispatch(scheduleActions.setEditedScheduleId(''));
+  };
+
+  const onClickDetailModal = async (id, e: MouseEvent<HTMLElement>) => {
+    if ((e.target as HTMLElement).classList.contains('delete__schedule')) {
+      try {
+        const result = await deleteSchedule(id);
+
+        if (result) {
+          onCloseDetailModal();
+        }
+      } catch (e) {
+        alert(e);
+      }
+    }
+  };
+
   return (
     <Wrapper className="main">
       {isShowNewSchedule && <NewScheduleModal onClose={onClose} />}
+      {scheduleList.length > 0 && editedScheduleId && (
+        <ScheduleDetailModal
+          schedule={scheduleList.find(({ id }) => id === editedScheduleId)}
+          onClose={onCloseDetailModal}
+          onClick={onClickDetailModal}
+        />
+      )}
       <Header />
       <SubMenu title={'schedule'}>
         <Calendar

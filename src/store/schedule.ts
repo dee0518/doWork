@@ -10,6 +10,7 @@ interface scheduleState {
   mode: string;
   statusFilter: Status[];
   searchKeyword: string;
+  editedScheduleId: string;
   selected_at: string;
 }
 
@@ -23,6 +24,7 @@ const initialState: scheduleState = {
     { id: '4', name: 'meeting', checked: true },
   ],
   searchKeyword: '',
+  editedScheduleId: '',
   selected_at: `${new Date().getFullYear()}.${new Date().getMonth() + 1}.${new Date().getDate()}`,
 };
 
@@ -56,6 +58,9 @@ const schedule = createSlice({
     },
     setSearchKeyword: (state, action: PayloadAction<string>) => {
       state.searchKeyword = action.payload;
+    },
+    setEditedScheduleId: (state, action: PayloadAction<string>) => {
+      state.editedScheduleId = action.payload;
     },
     setSelectedAt: (state, action: PayloadAction<string>) => {
       const year: number = new Date(JSON.parse(action.payload)).getFullYear();

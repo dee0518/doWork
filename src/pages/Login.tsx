@@ -2,7 +2,8 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { authActions } from '../store/auth';
-import { signIn, oAuth, getUserEmail } from '../api/auth';
+import { signIn, oAuth } from '../api/auth';
+import { getUserEmail } from '../api/user';
 import { SIGNUP } from '../Constant';
 // eslint-disable-next-line import/no-unresolved
 import { LoginInfo, UserInfo } from '../types/auth';

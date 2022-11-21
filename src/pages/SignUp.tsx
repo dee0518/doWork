@@ -2,7 +2,8 @@ import { useState, ChangeEvent, FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 // eslint-disable-next-line import/no-unresolved
 import { SignUpInfo } from '../types/auth';
-import { postUser, signUp } from '../api/auth';
+import { signUp } from '../api/auth';
+import { postUser } from '../api/user';
 import { LOGIN } from '../Constant';
 import images from '../assets/images/importImage';
 import InputForm from '../components/moleclues/InputForm';
