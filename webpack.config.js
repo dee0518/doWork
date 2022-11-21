@@ -27,7 +27,7 @@ module.exports = {
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.(png|jp(e*)g|svg|gif)$/,
+        test: /\.(png|jp(e*)g|svg|gif|ico)$/,
         type: 'asset/resource',
         generator: {
           filename: 'assets/images/[name][ext]',
