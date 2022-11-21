@@ -1,7 +1,9 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { scheduleActions } from '../store/schedule';
 import { ReducerType } from '../store/rootReducer';
 
 interface TimeTableList {
+  id: string;
   type: string;
   title: string;
   start: number;
@@ -9,6 +11,7 @@ interface TimeTableList {
 }
 
 const TimeTable = ({ date, dates, scheduleList }) => {
+  const dispatch = useDispatch();
   const year = date.getFullYear();
   const month = date.getMonth();
   const { statusFilter, searchKeyword } = useSelector((state: ReducerType) => state.schedule);
@@ -36,7 +39,7 @@ const TimeTable = ({ date, dates, scheduleList }) => {
 
   const clacGapDay = (time: number): number => time / (1000 * 60 * 60 * 24);
 
-  filterScheduleList.forEach(({ status, from_at, to_at, title }) => {
+  filterScheduleList.forEach(({ id, status, from_at, to_at, title }) => {
     const from = new Date(from_at) < firstDate ? firstDate : new Date(from_at);
     const to = new Date(to_at) > lastDate ? lastDate : new Date(to_at);
 
@@ -58,17 +61,20 @@ const TimeTable = ({ date, dates, scheduleList }) => {
         : timeTable.length - 1;
 
     let isStarted = true;
-
-    while (gapDay > 0 && startArrIdx < timeTable.length) {
+    while (gapDay >= 0 && startArrIdx < timeTable.length) {
       const start = isStarted ? fromDay : 0;
       const end = isStarted ? (fromDay + gapDay > 6 ? 6 : fromDay + gapDay) : gapDay < 7 ? gapDay : 6;
 
-      timeTable[startArrIdx] = [...timeTable[startArrIdx], { type: status, start, end, title }];
+      timeTable[startArrIdx] = [...timeTable[startArrIdx], { id, type: status, start, end, title }];
       gapDay -= isStarted ? 7 - fromDay : 7;
       startArrIdx += 1;
       if (isStarted) isStarted = false;
     }
   });
+
+  const onClick = (id, _) => {
+    dispatch(scheduleActions.setEditedScheduleId(id));
+  };
 
   console.log(timeTable);
   return (
@@ -76,10 +82,12 @@ const TimeTable = ({ date, dates, scheduleList }) => {
       {timeTable.length > 0 &&
         timeTable.map((times, i) => (
           <div key={'t' + i} className="time__table__row">
-            {times.map(({ type, start, end, title }: TimeTableList, i) => (
+            {times.map(({ id, type, start, end, title }: TimeTableList, i) => (
+              // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
               <div
                 key={'s' + i}
                 className={`time__table__schedule  ${type}`}
+                onClick={onClick.bind(null, id)}
                 style={{
                   left: `${(100 / 7) * start}%`,
                   top: `${i * 25 + 36}px`,
