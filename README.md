@@ -6,14 +6,19 @@
 
 ## 1. Outline
 
-doWork는 달력에 일정을 추가하여 스케쥴을 관리할 수 있는 서비스이다. 파이어베이스를 이용하여 데이터 통신을 하고 있으며 현재 typescript를 적용하며 리뉴얼하고 있다. 구현된 기능은 아래와 같다.
+doWork는 협업을 위해 스케쥴을 관리할 수 있는 서비스이다. 파이어베이스를 이용하여 데이터 바인딩하고 있다. 현재 typescript를 적용하며 기술적으로나 UI 측면으로 리뉴얼하고 있다. 브레인 스토밍을 통해 work에 대한 생각을 정리하였고 기획에 맞게 기능들을 구현해나갈 것이다.
+
 <br>
 
 ### 기획
 - 브레인 스토밍
+
 ![doWorkBrain](https://user-images.githubusercontent.com/92196967/202951366-8d09b543-0b1e-4834-b8bc-3eb46d4c8478.png)
+
 - Process Flow
-![doWorkFlow](https://user-images.githubusercontent.com/92196967/202951423-e9137af9-0771-4dd2-8f4b-c06d0bcf0ed4.png)
+
+![doWorkFlow](https://user-images.githubusercontent.com/92196967/202952939-79eb0769-8bba-4759-9071-19644c2cbf3d.png)
+
 - 디자인 : [doWork Figma](https://www.figma.com/file/sMXTsGVLePYJwoEsA1e26n/doWork?node-id=0%3A1&t=GqktNgDIHzG0dZMa-0)
 
 <br>
@@ -29,20 +34,20 @@ doWork는 달력에 일정을 추가하여 스케쥴을 관리할 수 있는 서
 ## 2. Folder Structure
 
 ```
-deeWork/
-├── public/
-├── src/
-|    ├── assets/
-|    ├── components/
-|    ├── pages/
-|    ├── types/
-|    ├── App.tsx
-|    ├── Constant.ts
-|    ├── firebase.ts
-|    ├── index.tsx
-|    └── router.tsx
-├── ts.confing.json
-└── package.json
+📁 deeWork/
+├── 📁 public/
+├── 📁 src/
+|    ├── 📁 assets/
+|    ├── 📁 components/
+|    ├── 📁 pages/
+|    ├── 📁 types/
+|    ├── 📜 App.tsx
+|    ├── 📜 Constant.ts
+|    ├── 📜 firebase.ts
+|    ├── 📜 index.tsx
+|    └── 📜 router.tsx
+├── ⚙️ ts.confing.json
+└── 📦 package.json
 ```
 - assets : 이미지와 scss같은 정적인 파일을 담은 폴더
 - components : 작은 단위의 컴포넌트를 담은 폴더
@@ -85,4 +90,4 @@ deeWork/
 <br>
 
 ## 회고
-
+회고록을 보시려면 [여기](https://velog.io/@dee0518/memoir-doWork)를 클릭해주세요:)
