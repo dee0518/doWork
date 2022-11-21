@@ -13,7 +13,7 @@ doWork는 협업을 위해 스케쥴을 관리할 수 있는 서비스이다. �
 ### 기획
 - 브레인 스토밍
 
-![doWorkBrain](https://user-images.githubusercontent.com/92196967/202951366-8d09b543-0b1e-4834-b8bc-3eb46d4c8478.png)
+![doWorkBrain](https://user-images.githubusercontent.com/92196967/202966960-321eff7a-012d-443c-9e1a-e53c7881b850.png)
 
 - Process Flow
 
