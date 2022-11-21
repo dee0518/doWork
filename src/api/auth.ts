@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-unresolved
-import { UserInfo, LoginInfo } from '../types/auth';
-import { FIREBASE_URL, SERVER_URL, API_KEY, request } from './index';
+import { LoginInfo } from '../types/auth';
+import { FIREBASE_URL, API_KEY, request } from './index';
 
 const signUp = async (userInfo: LoginInfo): Promise<any> => {
   const options = {
@@ -36,36 +36,18 @@ const oAuth = async (): Promise<any> => {
   return request(`${FIREBASE_URL}/accounts:signInWithIdp?key=${API_KEY}`, options);
 };
 
-const postUser = async (props: UserInfo): Promise<any> => {
+const deleteAcoount = async (idToken: string): Promise<any> => {
   const options = {
-    method: 'POST',
-    body: JSON.stringify({ ...props }),
-    headers: {
-      'Content-Type': 'application/json',
+    method: 'DELTE',
+    body: {
+      idToken: JSON.stringify(idToken),
     },
-  };
-
-  return request(`${SERVER_URL}/users.json`, options);
-};
-
-const getUserEmail = async (email: string): Promise<any> => {
-  const options = {
-    method: 'GET',
-  };
-
-  return request(`${SERVER_URL}/users.json?orderBy="email"&equalTo="${email}"&print=pretty`, options);
-};
-
-const deleteUser = async (idToken: string): Promise<any> => {
-  const options = {
-    method: 'POST',
-    body: JSON.stringify({ idToken }),
     headers: {
-      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
     },
   };
 
   return request(`${FIREBASE_URL}/accounts:delete?key=${API_KEY}`, options);
 };
 
-export { signUp, signIn, oAuth, postUser, getUserEmail, deleteUser };
+export { signUp, signIn, oAuth, deleteAcoount };

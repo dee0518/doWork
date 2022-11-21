@@ -22,4 +22,15 @@ const postSchedule = async (schedule: ScheduleInfo) => {
   return request(`${SERVER_URL}/schedule.json`, options);
 };
 
-export { getScheduleAll, postSchedule };
+const deleteSchedule = async scheduleId => {
+  const options = {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  return request(`${SERVER_URL}/schedule/${scheduleId}.json`, options);
+};
+
+export { getScheduleAll, postSchedule, deleteSchedule };
