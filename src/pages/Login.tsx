@@ -40,7 +40,7 @@ const Login = () => {
       navigate('/main');
     } else {
       setError(
-        response.error.message === 'INVALID_EMAIL'
+        response.data.error.message === 'EMAIL_NOT_FOUND'
           ? '같이 일하고 있는 계정이 아니에요 (ㅇㅅㅇ)'
           : '비밀번호가 맞지 않아요 (ㅠ.ㅠ)'
       );
