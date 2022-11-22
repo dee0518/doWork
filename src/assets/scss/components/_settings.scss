@@ -1,0 +1,38 @@
+.mypage__main__contents {
+  li {
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: calc(100% - 40px);
+      height: 1px;
+      background: $color-gray-10;
+      transform: translate3d(-50%, 0, 0);
+    }
+
+    a {
+      display: block;
+      padding: 35px 25px;
+      color: $color-gray-100;
+
+      span {
+        display: block;
+
+        &:first-child {
+          margin-bottom: 4px;
+          font-size: 1.8em;
+          font-weight: 500;
+          text-transform: capitalize;
+        }
+
+        &:nth-child(2) {
+          font-size: 1.3rem;
+          color: $color-gray-85;
+        }
+      }
+    }
+  }
+}
