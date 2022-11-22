@@ -5,8 +5,8 @@ import SignUp from './pages/SignUp';
 import Main from './pages/Main';
 import MyPage from './pages/MyPage';
 import Settings from './components/Setting';
-import EditAccount from './components/EditAccount';
-import DeleteAccount from './components/DeleteAccount';
+import EditAccount from './pages/EditAccount';
+import DeleteAccount from './pages/DeleteAccount';
 
 const router = createBrowserRouter(
   createRoutesFromElements(

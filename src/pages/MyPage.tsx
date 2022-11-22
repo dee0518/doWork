@@ -6,11 +6,16 @@ import { authActions } from '../store/auth';
 import Header from '../components/Header';
 import Wrapper from '../components/atom/Wrapper';
 import SubMenu from '../feature/SubMenu';
+import { useEffect } from 'react';
 
 const MyPage = () => {
   const navigator = useNavigate();
   const dispatch = useDispatch();
-  const { user } = useSelector((state: ReducerType) => state.auth);
+  const { user, isLoggedIn } = useSelector((state: ReducerType) => state.auth);
+
+  useEffect(() => {
+    if (!isLoggedIn) onLogout();
+  }, []);
 
   const onLogout = () => {
     dispatch(authActions.setIsLoggedIn(false));
