@@ -2,7 +2,7 @@
   width: 400px;
 
   .modal__body {
-    padding-bottom: 10px;
+    padding-bottom: 5px;
   }
 
   &.todo .modal__header {
@@ -57,12 +57,13 @@
 
   &__edit_group {
     text-align: right;
-    padding: 5px 0 0;
+    padding: 3px 0 0;
 
     .delete__schedule {
       @include buttonNone;
       width: 30px;
       height: 30px;
+      margin-right: -5px;
       background: url(../images/delete_trash.svg) no-repeat;
       background-position: center;
     }

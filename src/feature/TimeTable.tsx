@@ -90,7 +90,7 @@ const TimeTable = ({ date, dates, scheduleList }) => {
                 onClick={onClick.bind(null, id)}
                 style={{
                   left: `${(100 / 7) * start}%`,
-                  top: `${i * 25 + 36}px`,
+                  top: `${i * 29 + 36}px`,
                   width: `${((end - start + 1) * 100) / 7}%`,
                 }}>
                 {title}

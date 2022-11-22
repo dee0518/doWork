@@ -178,6 +178,7 @@ const NewScheduleModal = ({ onClose }: NewScheduleModalProps) => {
               value: title,
               placeholder: '새로운 일정을 알려주세요.',
               onChange: onChange,
+              maxLength: '50',
             }}
             label={{ htmlFor: 'title', className: 'blind', children: '제목' }}
           />

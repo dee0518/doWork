@@ -18,7 +18,7 @@
     &__header {
       position: relative;
       width: 100%;
-      padding: 15px 20px;
+      padding: 15px 50px 15px 20px;
       border-radius: 8px 8px 0 0;
       background: linear-gradient(to right, $color-purple-60, $color-purple-30);
 
@@ -30,12 +30,13 @@
       button {
         @include buttonNone;
         position: absolute;
-        top: 0;
+        top: 50%;
         right: 0;
         width: 46px;
         height: 46px;
         background: url(../images/ico_close_white.svg) no-repeat;
         background-position: center;
+        transform: translate3d(0, -50%, 0);
       }
     }
 
