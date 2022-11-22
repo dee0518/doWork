@@ -28,23 +28,16 @@ const signIn = async (userInfo: LoginInfo): Promise<any> => {
 
 const oAuth = async (): Promise<any> => {
   const options = {
-    method: 'GET',
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-    },
+    method: 'POST',
+    // body: JSON.stringify({ postBody: { }, requestUri: 'http://localhost:5000/', returnIdpCredential: true, returnSecureToken: true }),
   };
   return request(`${FIREBASE_URL}/accounts:signInWithIdp?key=${API_KEY}`, options);
 };
 
 const deleteAcoount = async (idToken: string): Promise<any> => {
   const options = {
-    method: 'DELTE',
-    body: {
-      idToken: JSON.stringify(idToken),
-    },
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-    },
+    method: 'POST',
+    body: JSON.stringify({ idToken }),
   };
 
   return request(`${FIREBASE_URL}/accounts:delete?key=${API_KEY}`, options);
