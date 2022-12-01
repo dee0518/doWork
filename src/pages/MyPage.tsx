@@ -15,7 +15,7 @@ const MyPage = () => {
 
   useEffect(() => {
     if (!isLoggedIn) onLogout();
-  }, []);
+  }, [isLoggedIn]);
 
   const onLogout = () => {
     dispatch(authActions.setIsLoggedIn(false));

@@ -16,9 +16,9 @@ const EditAccount = () => {
         title={'edit account'}
         guideTitle={'나는 어떤 사람인가요?'}
         guide={['같이 일하는 사람들에게 나를 소개해주세요', '새로운 정보를 업데이트 해주세요']}
-        onClick={onClick}
-      />
-      {isEdited && <EditAccountForm />}
+        onClick={onClick}>
+        {isEdited && <EditAccountForm />}
+      </MyPageGuide>
     </section>
   );
 };

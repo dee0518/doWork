@@ -11,7 +11,10 @@ const EditAccountForm = () => {
     introduce: '',
   });
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {};
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    // setUserInfo(prev => {...prev, [name]: value })
+  };
 
   return (
     <form className="edit__account__form">
@@ -26,6 +29,7 @@ const EditAccountForm = () => {
           }}
           label={{
             htmlFor: 'profile',
+            children: '파일 선택',
           }}
         />
       </div>

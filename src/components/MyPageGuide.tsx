@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, ReactNode, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MYPAGE } from '../Constant';
 import InputForm from './moleclues/InputForm';
@@ -10,10 +10,11 @@ type TProps = {
   title: string;
   guideTitle: string;
   guide: string[];
+  children?: ReactNode;
   onClick: (idToken: string) => void;
 };
 
-const MyPageGuide = ({ title, guideTitle, guide, onClick }: TProps) => {
+const MyPageGuide = ({ title, guideTitle, guide, onClick, children }: TProps) => {
   const { user } = useSelector((state: ReducerType) => state.auth);
   const [password, setPassword] = useState<string>('');
 
@@ -60,6 +61,7 @@ const MyPageGuide = ({ title, guideTitle, guide, onClick }: TProps) => {
           }}
         />
       </section>
+      {children}
       <div className="mypage__main__button__group">
         <Link to={MYPAGE}>뒤로가기</Link>
         <button onClick={onClickConfirm}>확인</button>
