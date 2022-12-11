@@ -11,7 +11,9 @@
       width: 60px;
       height: 60px;
       border-radius: 50%;
-      background: #d3d3d3;
+      background: url(../images/default_profile.svg) no-repeat;
+      background-size: contain;
+      background-position: center;
     }
 
     &__detail {
@@ -32,11 +34,20 @@
   &__menu {
     li {
       border-top: 1px solid $color-gray-10;
+      a {
+        display: block;
+        width: 100%;
+        padding: 20px 5px;
+        color: $color-gray-100;
+        font-size: 1.6rem;
+        text-align: left;
+        text-transform: capitalize;
+      }
 
       button {
         @include buttonNone;
         width: 100%;
-        padding: 25px 5px;
+        padding: 20px 5px;
         color: $color-gray-100;
         font-size: 1.6rem;
         text-align: left;

@@ -11,10 +11,11 @@ type TProps = {
   guideTitle: string;
   guide: string[];
   children?: ReactNode;
+  isEdited: boolean;
   onClick: (idToken: string) => void;
 };
 
-const MyPageGuide = ({ title, guideTitle, guide, onClick, children }: TProps) => {
+const MyPageGuide = ({ title, guideTitle, guide, onClick, children, isEdited }: TProps) => {
   const { user } = useSelector((state: ReducerType) => state.auth);
   const [password, setPassword] = useState<string>('');
 
@@ -46,20 +47,24 @@ const MyPageGuide = ({ title, guideTitle, guide, onClick, children }: TProps) =>
             ))}
           </p>
         </div>
-        <InputForm
-          input={{
-            id: 'password',
-            type: 'password',
-            placeholder: '비밀번호를 입력하세요.',
-            value: password,
-            onChange: onChange,
-          }}
-          label={{
-            htmlFor: 'password',
-            className: 'blind',
-            children: '비밀번호',
-          }}
-        />
+        {isEdited ? (
+          <span className="emoji">:&#41;</span>
+        ) : (
+          <InputForm
+            input={{
+              id: 'password',
+              type: 'password',
+              placeholder: '비밀번호를 입력하세요.',
+              value: password,
+              onChange: onChange,
+            }}
+            label={{
+              htmlFor: 'password',
+              className: 'blind',
+              children: '비밀번호',
+            }}
+          />
+        )}
       </section>
       {children}
       <div className="mypage__main__button__group">

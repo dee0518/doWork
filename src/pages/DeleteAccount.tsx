@@ -27,6 +27,7 @@ const DeleteAccount = () => {
       guideTitle={'마지막 doWork'}
       guide={['아직 doWork와의 즐거움을 차지 못했군요ㅠ.ㅠ', '떠나면 더이상 같이 일할 수 었어요. 떠날실 건가요?']}
       onClick={onClick}
+      isEdited={true}
     />
   );
 };

@@ -1,12 +1,12 @@
-import { Outlet, useNavigate } from 'react-router-dom';
-import { LOGIN } from '../Constant';
+import { useEffect } from 'react';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { LOGIN, MYPAGE } from '../Constant';
 import { useDispatch, useSelector } from 'react-redux';
 import { ReducerType } from '../store/rootReducer';
 import { authActions } from '../store/auth';
 import Header from '../components/Header';
 import Wrapper from '../components/atom/Wrapper';
 import SubMenu from '../feature/SubMenu';
-import { useEffect } from 'react';
 
 const MyPage = () => {
   const navigator = useNavigate();
@@ -35,9 +35,9 @@ const MyPage = () => {
           </div>
         </div>
         <ul className="mypage__menu">
-          {/* <li>
-            <button onClick={onToggleTheme}>dark mode</button>
-          </li> */}
+          <li>
+            <Link to={MYPAGE}>settings</Link>
+          </li>
           <li>
             <button onClick={onLogout}>logout</button>
           </li>

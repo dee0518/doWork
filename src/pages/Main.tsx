@@ -7,7 +7,6 @@ import SubMenu from '../feature/SubMenu';
 import SearchForm from '../feature/SearchForm';
 import Calendar from '../feature/Calendar';
 import StatusCheckboxList from '../components/moleclues/StatusCheckboxList';
-import SelectBox from '../components/moleclues/SelectBox';
 import NewScheduleModal from '../feature/NewScheduleModal';
 import Wrapper from '../components/atom/Wrapper';
 import images from '../assets/images/importImage';
@@ -103,7 +102,6 @@ const Main = () => {
       <main className="main__contents">
         <SearchForm />
         <div className="main__filter">
-          <SelectBox select={{ id: 'calendarType', optionList: ['Month'] }} />
           <button className="add__schedule-btn" onClick={onOpenModal}>
             <img src={images['ico_add.svg']} alt="+" />
             Add

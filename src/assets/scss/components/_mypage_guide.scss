@@ -37,6 +37,11 @@
         }
       }
 
+      .emoji {
+        font-size: 5.5rem;
+        color: $color-gray-20;
+      }
+
       & .input__form {
         flex-basis: 40%;
 
