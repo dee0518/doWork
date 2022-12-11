@@ -14,6 +14,7 @@ const ScheduleDetailModal = ({
   const toYear = toAt.getFullYear();
   const toMonth = toAt.getMonth();
   const toDate = toAt.getDate();
+
   return (
     <Modal
       title={title}
@@ -31,7 +32,7 @@ const ScheduleDetailModal = ({
         </div>
       </div>
       <div className="schedule__detail__modal__edit_group">
-        {/* <button aria-label="편집하기"></button> */}
+        <button className="edit__schedule" aria-label="편집하기"></button>
         <button className="delete__schedule" aria-label="삭제하기"></button>
       </div>
     </Modal>

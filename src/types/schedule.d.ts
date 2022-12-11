@@ -10,9 +10,11 @@ export interface ScheduleInfo {
   content: string;
 }
 
-export interface ScheduleList {
+export interface iScheduleList {
+  id: string;
   type: string;
   title: string;
+  top: number;
   start: number;
   end: number;
 }

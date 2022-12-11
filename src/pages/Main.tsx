@@ -59,7 +59,7 @@ const Main = () => {
   };
 
   const onClickDetailModal = async (id, e: MouseEvent<HTMLElement>) => {
-    if ((e.target as HTMLElement).classList.contains('delete__schedule')) {
+    if ((e.target as HTMLButtonElement).classList.contains('delete__schedule')) {
       try {
         const result = await deleteSchedule(id);
 
@@ -69,6 +69,11 @@ const Main = () => {
       } catch (e) {
         alert(e);
       }
+    }
+
+    if ((e.target as HTMLButtonElement).classList.contains('edit__schedule')) {
+      dispatch(scheduleActions.setEditedScheduleId(''));
+      setIsShowNewSchedule(true);
     }
   };
 

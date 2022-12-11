@@ -2,7 +2,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const dotenv = require('dotenv');
-const RefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 dotenv.config();
 
 module.exports = {
@@ -37,9 +36,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new webpack.ProvidePlugin({
-      React: 'react',
-    }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'public/index.html'),
       favicon: path.resolve(__dirname, 'public/favicon.ico'),
@@ -48,7 +44,6 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': JSON.stringify(process.env),
     }),
-    new RefreshWebpackPlugin(),
   ],
   devServer: {
     port: 5000,

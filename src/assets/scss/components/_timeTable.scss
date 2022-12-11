@@ -11,6 +11,7 @@
   }
 
   &__schedule {
+    @include buttonNone;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -21,6 +22,7 @@
     color: $color-white;
     font-size: 1.2rem;
     background: $color-pink;
+    text-align: left;
 
     &.private {
       background: $color-yellow;
