@@ -103,4 +103,4 @@ doWork는 협업을 위해 스케쥴을 관리할 수 있는 서비스이다. �
 <br>
 
 ## 회고
-회고록을 보시려면 [여기](https://velog.io/@dee0518/memoir-doWork)를 클릭해주세요:)
+회고록을 보시려면 [여기](https://velog.io/@dee0518/Memoir-%ED%95%A8%EA%BB%98-%EC%9D%BC%ED%95%B4%EC%9A%94-doWork-t8otrvg1)를 클릭해주세요:)
